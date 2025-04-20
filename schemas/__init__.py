@@ -1,0 +1,1 @@
+##chỗ này để thiết kế database cho các trường của bảng
