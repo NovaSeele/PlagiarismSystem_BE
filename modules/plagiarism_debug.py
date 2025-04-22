@@ -61,8 +61,33 @@ class LayeredPlagiarismDetectorDebug:
 
     def __init__(self):
         # Thresholds for each layer
+        # LSA threshold (0.3) - First layer filter
+        # This is a low threshold used to quickly filter out obviously dissimilar documents.
+        # The value is deliberately set lower than the thresholds in other modules (LSA module: 0.4)
+        # because:
+        # - It serves as an initial broad filter to reduce the number of documents for more
+        #   expensive analysis
+        # - We want to minimize false negatives at this stage (documents incorrectly excluded)
+        # - Computational efficiency is prioritized over precision in this first pass
+        # - Further layers will apply stricter thresholds to refine the results
         self.lsa_threshold = 0.3  # Lower threshold for initial filter
+
+        # FastText threshold (0.4) - Second layer filter
+        # This medium threshold applies to document pairs that passed the LSA filter.
+        # The value is lower than in the actual FastText module (0.5) because:
+        # - We want to maintain good recall while starting to improve precision
+        # - Document pairs that pass this filter will still undergo BERT analysis
+        # - It represents a balance between the quick LSA filter and the precise BERT filter
+        # - Setting it too high might exclude relevant matches before they reach BERT analysis
         self.fasttext_threshold = 0.4  # Medium threshold for second layer
+
+        # BERT threshold (0.5) - Final layer filter
+        # This higher threshold determines which document pairs are included in the final results.
+        # It matches the standard sentence-level threshold in the BERT module because:
+        # - At this stage, we prioritize precision to reduce false positives
+        # - BERT provides high-quality semantic understanding for reliable similarity assessment
+        # - Only documents with meaningful semantic similarity should be flagged
+        # - This is the final decision point for classifying document pairs as potentially plagiarized
         self.bert_threshold = 0.5  # Higher threshold for final layer
 
     def detect_plagiarism_debug(self, texts: List[str]) -> Dict[str, Any]:
