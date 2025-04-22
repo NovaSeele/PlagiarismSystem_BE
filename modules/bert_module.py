@@ -46,18 +46,46 @@ class PlagiarismDetector:
         # Initialize BERT model
         self.bert_model = SentenceTransformer(bert_model)
 
-        # Similarity threshold
+        # Sentence-level similarity threshold (0.5)
+        # This threshold determines when two sentences are considered similar enough
+        # to be included in the "similar_sentence_pairs" list in the results.
+        # Value of 0.5 means sentences need to be at least 50% similar in their
+        # BERT embedding representations to be considered a match.
+        # For BERT models, this is a balanced threshold that:
+        # - Is sensitive enough to detect paraphrased content
+        # - Strict enough to avoid too many false positives
+        # This threshold is used in the _analyze_semantic_similarity method.
         self.threshold = 0.5
 
         # Plagiarism thresholds
+        # High confidence plagiarism threshold (0.75)
+        # When the overall similarity between documents exceeds 75%, content is
+        # classified as definitely plagiarized with high confidence.
+        # This high threshold helps ensure that flagged content truly represents
+        # substantial copying rather than coincidental similarity.
+        # Used in both detect_plagiarism_pair and detect_plagiarism_multi methods.
         self.plagiarism_threshold = 0.75  # High confidence plagiarism
+
+        # Potential plagiarism threshold (0.60)
+        # Documents with similarity between 60-75% are flagged as potentially plagiarized.
+        # This range typically indicates:
+        # - Significant paraphrasing
+        # - Partial copying with modifications
+        # - Content from common sources
+        # These cases require human review to make a final determination.
         self.potential_plagiarism_threshold = 0.60  # Potential plagiarism
 
         # Initialize tools for English text processing
         self.stop_words = set(stopwords.words("english"))
         self.stemmer = PorterStemmer()
 
-        # FAISS configuration
+        # FAISS configuration - Sentence similarity threshold for efficient multi-document comparison (0.7)
+        # This is a higher threshold than the standard sentence threshold (0.5) because:
+        # - It's used specifically in the FAISS-based approximate nearest neighbor search
+        # - FAISS returns multiple potential matches which may include false positives
+        # - The higher value (0.7) ensures we only keep high-quality matches
+        # - Helps maintain efficiency when comparing many documents by reducing low-value matches
+        # This threshold is used in the detect_plagiarism_multi method with FAISS.
         self.faiss_threshold = 0.7
 
         self.initialized = True
