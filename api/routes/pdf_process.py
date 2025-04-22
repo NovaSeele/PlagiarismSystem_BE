@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 import json
 
-from services.text_rank_keyword_vi import run_textrank
+# from services.text_rank_keyword_vi import run_textrank
 
 from modules.keyword_classifier import categorize_combined
 
@@ -30,12 +30,12 @@ with open("D:/Code/NovaSeelePlagiarismSystem/backend/datasets/categories.json", 
 # def categorize(input_phrases: List[str]):
 #     return categorize_combined(input_phrases, categories, category_examples)
 
-@router.post("/categorize_keywords")
-async def categorize_keywords_endpoint(request: TextRequest):
-    try:
-        keywords = run_textrank(request.text, stopwords, top_n=10)
-        keyword_categories = categorize_combined(keywords, categories, category_examples)
-        return keyword_categories
+# @router.post("/categorize_keywords")
+# async def categorize_keywords_endpoint(request: TextRequest):
+#     try:
+#         keywords = run_textrank(request.text, stopwords, top_n=10)
+#         keyword_categories = categorize_combined(keywords, categories, category_examples)
+#         return keyword_categories
 
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))

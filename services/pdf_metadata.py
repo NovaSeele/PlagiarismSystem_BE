@@ -16,7 +16,7 @@ from gridfs import GridFS
 
 import json
 
-from services.text_rank_keyword_vi import run_textrank
+# from services.text_rank_keyword_vi import run_textrank
 
 from modules.keyword_classifier import categorize_combined
 
@@ -56,7 +56,7 @@ def upload_metadata_pdf_service(file: UploadFile, current_user: UserInDB):
 
     extracted_text = extract_text_from_pdf(pdf_bytes)
 
-    keywords = run_textrank(extracted_text, stopwords, top_n=10)
+    # keywords = run_textrank(extracted_text, stopwords, top_n=10)
     # keyword_categories = categorize_combined(keywords, categories, category_examples)
 
     metadata = {
