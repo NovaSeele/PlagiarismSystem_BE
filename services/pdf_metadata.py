@@ -72,91 +72,91 @@ def upload_metadata_pdf_service(file: UploadFile, current_user: UserInDB):
     return PDFMetadata(**metadata)
 
 
-def get_pdf_metadata_by_name(filename: str):
-    """
-    Lấy thông tin metadata của file PDF đã upload bằng filename.
-    """
-    pdf_metadata_collection = get_pdf_metadata_collection()
+# def get_pdf_metadata_by_name(filename: str):
+#     """
+#     Lấy thông tin metadata của file PDF đã upload bằng filename.
+#     """
+#     pdf_metadata_collection = get_pdf_metadata_collection()
 
-    # Tìm file theo filename
-    file_data = pdf_metadata_collection.find_one({"filename": filename + ".pdf"})
+#     # Tìm file theo filename
+#     file_data = pdf_metadata_collection.find_one({"filename": filename + ".pdf"})
 
-    if not file_data:
-        return None  # Trả về None nếu không tìm thấy file
+#     if not file_data:
+#         return None  # Trả về None nếu không tìm thấy file
 
-    # return {
-    #     "filename": file_data["filename"],
-    #     "user": file_data["user"],
-    #     "content": file_data["content"][:1000],  # Giới hạn nội dung trả về
-    #     "upload_at": file_data["upload_at"]
-    # }
+#     # return {
+#     #     "filename": file_data["filename"],
+#     #     "user": file_data["user"],
+#     #     "content": file_data["content"][:1000],  # Giới hạn nội dung trả về
+#     #     "upload_at": file_data["upload_at"]
+#     # }
 
-    return file_data["content"]
-
-
-def get_content_organized_by_categories():
-    """
-    Lấy tất cả nội dung PDF được tổ chức theo categories.
-
-    Returns:
-        dict: Dictionary với key là tên category và value là danh sách các file (filename và content) thuộc category đó
-    """
-    pdf_metadata_collection = get_pdf_metadata_collection()
-
-    # Lấy tất cả các documents từ collection
-    all_files = list(pdf_metadata_collection.find({}))
-
-    # Nếu không có file nào, trả về dictionary trống thay vì None
-    if not all_files:
-        return {}
-
-    # Dictionary để lưu trữ kết quả theo category
-    result_by_category = {}
-
-    # Duyệt qua từng file
-    for file in all_files:
-        filename = file.get("filename")
-        content = file.get("content")
-
-        # Duyệt qua từng category của file
-        for category in file.get("categories", []):
-            # Nếu category chưa tồn tại trong kết quả, tạo mới
-            if category not in result_by_category:
-                result_by_category[category] = []
-
-            # Thêm thông tin file vào category
-            result_by_category[category].append(
-                {"filename": filename, "content": content}
-            )
-
-    return result_by_category
+#     return file_data["content"]
 
 
-def get_pdf_content_by_categories(categories: list):
-    """
-    Lấy nội dung của tất cả các file PDF có chứa tất cả các categories được chỉ định.
+# def get_content_organized_by_categories():
+#     """
+#     Lấy tất cả nội dung PDF được tổ chức theo categories.
 
-    Args:
-        categories (list): Danh sách các danh mục cần tìm kiếm
+#     Returns:
+#         dict: Dictionary với key là tên category và value là danh sách các file (filename và content) thuộc category đó
+#     """
+#     pdf_metadata_collection = get_pdf_metadata_collection()
 
-    Returns:
-        list: Danh sách chứa nội dung của các file thuộc tất cả các category đó
-    """
-    pdf_metadata_collection = get_pdf_metadata_collection()
+#     # Lấy tất cả các documents từ collection
+#     all_files = list(pdf_metadata_collection.find({}))
 
-    # Tìm tất cả các file có chứa TẤT CẢ các category này trong mảng categories
-    files = pdf_metadata_collection.find({"categories": {"$all": categories}})
+#     # Nếu không có file nào, trả về dictionary trống thay vì None
+#     if not all_files:
+#         return {}
 
-    # Nếu không tìm thấy file nào
-    if not files:
-        return None
+#     # Dictionary để lưu trữ kết quả theo category
+#     result_by_category = {}
 
-    # Tạo danh sách chứa nội dung của tất cả các file tìm được
-    contents = []
-    for file in files:
-        contents.append({"filename": file["filename"], "content": file["content"]})
+#     # Duyệt qua từng file
+#     for file in all_files:
+#         filename = file.get("filename")
+#         content = file.get("content")
 
-    return contents
+#         # Duyệt qua từng category của file
+#         for category in file.get("categories", []):
+#             # Nếu category chưa tồn tại trong kết quả, tạo mới
+#             if category not in result_by_category:
+#                 result_by_category[category] = []
+
+#             # Thêm thông tin file vào category
+#             result_by_category[category].append(
+#                 {"filename": filename, "content": content}
+#             )
+
+#     return result_by_category
+
+
+# def get_pdf_content_by_categories(categories: list):
+#     """
+#     Lấy nội dung của tất cả các file PDF có chứa tất cả các categories được chỉ định.
+
+#     Args:
+#         categories (list): Danh sách các danh mục cần tìm kiếm
+
+#     Returns:
+#         list: Danh sách chứa nội dung của các file thuộc tất cả các category đó
+#     """
+#     pdf_metadata_collection = get_pdf_metadata_collection()
+
+#     # Tìm tất cả các file có chứa TẤT CẢ các category này trong mảng categories
+#     files = pdf_metadata_collection.find({"categories": {"$all": categories}})
+
+#     # Nếu không tìm thấy file nào
+#     if not files:
+#         return None
+
+#     # Tạo danh sách chứa nội dung của tất cả các file tìm được
+#     contents = []
+#     for file in files:
+#         contents.append({"filename": file["filename"], "content": file["content"]})
+
+#     return contents
 
 
 def get_all_pdf_metadata():
