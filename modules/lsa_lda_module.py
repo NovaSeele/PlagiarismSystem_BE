@@ -41,6 +41,13 @@ class TopicModelingDetector:
 
         # LSA configuration - fixed to ensure consistency across all comparisons
         self.n_components_lsa = 10  # Fixed number of topics for LSA
+        # Similarity threshold for sentence-level similarity detection.
+        # When comparing sentences using cosine similarity, only pairs with
+        # similarity scores greater than this threshold (0.4) will be considered as similar.
+        # Lower value (e.g., 0.3) would be more sensitive and find more potential matches
+        # (potentially more false positives), while higher value (e.g., 0.6) would be
+        # more strict and only detect highly similar content (potentially missing some plagiarism).
+        # This value was chosen empirically to balance detection sensitivity with precision.
         self.threshold = 0.4
 
         # LDA configuration - fixed to ensure consistency across all comparisons

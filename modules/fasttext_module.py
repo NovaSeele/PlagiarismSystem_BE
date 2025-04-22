@@ -37,10 +37,28 @@ class FastTextDetector:
 
         print("Initializing FastText Detector...")
         self.model_name = model_name
+        # Sentence-level similarity threshold (0.5)
+        # This threshold is used when finding similar sentence pairs between documents.
+        # Only sentence pairs with cosine similarity scores above this threshold
+        # will be included in the result's "similar_sentence_pairs" list.
+        # Value of 0.5 means sentences need to be at least 50% similar in meaning
+        # based on their FastText vector representations.
+        # This is moderate sensitivity - balances finding meaningful matches without too many false positives.
         self.threshold = 0.5
 
         # Plagiarism thresholds
+        # High confidence plagiarism threshold (0.75)
+        # When the overall similarity score between two documents is above this threshold (75%),
+        # the system will confidently classify it as plagiarism.
+        # This high threshold helps ensure that false positives are minimized
+        # and that detected plagiarism cases have strong evidence.
         self.plagiarism_threshold = 0.75  # High confidence plagiarism
+
+        # Potential plagiarism threshold (0.60)
+        # When the overall similarity is between 0.60 and 0.75 (60%-75%),
+        # the content is flagged as "potential plagiarism" - meaning it needs further review.
+        # This helps identify borderline cases that might represent partial plagiarism,
+        # paraphrasing, or content with common sources but not direct copying.
         self.potential_plagiarism_threshold = 0.60  # Potential plagiarism
 
         # Initialize tools for English text processing
