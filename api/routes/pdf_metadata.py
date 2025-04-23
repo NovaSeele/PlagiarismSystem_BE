@@ -12,7 +12,6 @@ from db.session import get_collection
 from models.user import get_current_user
 
 from services.pdf_metadata import upload_metadata_pdf_service, get_pdf_metadata_by_name, get_content_organized_by_categories, get_pdf_content_by_categories, get_all_pdf_metadata, get_all_pdf_contents
-from modules.bert_module import compare_two_texts, compare_multiple_texts
 
 router = APIRouter()
 
