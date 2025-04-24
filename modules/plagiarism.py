@@ -88,8 +88,13 @@ class LayeredPlagiarismDetector:
         start_time = time.time()
         text_count = len(texts)
 
+        print(f"\nBắt đầu phân tích {text_count} văn bản bằng phương pháp phân lớp...")
+        print(f"Tạo tất cả các cặp văn bản có thể...")
+
         # Generate all possible pairs
         all_pairs = list(itertools.combinations(range(text_count), 2))
+        total_pairs = len(all_pairs)
+        print(f"Đã tạo {total_pairs} cặp văn bản để phân tích")
 
         # Track which pairs pass each layer
         lsa_filtered_pairs = []
@@ -97,30 +102,34 @@ class LayeredPlagiarismDetector:
         final_results = []
 
         # Layer 1: LSA/LDA Topic Modeling Filter
-        print(f"Layer 1: Processing {len(all_pairs)} document pairs with LSA/LDA")
+        print(f"Layer 1: Bắt đầu xử lý {total_pairs} cặp văn bản với LSA/LDA")
         lsa_filtered_pairs = self._apply_lsa_filter(texts, all_pairs)
         lsa_filtered_count = len(lsa_filtered_pairs)
-        print(f"Layer 1: {lsa_filtered_count} pairs passed LSA/LDA filter")
+        print(
+            f"Layer 1: Hoàn thành - {lsa_filtered_count}/{total_pairs} cặp đã vượt qua bộ lọc LSA/LDA"
+        )
 
         # Layer 2: FastText Filter (only if pairs remain)
         if lsa_filtered_pairs:
             print(
-                f"Layer 2: Processing {lsa_filtered_count} document pairs with FastText"
+                f"Layer 2: Bắt đầu xử lý {lsa_filtered_count} cặp văn bản với FastText"
             )
             fasttext_filtered_pairs = self._apply_fasttext_filter(
                 texts, lsa_filtered_pairs
             )
             fasttext_filtered_count = len(fasttext_filtered_pairs)
-            print(f"Layer 2: {fasttext_filtered_count} pairs passed FastText filter")
+            print(
+                f"Layer 2: Hoàn thành - {fasttext_filtered_count}/{lsa_filtered_count} cặp đã vượt qua bộ lọc FastText"
+            )
 
         # Layer 3: BERT Analysis (only if pairs remain)
         if fasttext_filtered_pairs:
             print(
-                f"Layer 3: Processing {len(fasttext_filtered_pairs)} document pairs with BERT"
+                f"Layer 3: Bắt đầu xử lý {len(fasttext_filtered_pairs)} cặp văn bản với BERT"
             )
             final_results = self._apply_bert_analysis(texts, fasttext_filtered_pairs)
             print(
-                f"Layer 3: {len(final_results)} pairs identified as potentially plagiarized"
+                f"Layer 3: Hoàn thành - {len(final_results)} cặp đã được phân tích bằng BERT"
             )
 
         # Prepare results
@@ -139,6 +148,9 @@ class LayeredPlagiarismDetector:
             ),
         }
 
+        print(f"Đã hoàn thành phân tích tất cả các cặp văn bản")
+        print(f"Thời gian thực thi: {results['execution_time_seconds']} giây")
+
         return results
 
     def detect_plagiarism_debug(self, texts: List[str]) -> Dict[str, Any]:
@@ -155,19 +167,39 @@ class LayeredPlagiarismDetector:
         start_time = time.time()
         text_count = len(texts)
 
+        print(f"\nBắt đầu phân tích chi tiết {text_count} văn bản...")
+        print(f"Tạo tất cả các cặp văn bản có thể...")
+
         # Generate all possible pairs and create debug objects for each
         all_pairs = list(itertools.combinations(range(text_count), 2))
         all_debug_pairs = {
             (doc1, doc2): DocumentPairDebug(doc1, doc2) for doc1, doc2 in all_pairs
         }
+        total_pairs = len(all_pairs)
+        print(f"Đã tạo {total_pairs} cặp văn bản để phân tích")
 
         # Layer 1: LSA/LDA Topic Modeling with debug info
-        print(f"Debug Layer 1: Processing {len(all_pairs)} document pairs with LSA/LDA")
+        print(f"Layer 1: Bắt đầu xử lý {total_pairs} cặp văn bản với LSA/LDA")
+        print(f"  Layer 1: Đang thực hiện phân tích LSA/LDA...")
         lsa_results = topic_detector.detect_plagiarism_multi(texts)
+        print(
+            f"  Layer 1: Đã hoàn thành phân tích LSA/LDA, đang cập nhật kết quả cho từng cặp"
+        )
 
         # Process LSA results and update debug pairs
         lsa_passed_pairs = []
+        count = 0
+        print(
+            f"  Layer 1: Đang cập nhật kết quả cho {len(lsa_results['document_pairs'])} cặp văn bản..."
+        )
+
         for pair_result in lsa_results["document_pairs"]:
+            count += 1
+            if count % 50 == 0 or count == len(lsa_results["document_pairs"]):
+                print(
+                    f"  Layer 1: Đã xử lý {count}/{len(lsa_results['document_pairs'])} cặp văn bản ({round(count/len(lsa_results['document_pairs'])*100, 1)}%)"
+                )
+
             doc1_idx = pair_result["doc1_index"]
             doc2_idx = pair_result["doc2_index"]
             similarity = pair_result["overall_similarity"]
@@ -183,16 +215,26 @@ class LayeredPlagiarismDetector:
                 if debug_pair.lsa_passed:
                     lsa_passed_pairs.append((doc1_idx, doc2_idx))
 
-        print(f"Debug Layer 1: {len(lsa_passed_pairs)} pairs passed LSA/LDA filter")
+        print(
+            f"Layer 1: Hoàn thành - {len(lsa_passed_pairs)}/{total_pairs} cặp đã vượt qua bộ lọc LSA/LDA"
+        )
 
         # Layer 2: FastText with debug info
         fasttext_passed_pairs = []
         if lsa_passed_pairs:
             print(
-                f"Debug Layer 2: Processing {len(lsa_passed_pairs)} document pairs with FastText"
+                f"Layer 2: Bắt đầu xử lý {len(lsa_passed_pairs)} cặp văn bản với FastText"
             )
 
+            count = 0
+            total = len(lsa_passed_pairs)
             for doc1_idx, doc2_idx in lsa_passed_pairs:
+                count += 1
+                if count % 10 == 0 or count == total:
+                    print(
+                        f"  Layer 2: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%) - Văn bản {doc1_idx} & {doc2_idx}"
+                    )
+
                 text1 = texts[doc1_idx]
                 text2 = texts[doc2_idx]
 
@@ -212,16 +254,24 @@ class LayeredPlagiarismDetector:
                         fasttext_passed_pairs.append((doc1_idx, doc2_idx))
 
         print(
-            f"Debug Layer 2: {len(fasttext_passed_pairs)} pairs passed FastText filter"
+            f"Layer 2: Hoàn thành - {len(fasttext_passed_pairs)}/{len(lsa_passed_pairs)} cặp đã vượt qua bộ lọc FastText"
         )
 
         # Layer 3: BERT Analysis with debug info
         if fasttext_passed_pairs:
             print(
-                f"Debug Layer 3: Processing {len(fasttext_passed_pairs)} document pairs with BERT"
+                f"Layer 3: Bắt đầu xử lý {len(fasttext_passed_pairs)} cặp văn bản với BERT"
             )
 
+            count = 0
+            total = len(fasttext_passed_pairs)
             for doc1_idx, doc2_idx in fasttext_passed_pairs:
+                count += 1
+                if count % 5 == 0 or count == total:
+                    print(
+                        f"  Layer 3: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%) - Văn bản {doc1_idx} & {doc2_idx}"
+                    )
+
                 text1 = texts[doc1_idx]
                 text2 = texts[doc2_idx]
 
@@ -239,6 +289,14 @@ class LayeredPlagiarismDetector:
                     debug_pair.similarity = (
                         similarity  # Update overall similarity to BERT result
                     )
+
+        # Count BERT passed pairs
+        bert_passed_count = sum(
+            1 for pair in all_debug_pairs.values() if pair.bert_passed
+        )
+        print(
+            f"Layer 3: Hoàn thành - {bert_passed_count}/{len(fasttext_passed_pairs)} cặp được xác định có khả năng đạo văn"
+        )
 
         # Collect all results for debug output
         # First get pairs that passed at least LSA layer
@@ -269,11 +327,12 @@ class LayeredPlagiarismDetector:
                 "total_pairs": len(all_pairs),
                 "lsa_passed_count": len(lsa_passed_pairs),
                 "fasttext_passed_count": len(fasttext_passed_pairs),
-                "bert_passed_count": sum(
-                    1 for pair in passed_any_layer if pair.bert_passed
-                ),
+                "bert_passed_count": bert_passed_count,
             },
         }
+
+        print(f"Đã hoàn thành phân tích chi tiết tất cả các cặp văn bản")
+        print(f"Thời gian thực thi: {results['execution_time_seconds']} giây")
 
         return results
 
@@ -282,14 +341,24 @@ class LayeredPlagiarismDetector:
     ) -> List[DocumentPair]:
         """Apply LSA/LDA topic modeling as first filter"""
         # Use existing LSA multi-document comparison
+        print(f"  Layer 1: Đang thực hiện phân tích LSA/LDA...")
         lsa_results = topic_detector.detect_plagiarism_multi(texts)
+        print(f"  Layer 1: Đã hoàn thành phân tích LSA/LDA, đang xử lý kết quả...")
 
         # Extract document pairs that meet threshold
         filtered_pairs = []
 
         # Only proceed with pairs that have significant similarity
         if lsa_results["document_pairs"]:
+            count = 0
+            total = len(lsa_results["document_pairs"])
             for pair_result in lsa_results["document_pairs"]:
+                count += 1
+                if count % 50 == 0 or count == total:
+                    print(
+                        f"  Layer 1: Đã xử lý {count}/{total} cặp văn bản ({round(count/total*100, 1)}%)"
+                    )
+
                 doc1_idx = pair_result["doc1_index"]
                 doc2_idx = pair_result["doc2_index"]
                 similarity = pair_result["overall_similarity"]
@@ -306,7 +375,15 @@ class LayeredPlagiarismDetector:
         filtered_pairs = []
 
         # For each pair that passed LSA, apply FastText
+        count = 0
+        total = len(doc_pairs)
         for pair in doc_pairs:
+            count += 1
+            if count % 10 == 0 or count == total:
+                print(
+                    f"  Layer 2: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%) - Văn bản {pair.doc1_index} & {pair.doc2_index}"
+                )
+
             text1 = texts[pair.doc1_index]
             text2 = texts[pair.doc2_index]
 
@@ -328,7 +405,15 @@ class LayeredPlagiarismDetector:
         final_results = []
 
         # For each pair that passed FastText, apply BERT
+        count = 0
+        total = len(doc_pairs)
         for pair in doc_pairs:
+            count += 1
+            if count % 5 == 0 or count == total:
+                print(
+                    f"  Layer 3: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%) - Văn bản {pair.doc1_index} & {pair.doc2_index}"
+                )
+
             text1 = texts[pair.doc1_index]
             text2 = texts[pair.doc2_index]
 
@@ -362,7 +447,11 @@ def detect_plagiarism_layered(texts: List[str]) -> Dict[str, Any]:
     if len(texts) < 2:
         raise ValueError("Cần ít nhất 2 văn bản để so sánh")
 
+    print(f"\n=== BẮT ĐẦU PHÂN TÍCH ĐẠO VĂN ({len(texts)} văn bản) ===\n")
     results = layered_detector.detect_plagiarism(texts)
+    print(
+        f"\n=== HOÀN THÀNH PHÂN TÍCH ĐẠO VĂN - Thời gian: {results['execution_time_seconds']} giây ===\n"
+    )
     return results
 
 
@@ -380,5 +469,9 @@ def detect_plagiarism_debug(texts: List[str]) -> Dict[str, Any]:
     if len(texts) < 2:
         raise ValueError("Cần ít nhất 2 văn bản để so sánh")
 
+    print(f"\n=== BẮT ĐẦU PHÂN TÍCH CHI TIẾT ĐẠO VĂN ({len(texts)} văn bản) ===\n")
     results = layered_detector.detect_plagiarism_debug(texts)
+    print(
+        f"\n=== HOÀN THÀNH PHÂN TÍCH CHI TIẾT ĐẠO VĂN - Thời gian: {results['execution_time_seconds']} giây ===\n"
+    )
     return results

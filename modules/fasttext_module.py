@@ -287,6 +287,8 @@ class FastTextDetector:
         start_time = time.time()
         text_count = len(texts)
 
+        print(f"\n== FastText Module: Bắt đầu xử lý {text_count} văn bản ==")
+
         # Initialize results
         results = {
             "document_count": text_count,
@@ -297,11 +299,13 @@ class FastTextDetector:
         }
 
         # Process all documents
+        print(f"FastText: Đang tiền xử lý {text_count} văn bản...")
         original_sentences_list = []
         tokenized_sentences_list = []
         document_embeddings = []
 
-        for text in texts:
+        for i, text in enumerate(texts):
+            print(f"  FastText: Đang xử lý văn bản {i+1}/{text_count}")
             original_sentences, tokenized_sentences, _ = self.preprocess_text(text)
             original_sentences_list.append(original_sentences)
             tokenized_sentences_list.append(tokenized_sentences)
@@ -310,9 +314,22 @@ class FastTextDetector:
             doc_embedding = self.get_document_embedding(tokenized_sentences)
             document_embeddings.append(doc_embedding)
 
+        print(f"FastText: Đã hoàn thành tiền xử lý văn bản")
+
+        # Calculate total number of pairs
+        total_pairs = text_count * (text_count - 1) // 2
+        print(f"FastText: Bắt đầu so sánh {total_pairs} cặp văn bản...")
+
         # Compare all document pairs
+        pair_count = 0
         for i in range(text_count):
             for j in range(i + 1, text_count):
+                pair_count += 1
+                if pair_count % 5 == 0 or pair_count == total_pairs:
+                    print(
+                        f"  FastText: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}"
+                    )
+
                 # Calculate document similarity
                 doc_similarity = float(
                     cosine_similarity(
@@ -423,6 +440,11 @@ class FastTextDetector:
         # Add execution time
         end_time = time.time()
         results["execution_time_seconds"] = round(end_time - start_time, 2)
+
+        print(f"FastText: Đã hoàn thành so sánh {total_pairs} cặp văn bản")
+        print(
+            f"FastText: Thời gian thực hiện: {round(time.time() - start_time, 2)} giây"
+        )
 
         return results
 

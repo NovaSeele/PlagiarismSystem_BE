@@ -391,6 +391,8 @@ class TopicModelingDetector:
         start_time = time.time()
         text_count = len(texts)
 
+        print(f"\n== LSA/LDA Module: Bắt đầu xử lý {text_count} văn bản ==")
+
         # Initialize results
         results = {
             "document_count": text_count,
@@ -398,15 +400,30 @@ class TopicModelingDetector:
             "document_pairs": [],
         }
 
+        # Calculate total number of pairs
+        total_pairs = text_count * (text_count - 1) // 2
+        print(f"LSA/LDA: Cần xử lý {total_pairs} cặp văn bản")
+
         # Compare all document pairs using the same method as in detect_plagiarism_pair
-        # This ensures consistency regardless of how many documents are compared
+        pair_count = 0
         for i in range(text_count):
             for j in range(i + 1, text_count):
+                pair_count += 1
+                print(
+                    f"  LSA/LDA: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}"
+                )
+
                 # Store original indices for reporting
                 original_i, original_j = i, j
 
                 # Use the same method as when comparing just two texts directly
+                print(
+                    f"    LSA/LDA: Bắt đầu phân tích LSA/LDA cho cặp văn bản {i} & {j}"
+                )
                 pair_result = self.detect_plagiarism_pair(texts[i], texts[j])
+                print(
+                    f"    LSA/LDA: Hoàn thành phân tích LSA/LDA, độ tương đồng: {pair_result['overall_similarity_percentage']}%"
+                )
 
                 # Get the overall similarity from the pair result
                 overall_similarity = (
@@ -472,6 +489,11 @@ class TopicModelingDetector:
         # Add execution time
         end_time = time.time()
         results["execution_time_seconds"] = round(end_time - start_time, 2)
+
+        print(f"LSA/LDA: Đã hoàn thành phân tích {total_pairs} cặp văn bản")
+        print(
+            f"LSA/LDA: Thời gian thực hiện: {round(time.time() - start_time, 2)} giây"
+        )
 
         return results
 

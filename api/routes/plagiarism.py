@@ -18,6 +18,9 @@ from modules.fasttext_module import (
 from modules.plagiarism import detect_plagiarism_layered
 from modules.plagiarism_debug import detect_plagiarism_layered_debug
 
+# Import the function to get all PDF metadata
+from services.pdf_metadata import get_all_pdf_metadata
+
 router = APIRouter()
 
 
@@ -145,7 +148,9 @@ async def compare_multiple_topic_modeling(request: MultiPlagiarismRequest):
 
 
 # Route cho việc so sánh nhiều văn bản với LSA
-@router.post("/topic-modeling/compare-multiple-debug", response_model=PlagiarismResponse)
+@router.post(
+    "/topic-modeling/compare-multiple-debug", response_model=PlagiarismResponse
+)
 async def compare_multiple_topic_modeling_debug(request: MultiPlagiarismRequest):
     """
     So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng LSA.
@@ -282,6 +287,45 @@ async def layered_plagiarism_detection_debug(request: MultiPlagiarismRequest):
             )
 
         results = detect_plagiarism_layered_debug(request.texts)
+        return results
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route mới để thực hiện kiểm tra đạo văn tự động trên tất cả các file PDF đã upload
+@router.get("/auto-layered-detection-debug", response_model=Dict[str, Any])
+async def auto_layered_plagiarism_detection_debug():
+    """
+    Tự động phân tích và so sánh tất cả các văn bản PDF đã được upload lên hệ thống.
+
+    API này sẽ:
+    1. Lấy tất cả nội dung PDF từ cơ sở dữ liệu
+    2. Thực hiện phân tích đạo văn sử dụng phương pháp kiểm tra 3 lớp
+    3. Trả về kết quả chi tiết về tất cả các cặp văn bản
+
+    Không yêu cầu đầu vào nào, tự động xử lý tất cả tài liệu có sẵn.
+
+    Kết quả trả về bao gồm:
+    - Số lượng tài liệu và thời gian thực thi
+    - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
+    - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+    """
+    try:
+        # Lấy tất cả nội dung PDF từ database
+        pdf_contents = get_all_pdf_metadata()
+
+        if len(pdf_contents) < 2:
+            raise HTTPException(
+                status_code=400,
+                detail="Cần ít nhất 2 văn bản trong cơ sở dữ liệu để so sánh",
+            )
+
+        # Thực hiện phân tích đạo văn
+        results = detect_plagiarism_layered_debug(pdf_contents)
         return results
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
