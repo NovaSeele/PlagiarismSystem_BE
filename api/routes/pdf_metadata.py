@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from db.session import get_collection
 from models.user import get_current_user
 
-from services.pdf_metadata import upload_metadata_pdf_service, get_pdf_metadata_by_name, get_content_organized_by_categories, get_pdf_content_by_categories, get_all_pdf_metadata, get_all_pdf_contents
+from services.pdf_metadata import upload_metadata_pdf_service, get_pdf_metadata_by_name, get_all_pdf_metadata, get_all_pdf_contents
 
 router = APIRouter()
 
@@ -32,26 +32,6 @@ def get_file_info_by_name(filename: str):
         raise HTTPException(status_code=404, detail="Không tìm thấy file.")
 
     return metadata
-
-
-# @router.get("/get_content_by_categories")
-# def get_content_by_categories():
-#     result = get_content_organized_by_categories()
-    
-#     if result is None:
-#         raise HTTPException(status_code=404, detail="Không tìm thấy dữ liệu nào.")
-    
-#     return result
-
-
-# @router.get("/get_files_by_categories/")
-# def get_files_by_categories(categories: list = Query(...)):
-#     contents = get_pdf_content_by_categories(categories)
-    
-#     if contents is None:
-#         raise HTTPException(status_code=404, detail=f"Không tìm thấy file nào thuộc tất cả các danh mục đã chỉ định.")
-    
-#     return contents
 
 @router.get("/get_all_pdf_metadata")
 def get_all_pdf_metadata_route():

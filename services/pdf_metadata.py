@@ -1,4 +1,11 @@
-from typing import List
+# import fitz  # Incorrect import causing ModuleNotFoundError
+import PyPDF2  # Use PyPDF2 for PDF processing
+
+# import fitz  # This is the correct import for PyMuPDF in some environments
+
+# Alternatively, you can try: from pymupdf import fitz
+
+from typing import List, Dict, Tuple
 from fastapi import Depends, HTTPException, status, UploadFile, File
 from fastapi.security import OAuth2PasswordRequestForm
 
@@ -8,6 +15,7 @@ from schemas.pdf_metadata import PDFMetadata, PDFMetadataInDB
 from schemas.user import UserInDB
 from db.session import db, fs
 
+# Use the extract_text_from_pdf function from modules.pdf_metadata
 from modules.pdf_metadata import extract_text_from_pdf
 
 from bson import ObjectId
@@ -15,22 +23,13 @@ from pymongo.collection import Collection
 from gridfs import GridFS
 
 import json
+import tempfile
+import os
+import io
 
 # from services.text_rank_keyword_vi import run_textrank
 
 from modules.keyword_classifier import categorize_combined
-
-# Load categories and category examples from categories.json
-with open(
-    "D:/Code/NovaSeelePlagiarismSystem/backend/datasets/categories.json",
-    "r",
-    encoding="utf-8",
-) as f:
-    data = json.load(f)
-    categories = data["categories"]
-    category_examples = data["category_examples"]
-    stopwords = data["stopwords"]
-
 
 def upload_metadata_pdf_service(file: UploadFile, current_user: UserInDB):
     pdf_metadata_collection = db["pdf_metadata"]
@@ -55,6 +54,8 @@ def upload_metadata_pdf_service(file: UploadFile, current_user: UserInDB):
         stream.write(pdf_bytes)
 
     extracted_text = extract_text_from_pdf(pdf_bytes)
+    # Thay thế \n \n thành space
+    extracted_text = extracted_text.replace("\n \n", " ")
 
     # keywords = run_textrank(extracted_text, stopwords, top_n=10)
     # keyword_categories = categorize_combined(keywords, categories, category_examples)
@@ -70,6 +71,93 @@ def upload_metadata_pdf_service(file: UploadFile, current_user: UserInDB):
     pdf_metadata_collection.insert_one(metadata)  # Thêm metadata mới
 
     return PDFMetadata(**metadata)
+
+
+def process_single_pdf(file: UploadFile) -> Tuple[str, int]:
+    """
+    Process a single PDF file to extract text content and page count.
+
+    Args:
+        file (UploadFile): The uploaded PDF file
+
+    Returns:
+        Tuple[str, int]: A tuple containing the extracted text and page count
+    """
+    try:
+        # Đọc nội dung file PDF
+        pdf_bytes = file.file.read()
+
+        # Sử dụng hàm extract_text_from_pdf từ modules.pdf_metadata để trích xuất nội dung
+        text_content = extract_text_from_pdf(pdf_bytes)
+        
+        # Thay thế \n \n thành space
+        text_content = text_content.replace("\n \n", " ")
+
+        # Đếm số trang sử dụng PyPDF2
+        # with io.BytesIO(pdf_bytes) as pdf_stream:
+        #     pdf_reader = PyPDF2.PdfReader(pdf_stream)
+        #     page_count = len(pdf_reader.pages)
+
+        return text_content
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
+
+
+def process_multiple_pdfs(files: List[UploadFile]) -> List[Dict]:
+    """
+    Process multiple PDF files to extract text content and page count.
+
+    Args:
+        files (List[UploadFile]): List of uploaded PDF files
+
+    Returns:
+        List[Dict]: A list of dictionaries containing filename, content, and page count
+    """
+    results = []
+
+    for file in files:
+        # Kiểm tra xem file có phải là PDF không
+        if not file.filename.lower().endswith(".pdf"):
+            raise HTTPException(
+                status_code=400, detail=f"File {file.filename} is not a PDF file"
+            )
+
+        try:
+            # Reset file position
+            file.file.seek(0)
+
+            # Đọc nội dung file PDF
+            pdf_bytes = file.file.read()
+
+            # Sử dụng hàm extract_text_from_pdf từ modules.pdf_metadata để trích xuất nội dung
+            text_content = extract_text_from_pdf(pdf_bytes)
+
+            # Thay thế \n \n thành space
+            text_content = text_content.replace("\n \n", " ")
+
+            # Đếm số trang sử dụng PyPDF2
+            with io.BytesIO(pdf_bytes) as pdf_stream:
+                pdf_reader = PyPDF2.PdfReader(pdf_stream)
+                page_count = len(pdf_reader.pages)
+
+            # Thêm kết quả vào danh sách
+            # results.append(
+            #     {
+            #         "filename": file.filename,
+            #         "content": text_content,
+            #         "page_count": page_count,
+            #     }
+            # )
+            
+            results.append(text_content)
+
+        except Exception as e:
+            raise HTTPException(
+                status_code=500, detail=f"Error processing {file.filename}: {str(e)}"
+            )
+
+    return results
 
 
 def get_pdf_metadata_by_name(filename: str):
@@ -93,70 +181,41 @@ def get_pdf_metadata_by_name(filename: str):
 
     return file_data["content"]
 
-
-def get_content_organized_by_categories():
+def get_pdf_metadata_from_upload(file: UploadFile):
     """
-    Lấy tất cả nội dung PDF được tổ chức theo categories.
-
-    Returns:
-        dict: Dictionary với key là tên category và value là danh sách các file (filename và content) thuộc category đó
+    Lấy thông tin metadata của file PDF từ file được upload.
     """
-    pdf_metadata_collection = get_pdf_metadata_collection()
+    # Kiểm tra xem file có phải là PDF không
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(
+            status_code=400, detail=f"File {file.filename} is not a PDF file"
+        )
 
-    # Lấy tất cả các documents từ collection
-    all_files = list(pdf_metadata_collection.find({}))
+    try:
+        # Reset file position
+        file.file.seek(0)
 
-    # Nếu không có file nào, trả về dictionary trống thay vì None
-    if not all_files:
-        return {}
+        # Đọc nội dung file PDF
+        pdf_bytes = file.file.read()
 
-    # Dictionary để lưu trữ kết quả theo category
-    result_by_category = {}
+        # Trích xuất nội dung
+        text_content = extract_text_from_pdf(pdf_bytes)
 
-    # Duyệt qua từng file
-    for file in all_files:
-        filename = file.get("filename")
-        content = file.get("content")
+        # Đếm số trang
+        with io.BytesIO(pdf_bytes) as pdf_stream:
+            pdf_reader = PyPDF2.PdfReader(pdf_stream)
+            page_count = len(pdf_reader.pages)
 
-        # Duyệt qua từng category của file
-        for category in file.get("categories", []):
-            # Nếu category chưa tồn tại trong kết quả, tạo mới
-            if category not in result_by_category:
-                result_by_category[category] = []
+        return {
+            "filename": file.filename,
+            "content": text_content,
+            "page_count": page_count
+        }
 
-            # Thêm thông tin file vào category
-            result_by_category[category].append(
-                {"filename": filename, "content": content}
-            )
-
-    return result_by_category
-
-
-def get_pdf_content_by_categories(categories: list):
-    """
-    Lấy nội dung của tất cả các file PDF có chứa tất cả các categories được chỉ định.
-
-    Args:
-        categories (list): Danh sách các danh mục cần tìm kiếm
-
-    Returns:
-        list: Danh sách chứa nội dung của các file thuộc tất cả các category đó
-    """
-    pdf_metadata_collection = get_pdf_metadata_collection()
-
-    # Tìm tất cả các file có chứa TẤT CẢ các category này trong mảng categories
-    files = pdf_metadata_collection.find({"categories": {"$all": categories}})
-
-    # Nếu không tìm thấy file nào
-    if not files:
-        return None
-
-    # Tạo danh sách chứa nội dung của tất cả các file tìm được
-    contents = []
-    for file in files:
-        contents.append({"filename": file["filename"], "content": file["content"]})
-
-    return contents
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error processing {file.filename}: {str(e)}"
+        )
 
 
 def get_all_pdf_metadata():

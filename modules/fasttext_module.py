@@ -67,7 +67,7 @@ class FastTextDetector:
         # Load FastText model
         try:
             print(f"Loading FastText model: {self.model_name}...")
-            self.model = gensim_downloader.load(self.model_name)
+            # self.model = gensim_downloader.load(self.model_name) temporary disable for faster backend loading
             print("FastText model loaded successfully.")
         except Exception as e:
             if download_if_missing:

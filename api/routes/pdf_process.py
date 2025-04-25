@@ -1,41 +1,53 @@
-# from fastapi import APIRouter, HTTPException
-# from typing import List
-# import json
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form
+from typing import List, Optional
+import json
+from pydantic import BaseModel
 
-# # from services.text_rank_keyword_vi import run_textrank
+# from services.text_rank_keyword_vi import run_textrank
+from services.pdf_metadata import process_single_pdf, process_multiple_pdfs
 
-# from modules.keyword_classifier import categorize_combined
+router = APIRouter()
 
-# from schemas.pdf_process import KeywordsResponse, TextRequest
+@router.post("/upload_pdf", response_model=str)
+async def upload_pdf(file: UploadFile = File(...)):
+    """
+    Upload a single PDF file and extract its content.
+    Tải lên một file PDF và trích xuất nội dung của nó.
+    """
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are allowed")
 
-# router = APIRouter()
+    try:
+        # Sử dụng hàm process_single_pdf từ services.pdf_metadata
+        text_content = process_single_pdf(file)
 
-# # Load categories and category examples from categories.json
-# with open("D:/Code/NovaSeelePlagiarismSystem/backend/datasets/categories.json", 'r', encoding='utf-8') as f:
-#     data = json.load(f)
-#     categories = data['categories']
-#     category_examples = data['category_examples']
-#     stopwords = data['stopwords']
+        return text_content
 
-# # @router.post("/extract_keywords", response_model=List[str])
-# # async def extract_keywords_endpoint(request: TextRequest):
-# #     try:
-# #         keywords = run_textrank(request.text, stopwords, top_n=10)
-# #         return keywords  # Return the list directly
+    except HTTPException as e:
+        # Truyền lại HTTPException từ service
+        raise e
+    except Exception as e:
+        # Xử lý các lỗi khác
+        raise HTTPException(status_code=500, detail=f"Error processing PDF: {str(e)}")
 
-# #     except Exception as e:
-# #         raise HTTPException(status_code=500, detail=str(e))
-    
-# # @router.post("/categorize")
-# # def categorize(input_phrases: List[str]):
-# #     return categorize_combined(input_phrases, categories, category_examples)
 
-# # @router.post("/categorize_keywords")
-# # async def categorize_keywords_endpoint(request: TextRequest):
-# #     try:
-# #         keywords = run_textrank(request.text, stopwords, top_n=10)
-# #         keyword_categories = categorize_combined(keywords, categories, category_examples)
-# #         return keyword_categories
+@router.post("/upload_multiple_pdfs", response_model=List[str])
+async def upload_multiple_pdfs(files: List[UploadFile] = File(...)):
+    """
+    Upload multiple PDF files and extract their content.
+    Tải lên nhiều file PDF và trích xuất nội dung của chúng.
+    """
+    try:
+        # Sử dụng hàm process_multiple_pdfs từ services.pdf_metadata
+        results = process_multiple_pdfs(files)
 
-# #     except Exception as e:
-# #         raise HTTPException(status_code=500, detail=str(e))
+        return results
+
+    except HTTPException as e:
+        # Truyền lại HTTPException từ service
+        raise e
+    except Exception as e:
+        # Xử lý các lỗi khác
+        raise HTTPException(
+            status_code=500, detail=f"Error processing PDF files: {str(e)}"
+        )
