@@ -10,6 +10,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 from collections import defaultdict
+import os
 
 # Tải NLTK data nếu cần
 try:
@@ -66,9 +67,37 @@ class FastTextDetector:
 
         # Load FastText model
         try:
-            print(f"Loading FastText model: {self.model_name}...")
-            # self.model = gensim_downloader.load(self.model_name) temporary disable for faster backend loading
-            print("FastText model loaded successfully.")
+            # First try to load from local files
+            local_model_paths = [
+                os.path.join("models", "cc.en.300.bin"),
+                os.path.join("models", "cc.en.300.bin.gz"),
+            ]
+
+            model_loaded = False
+            for model_path in local_model_paths:
+                if os.path.exists(model_path):
+                    print(f"Found local FastText model: {model_path}")
+                    try:
+                        self.model = gensim.models.fasttext.load_facebook_vectors(
+                            model_path
+                        )
+                        print(
+                            f"Local FastText model loaded successfully from {model_path}"
+                        )
+                        model_loaded = True
+                        break
+                    except Exception as local_load_error:
+                        print(
+                            f"Error loading local model {model_path}: {str(local_load_error)}"
+                        )
+
+            # If local loading failed, use gensim_downloader
+            if not model_loaded:
+                print(
+                    f"Loading FastText model from gensim_downloader: {self.model_name}..."
+                )
+                self.model = gensim_downloader.load(self.model_name)
+                print("FastText model loaded successfully from gensim_downloader.")
         except Exception as e:
             if download_if_missing:
                 print(f"Error loading model: {str(e)}. Will attempt to download.")

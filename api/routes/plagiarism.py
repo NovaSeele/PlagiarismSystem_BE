@@ -17,9 +17,10 @@ from modules.fasttext_module import (
 )
 from modules.plagiarism import detect_plagiarism_layered
 from modules.plagiarism_debug import detect_plagiarism_layered_debug
+from modules.plagiarism_main_module import detect_plagiarism_layered_with_metadata
 
 # Import the function to get all PDF metadata
-from services.pdf_metadata import get_all_pdf_metadata
+from services.pdf_metadata import get_all_pdf_metadata, get_all_pdf_contents
 
 router = APIRouter()
 
@@ -315,8 +316,8 @@ async def auto_layered_plagiarism_detection_debug():
     - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
     """
     try:
-        # Lấy tất cả nội dung PDF từ database
-        pdf_contents = get_all_pdf_metadata()
+        # Lấy tất cả nội dung PDF từ database (sử dụng hàm get_all_pdf_contents thay vì get_all_pdf_metadata)
+        pdf_contents = get_all_pdf_contents()
 
         if len(pdf_contents) < 2:
             raise HTTPException(
@@ -324,8 +325,8 @@ async def auto_layered_plagiarism_detection_debug():
                 detail="Cần ít nhất 2 văn bản trong cơ sở dữ liệu để so sánh",
             )
 
-        # Thực hiện phân tích đạo văn
-        results = detect_plagiarism_layered_debug(pdf_contents)
+        # Thực hiện phân tích đạo văn sử dụng phương thức mới với dữ liệu đầy đủ
+        results = detect_plagiarism_layered_with_metadata(pdf_contents)
         return results
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))

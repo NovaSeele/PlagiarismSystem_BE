@@ -9,7 +9,7 @@ from modules.fasttext_module import fasttext_detector
 from modules.bert_module import detector as bert_detector
 
 
-class DocumentPairDebug:
+class DocumentPair:
     """Represents a pair of documents with their filenames and similarity scores from each layer"""
 
     def __init__(
@@ -25,9 +25,9 @@ class DocumentPairDebug:
         self.doc2_index = doc2_index  # Keep index for internal reference
 
         # Similarity scores from each layer
-        self.lsa_similarity = 0.3
-        self.fasttext_similarity = 0.4
-        self.bert_similarity = 0.5
+        self.lsa_similarity = 0.0
+        self.fasttext_similarity = 0.0
+        self.bert_similarity = 0.0
 
         # Status flags for each layer (whether they passed the filter)
         self.passed_lsa = False
@@ -56,9 +56,9 @@ class DocumentPairDebug:
         }
 
 
-class LayeredPlagiarismDetectorDebug:
+class LayeredPlagiarismDetector:
     """
-    A debug version of the plagiarism detector that shows all document pairs and their progression
+    A plagiarism detector that shows all document pairs and their progression
     through each layer of the detection process.
 
     The process works as follows:
@@ -71,51 +71,36 @@ class LayeredPlagiarismDetectorDebug:
         # Thresholds for each layer
         # LSA threshold (0.3) - First layer filter
         # This is a low threshold used to quickly filter out obviously dissimilar documents.
-        # The value is deliberately set lower than the thresholds in other modules (LSA module: 0.4)
-        # because:
-        # - It serves as an initial broad filter to reduce the number of documents for more
-        #   expensive analysis
-        # - We want to minimize false negatives at this stage (documents incorrectly excluded)
-        # - Computational efficiency is prioritized over precision in this first pass
-        # - Further layers will apply stricter thresholds to refine the results
         self.lsa_threshold = 0.3  # Lower threshold for initial filter
 
         # FastText threshold (0.4) - Second layer filter
         # This medium threshold applies to document pairs that passed the LSA filter.
-        # The value is lower than in the actual FastText module (0.5) because:
-        # - We want to maintain good recall while starting to improve precision
-        # - Document pairs that pass this filter will still undergo BERT analysis
-        # - It represents a balance between the quick LSA filter and the precise BERT filter
-        # - Setting it too high might exclude relevant matches before they reach BERT analysis
         self.fasttext_threshold = 0.4  # Medium threshold for second layer
 
         # BERT threshold (0.5) - Final layer filter
         # This higher threshold determines which document pairs are included in the final results.
-        # It matches the standard sentence-level threshold in the BERT module because:
-        # - At this stage, we prioritize precision to reduce false positives
-        # - BERT provides high-quality semantic understanding for reliable similarity assessment
-        # - Only documents with meaningful semantic similarity should be flagged
-        # - This is the final decision point for classifying document pairs as potentially plagiarized
         self.bert_threshold = 0.5  # Higher threshold for final layer
 
-    def detect_plagiarism_debug(
-        self, texts: List[str], filenames: List[str]
-    ) -> Dict[str, Any]:
+    def detect_plagiarism(self, doc_data: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
-        Detect plagiarism across multiple texts using a layered approach, with detailed debug information.
+        Detect plagiarism across multiple texts using a layered approach, with detailed information.
 
         Args:
-            texts: List of texts to compare
-            filenames: List of filenames corresponding to the texts
+            doc_data: List of document data with "_id", "filename", "content", etc. fields
 
         Returns:
             Dict containing detailed results of plagiarism detection with progression through each layer
         """
         start_time = time.time()
+
+        # Extract texts and filenames from the document data
+        texts = [doc["content"] for doc in doc_data]
+        filenames = [doc["filename"] for doc in doc_data]
+
         text_count = len(texts)
 
-        if len(texts) != len(filenames):
-            raise ValueError("Số lượng văn bản và tên file phải bằng nhau")
+        if text_count < 2:
+            raise ValueError("Cần ít nhất 2 văn bản để so sánh")
 
         print(f"Bắt đầu phân tích {text_count} văn bản...")
         print(f"Tạo tất cả các cặp văn bản có thể...")
@@ -125,7 +110,7 @@ class LayeredPlagiarismDetectorDebug:
 
         # Create document pair objects for all possible pairs with filenames
         document_pairs = [
-            DocumentPairDebug(filenames[i], filenames[j], i, j) for i, j in all_pairs
+            DocumentPair(filenames[i], filenames[j], i, j) for i, j in all_pairs
         ]
 
         # Track counts for summary
@@ -136,7 +121,7 @@ class LayeredPlagiarismDetectorDebug:
 
         # Layer 1: LSA/LDA Topic Modeling
         print(f"Layer 1: Bắt đầu xử lý {initial_count} cặp văn bản với LSA/LDA")
-        document_pairs = self._apply_lsa_filter_debug(texts, document_pairs)
+        document_pairs = self._apply_lsa_filter(texts, document_pairs)
 
         # Count how many passed LSA filter
         lsa_passed_count = sum(1 for pair in document_pairs if pair.passed_lsa)
@@ -146,7 +131,7 @@ class LayeredPlagiarismDetectorDebug:
 
         # Layer 2: FastText (apply to all pairs, but only those that passed LSA will proceed)
         print(f"Layer 2: Bắt đầu xử lý cặp văn bản với FastText")
-        document_pairs = self._apply_fasttext_filter_debug(texts, document_pairs)
+        document_pairs = self._apply_fasttext_filter(texts, document_pairs)
 
         # Count how many passed FastText filter
         fasttext_passed_count = sum(
@@ -158,7 +143,7 @@ class LayeredPlagiarismDetectorDebug:
 
         # Layer 3: BERT Analysis (apply to all pairs, but only those that passed FastText will be considered as final results)
         print(f"Layer 3: Bắt đầu xử lý cặp văn bản với BERT")
-        document_pairs = self._apply_bert_analysis_debug(texts, document_pairs)
+        document_pairs = self._apply_bert_analysis(texts, document_pairs)
 
         # Count how many are in the final result
         bert_passed_count = sum(1 for pair in document_pairs if pair.final_result)
@@ -183,9 +168,9 @@ class LayeredPlagiarismDetectorDebug:
 
         return results
 
-    def _apply_lsa_filter_debug(
-        self, texts: List[str], document_pairs: List[DocumentPairDebug]
-    ) -> List[DocumentPairDebug]:
+    def _apply_lsa_filter(
+        self, texts: List[str], document_pairs: List[DocumentPair]
+    ) -> List[DocumentPair]:
         """Apply LSA/LDA topic modeling and update all document pairs with results"""
         # Use existing LSA multi-document comparison
         print(f"  Layer 1: Đang thực hiện phân tích LSA/LDA...")
@@ -224,9 +209,9 @@ class LayeredPlagiarismDetectorDebug:
 
         return document_pairs
 
-    def _apply_fasttext_filter_debug(
-        self, texts: List[str], document_pairs: List[DocumentPairDebug]
-    ) -> List[DocumentPairDebug]:
+    def _apply_fasttext_filter(
+        self, texts: List[str], document_pairs: List[DocumentPair]
+    ) -> List[DocumentPair]:
         """Apply FastText embedding analysis to document pairs"""
         # Only process pairs that passed the LSA filter
         lsa_passed = [pair for pair in document_pairs if pair.passed_lsa]
@@ -259,9 +244,9 @@ class LayeredPlagiarismDetectorDebug:
 
         return document_pairs
 
-    def _apply_bert_analysis_debug(
-        self, texts: List[str], document_pairs: List[DocumentPairDebug]
-    ) -> List[DocumentPairDebug]:
+    def _apply_bert_analysis(
+        self, texts: List[str], document_pairs: List[DocumentPair]
+    ) -> List[DocumentPair]:
         """Apply BERT-based semantic analysis to document pairs"""
         # Process all pairs that passed the FastText filter
         fasttext_passed = [pair for pair in document_pairs if pair.passed_fasttext]
@@ -292,36 +277,27 @@ class LayeredPlagiarismDetectorDebug:
         return document_pairs
 
 
-# Initialize the debug detector
-layered_detector_debug = LayeredPlagiarismDetectorDebug()
+# Initialize the detector
+layered_detector = LayeredPlagiarismDetector()
 
 
-def detect_plagiarism_layered_debug(
-    texts: List[str], filenames: List[str] = None
+def detect_plagiarism_layered_with_metadata(
+    doc_data: List[Dict[str, Any]],
 ) -> Dict[str, Any]:
     """
-    Detect plagiarism using a layered approach with multiple algorithms, with detailed debug information.
+    Detect plagiarism using a layered approach with multiple algorithms, processing documents with metadata.
 
     Args:
-        texts: List of texts to compare
-        filenames: List of filenames corresponding to the texts. If None, generic names will be used.
+        doc_data: List of document data with "_id", "filename", "content", etc. fields
 
     Returns:
         Dict containing detailed results of layered plagiarism detection with progression through each layer
     """
-    if len(texts) < 2:
+    if len(doc_data) < 2:
         raise ValueError("Cần ít nhất 2 văn bản để so sánh")
 
-    # Generate generic filenames if none provided
-    if filenames is None:
-        filenames = [f"Document_{i+1}" for i in range(len(texts))]
-
-    # Validate filenames count matches texts count
-    if len(filenames) != len(texts):
-        raise ValueError("Số lượng văn bản và tên file phải bằng nhau")
-
-    print(f"\n=== BẮT ĐẦU PHÂN TÍCH ĐẠO VĂN ({len(texts)} văn bản) ===\n")
-    results = layered_detector_debug.detect_plagiarism_debug(texts, filenames)
+    print(f"\n=== BẮT ĐẦU PHÂN TÍCH ĐẠO VĂN ({len(doc_data)} văn bản) ===\n")
+    results = layered_detector.detect_plagiarism(doc_data)
     print(
         f"\n=== HOÀN THÀNH PHÂN TÍCH ĐẠO VĂN - Thời gian: {results['execution_time_seconds']} giây ===\n"
     )
