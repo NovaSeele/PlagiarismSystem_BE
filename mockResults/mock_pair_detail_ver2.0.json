@@ -1,0 +1,415 @@
+{
+  "document_count": 2,
+  "execution_time_seconds": 5.78,
+  "summary": {
+    "total_pairs": 1,
+    "lsa_passed_count": 1,
+    "fasttext_passed_count": 1,
+    "final_result_count": 1
+  },
+  "all_document_pairs": [
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "doc1_content": "The kakapo, a critically endangered, ﬂightless parrot native to the temperate rainforests of New Zealand’s offshore islands, such as Codﬁsh (W henua Hou) and Anchor Islands, is renowned not only for its unique evolutionary traits but also for its remarkable friendliness, a characteristic that has endeared it to conservationists and researchers alike. This nocturnal, moss-green bird, often dubbed the “owl parrot” for its facial disc and solitary habits, exhibits a surprising degree of curiosity and trust toward humans, a behavior that stands in stark contrast to the wariness typical of many wild animals. This friendliness is rooted in the kakapo’s evolutionary history, having developed in an isolated island ecosystem free from mammalian predators for millions of years, which allowed them to evolve without the need for defensive aggression or fear of terrestrial threats. As a result, kakapos lack an innate fear of humans, often approa ching researchers with a gentle inquisitiveness that has been described as almost dog-like. This behavior is particularly striking given their solitary nature; outside of the breeding season, kakapos prefer to live alone, foraging for fruits, seeds, and leaves in the dense undergrowth, yet they readily engage with humans when encountered. Conservationists working with the Kakapo Recovery Programme, tasked with saving the fewer than 250 remaining kakapos as of 2025, frequently report anecdotes of individual birds waddling up to them, inspecting equipment, or even climbing onto their backs, displaying a playful and trusting demeanor. This friendliness is not indiscriminate, however, as kakapos are highly individualistic, with some birds showing more boldness than others. For instance, a famous kakapo named Sirocco gained international attention for his particularly outgoing personality, famously attempting to mate with a zoologist’s head during a documentary ﬁlming, an incident that highlighted both their curiosity and their lack of social boundaries when interacting with humans. This behavior, while amusing, also reﬂects the kakapo’s reproductive instincts, as males are known for their enthusiastic, if indiscriminate, mating displays, which they may direct toward humans in the absence of females. Kakapo friendliness extends beyond mere curiosity; they often exhibit a tactile engagement with their environment, using their strong, zygodactyl feet to explore objects or people, gently nibbling with their curved beaks to investigate unfamiliar items. This tactile curiosity is likely an extension of their foraging behavior, where they use their beaks and feet to manipulate leaves and bark, but it translates into a form of interaction that feels affectionate to humans. Their large, expressive eyes and soft, feather-covered faces further enhance the perception of friendliness, as their owl-like appearance gives them an approachable, almost endearing quality. Unlike many parrots, which can be vocal and aggressive, kakapos are generally quiet, save for the males’ low-frequency booming calls during breeding season, which adds to their gentle demeanor. However, their friendliness is not without complications for conservation efforts. Their trust in humans, while facilitating monitoring and health checks, can make them vulnerable in the wild, as they may approach threats with the same lack of fear they show toward researchers. This vulnerability was historically exploited by early human settlers, who found kakapos easy to hunt due to their docile nature, contributing to their drastic population decline. In modern conservation, this friendliness is a double-edged sword: it allows for detailed individual tracking—each kakapo is ﬁtted with a radio transmitter and given a name, fostering a personal connection between birds and conservationists—but it also requires strict protocols to ensure human interactions do not disrupt their natural behaviors or expose them to diseases. The kakapo’s friendliness also manifests in their interactions with each other, though these are rare outside breeding. During mating season, females may show selective curiosity toward booming males, approaching their track-and-bowl systems to assess potential mates, a process that can seem almost courteous compared to the competitive displays of other species. Chicks, raised solely by their mothers, inherit this calm disposition, often remaining docile even when handled for health checks. The Kakapo Recovery Programme has leveraged this friendliness to build public support, using the birds’ charismatic personalities to raise awareness and funding, with social media campaigns showcasing their playful antics. Yet, this friendliness is tempered by their fragility; their low reproductive rate, tied to the irregular fruiting of native trees like the rimu, means each interaction must be carefully managed to avoid stress. The kakapo’s friendliness, a product of their predator-free evolutionary past, is a poignant reminder of their vulnerability in a changed world, where their trust in humans must be met with unwavering commitment to their protection. Each curious approach by a kakapo, each gentle nibble or climb, underscores the profound responsibility to preserve this singular species, whose affable nature is as much a treasure as their ecological uniqueness, making them one of the most beloved ambassadors of New Zealand’s biodiversity. ",
+      "doc2_content": "The kakapo, a critically endangered ﬂightless parrot native to New Zealand, is one of the most unique and fascinating birds in the world, largely due to its specialized habitat requirements and evolutionary adaptations. Historically, the kakapo thrived in the dense forests and rugged landscapes of New Zealand, where it evolved over millions of years in isolation, free from mammalian predators. The bird’s natural habitat originally consisted of a variety of forest types, including podocarp-broadleaf forests, mixed hardwood forests, and subalpine scrublands, all of which provided the necessary resources for its survival. These habitats were characterized by a rich diversity of plant species, offering abundant food sources such as seeds, fruits, leaves, and ﬂowers that make up the kakapo’s herbivorous diet. However, with human settlement and the introduction of invasive species, the kakapo’s original range has been drastically reduced, leading to its current status as one of the rarest birds on Earth. Tod ay, conservation efforts have focused on relocating surviving kakapo populations to predator-free offshore islands, where their natural behaviors can be preserved while mitigating threats from introduced mammals like rats, stoats, and cats. These sanctuary islands, such as Codﬁsh Island (Whenua Hou) and Anchor Island, are carefully managed to mimic the kakapo’s ancestral habitats, with lush vegetation, diverse ﬂora, and minimal human interference. Despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species. For example, the kakapo relies heavily on speciﬁc tree species, such as rimu trees, for both nutrition and breeding cues, as the abundance of rimu fruit triggers their reproductive cycles. This dependency underscores the intricate relationship between the kakapo and its environment, highlighting the importance of preserving not only the bird itself but also the ecological systems it depends on. Furthermore, the nocturnal and solitary nature of the kakapo means that its habitat must provide ample cover and seclusion, allowing individuals to forage and nest without disturbance. Dense undergrowth, fallen logs, and rocky outcrops serve as essential components of the kakapo’s habitat, providing safe spaces for nesting and protection from harsh weather conditions. In addition to physical features, the climate of the kakapo’s habitat plays a crucial role in its survival. The temperate and often humid conditions of New Zealand’s forests help maintain the moisture levels required for seed germination and plant growth, ensuring a steady supply of food for the kakapo throughout the year. However, climate change poses an emerging threat to these delicate ecosystems, as shifting weather patterns and increased frequency of extreme events could disrupt the balance of the kakapo’s habitat. Rising temperatures, altered rainfall regimes, and more frequent storms may lead to declines in key plant species, further stressing the already vulnerable kakapo population. Conservationists are therefore working tirelessly to monitor and mitigate these risks, employing strategies such as habitat restoration, pest control, and assisted breeding programs to bolster the resilience of both the kakapo and its environment. Public awareness campaigns and scientiﬁc research also play vital roles in safeguarding the future of this remarkable bird, emphasizing the interconnectedness of biodiversity and ecosystem health. Ultimately, the kakapo’s habitat represents not just a physical space but a complex web of relationships and dependencies that reﬂect the broader challenges facing island ecosystems worldwide. By protecting the kakapo and its habitat, we are not only preserving a symbol of New Zealand’s unique wildlife heritage but also contributing to global efforts to conserve endangered species and restore degraded environments. Through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature. ",
+      "lsa_similarity_percentage": 74.52,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.64,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.47,
+      "final_result": true,
+      "lsa_sections": [],
+      "fasttext_sections": [
+        {
+          "doc1_content": "the kakapo, a critically endangered, ﬂightless parrot native to the temperate rainforests of new zealand’s offshore islands, such as codﬁsh (w henua hou) and anchor islands, is renowned not only for its unique evolutionary traits but also for its remarkable friendliness, a characteristic that has endeared it to conservationists and researchers alike.",
+          "doc2_content": "these sanctuary islands, such as codﬁsh island (whenua hou) and anchor island, are carefully managed to mimic the kakapo’s ancestral habitats, with lush vegetation, diverse ﬂora, and minimal human interference.",
+          "similarity_score": 0.951,
+          "similarity_percentage": 95.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this nocturnal, moss-green bird, often dubbed the “owl parrot” for its facial disc and solitary habits, exhibits a surprising degree of curiosity and trust toward humans, a behavior that stands in stark contrast to the wariness typical of many wild animals.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.943,
+          "similarity_percentage": 94.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this friendliness is rooted in the kakapo’s evolutionary history, having developed in an isolated island ecosystem free from mammalian predators for millions of years, which allowed them to evolve without the need for defensive aggression or fear of terrestrial threats.",
+          "doc2_content": "despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species.",
+          "similarity_score": 0.96,
+          "similarity_percentage": 96,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "as a result, kakapos lack an innate fear of humans, often approa ching researchers with a gentle inquisitiveness that has been described as almost dog-like.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.908,
+          "similarity_percentage": 90.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this behavior is particularly striking given their solitary nature; outside of the breeding season, kakapos prefer to live alone, foraging for fruits, seeds, and leaves in the dense undergrowth, yet they readily engage with humans when encountered.",
+          "doc2_content": "furthermore, the nocturnal and solitary nature of the kakapo means that its habitat must provide ample cover and seclusion, allowing individuals to forage and nest without disturbance.",
+          "similarity_score": 0.943,
+          "similarity_percentage": 94.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "conservationists working with the kakapo recovery programme, tasked with saving the fewer than 250 remaining kakapos as of 2025, frequently report anecdotes of individual birds waddling up to them, inspecting equipment, or even climbing onto their backs, displaying a playful and trusting demeanor.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.94,
+          "similarity_percentage": 94,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this friendliness is not indiscriminate, however, as kakapos are highly individualistic, with some birds showing more boldness than others.",
+          "doc2_content": "these sanctuary islands, such as codﬁsh island (whenua hou) and anchor island, are carefully managed to mimic the kakapo’s ancestral habitats, with lush vegetation, diverse ﬂora, and minimal human interference.",
+          "similarity_score": 0.891,
+          "similarity_percentage": 89.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "for instance, a famous kakapo named sirocco gained international attention for his particularly outgoing personality, famously attempting to mate with a zoologist’s head during a documentary ﬁlming, an incident that highlighted both their curiosity and their lack of social boundaries when interacting with humans.",
+          "doc2_content": "ultimately, the kakapo’s habitat represents not just a physical space but a complex web of relationships and dependencies that reﬂect the broader challenges facing island ecosystems worldwide.",
+          "similarity_score": 0.942,
+          "similarity_percentage": 94.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this behavior, while amusing, also reﬂects the kakapo’s reproductive instincts, as males are known for their enthusiastic, if indiscriminate, mating displays, which they may direct toward humans in the absence of females.",
+          "doc2_content": "these sanctuary islands, such as codﬁsh island (whenua hou) and anchor island, are carefully managed to mimic the kakapo’s ancestral habitats, with lush vegetation, diverse ﬂora, and minimal human interference.",
+          "similarity_score": 0.943,
+          "similarity_percentage": 94.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "kakapo friendliness extends beyond mere curiosity; they often exhibit a tactile engagement with their environment, using their strong, zygodactyl feet to explore objects or people, gently nibbling with their curved beaks to investigate unfamiliar items.",
+          "doc2_content": "conservationists are therefore working tirelessly to monitor and mitigate these risks, employing strategies such as habitat restoration, pest control, and assisted breeding programs to bolster the resilience of both the kakapo and its environment.",
+          "similarity_score": 0.911,
+          "similarity_percentage": 91.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this tactile curiosity is likely an extension of their foraging behavior, where they use their beaks and feet to manipulate leaves and bark, but it translates into a form of interaction that feels affectionate to humans.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.947,
+          "similarity_percentage": 94.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "their large, expressive eyes and soft, feather-covered faces further enhance the perception of friendliness, as their owl-like appearance gives them an approachable, almost endearing quality.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.913,
+          "similarity_percentage": 91.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "unlike many parrots, which can be vocal and aggressive, kakapos are generally quiet, save for the males’ low-frequency booming calls during breeding season, which adds to their gentle demeanor.",
+          "doc2_content": "tod ay, conservation efforts have focused on relocating surviving kakapo populations to predator-free offshore islands, where their natural behaviors can be preserved while mitigating threats from introduced mammals like rats, stoats, and cats.",
+          "similarity_score": 0.932,
+          "similarity_percentage": 93.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "however, their friendliness is not without complications for conservation efforts.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.872,
+          "similarity_percentage": 87.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "their trust in humans, while facilitating monitoring and health checks, can make them vulnerable in the wild, as they may approach threats with the same lack of fear they show toward researchers.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.941,
+          "similarity_percentage": 94.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this vulnerability was historically exploited by early human settlers, who found kakapos easy to hunt due to their docile nature, contributing to their drastic population decline.",
+          "doc2_content": "conservationists are therefore working tirelessly to monitor and mitigate these risks, employing strategies such as habitat restoration, pest control, and assisted breeding programs to bolster the resilience of both the kakapo and its environment.",
+          "similarity_score": 0.904,
+          "similarity_percentage": 90.4,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "in modern conservation, this friendliness is a double-edged sword: it allows for detailed individual tracking—each kakapo is ﬁtted with a radio transmitter and given a name, fostering a personal connection between birds and conservationists—but it also requires strict protocols to ensure human interactions do not disrupt their natural behaviors or expose them to diseases.",
+          "doc2_content": "the kakapo, a critically endangered ﬂightless parrot native to new zealand, is one of the most unique and fascinating birds in the world, largely due to its specialized habitat requirements and evolutionary adaptations.",
+          "similarity_score": 0.928,
+          "similarity_percentage": 92.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo’s friendliness also manifests in their interactions with each other, though these are rare outside breeding.",
+          "doc2_content": "despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species.",
+          "similarity_score": 0.939,
+          "similarity_percentage": 93.9,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "during mating season, females may show selective curiosity toward booming males, approaching their track-and-bowl systems to assess potential mates, a process that can seem almost courteous compared to the competitive displays of other species.",
+          "doc2_content": "conservationists are therefore working tirelessly to monitor and mitigate these risks, employing strategies such as habitat restoration, pest control, and assisted breeding programs to bolster the resilience of both the kakapo and its environment.",
+          "similarity_score": 0.944,
+          "similarity_percentage": 94.4,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "chicks, raised solely by their mothers, inherit this calm disposition, often remaining docile even when handled for health checks.",
+          "doc2_content": "tod ay, conservation efforts have focused on relocating surviving kakapo populations to predator-free offshore islands, where their natural behaviors can be preserved while mitigating threats from introduced mammals like rats, stoats, and cats.",
+          "similarity_score": 0.883,
+          "similarity_percentage": 88.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme has leveraged this friendliness to build public support, using the birds’ charismatic personalities to raise awareness and funding, with social media campaigns showcasing their playful antics.",
+          "doc2_content": "by protecting the kakapo and its habitat, we are not only preserving a symbol of new zealand’s unique wildlife heritage but also contributing to global efforts to conserve endangered species and restore degraded environments.",
+          "similarity_score": 0.938,
+          "similarity_percentage": 93.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "yet, this friendliness is tempered by their fragility; their low reproductive rate, tied to the irregular fruiting of native trees like the rimu, means each interaction must be carefully managed to avoid stress.",
+          "doc2_content": "through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.935,
+          "similarity_percentage": 93.5,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo’s friendliness, a product of their predator-free evolutionary past, is a poignant reminder of their vulnerability in a changed world, where their trust in humans must be met with unwavering commitment to their protection.",
+          "doc2_content": "despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species.",
+          "similarity_score": 0.962,
+          "similarity_percentage": 96.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "each curious approach by a kakapo, each gentle nibble or climb, underscores the profound responsibility to preserve this singular species, whose affable nature is as much a treasure as their ecological uniqueness, making them one of the most beloved ambassadors of new zealand’s biodiversity.",
+          "doc2_content": "despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species.",
+          "similarity_score": 0.964,
+          "similarity_percentage": 96.4,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        }
+      ],
+      "bert_sections": [
+        {
+          "doc1_content": "The kakapo, a critically endangered, ﬂightless parrot native to the temperate rainforests of New Zealand’s offshore islands, such as Codﬁsh (W henua Hou) and Anchor Islands, is renowned not only for its unique evolutionary traits but also for its remarkable friendliness, a characteristic that has endeared it to conservationists and researchers alike.",
+          "doc2_content": "The kakapo, a critically endangered ﬂightless parrot native to New Zealand, is one of the most unique and fascinating birds in the world, largely due to its specialized habitat requirements and evolutionary adaptations.",
+          "similarity_score": 0.919,
+          "similarity_percentage": 91.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "This friendliness is rooted in the kakapo’s evolutionary history, having developed in an isolated island ecosystem free from mammalian predators for millions of years, which allowed them to evolve without the need for defensive aggression or fear of terrestrial threats.",
+          "doc2_content": "Historically, the kakapo thrived in the dense forests and rugged landscapes of New Zealand, where it evolved over millions of years in isolation, free from mammalian predators.",
+          "similarity_score": 0.756,
+          "similarity_percentage": 75.6,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "This behavior is particularly striking given their solitary nature; outside of the breeding season, kakapos prefer to live alone, foraging for fruits, seeds, and leaves in the dense undergrowth, yet they readily engage with humans when encountered.",
+          "doc2_content": "Furthermore, the nocturnal and solitary nature of the kakapo means that its habitat must provide ample cover and seclusion, allowing individuals to forage and nest without disturbance.",
+          "similarity_score": 0.749,
+          "similarity_percentage": 74.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Conservationists working with the Kakapo Recovery Programme, tasked with saving the fewer than 250 remaining kakapos as of 2025, frequently report anecdotes of individual birds waddling up to them, inspecting equipment, or even climbing onto their backs, displaying a playful and trusting demeanor.",
+          "doc2_content": "Through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.709,
+          "similarity_percentage": 70.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Unlike many parrots, which can be vocal and aggressive, kakapos are generally quiet, save for the males’ low-frequency booming calls during breeding season, which adds to their gentle demeanor.",
+          "doc2_content": "The kakapo, a critically endangered ﬂightless parrot native to New Zealand, is one of the most unique and fascinating birds in the world, largely due to its specialized habitat requirements and evolutionary adaptations.",
+          "similarity_score": 0.725,
+          "similarity_percentage": 72.5,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "This vulnerability was historically exploited by early human settlers, who found kakapos easy to hunt due to their docile nature, contributing to their drastic population decline.",
+          "doc2_content": "However, with human settlement and the introduction of invasive species, the kakapo’s original range has been drastically reduced, leading to its current status as one of the rarest birds on Earth.",
+          "similarity_score": 0.723,
+          "similarity_percentage": 72.3,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "In modern conservation, this friendliness is a double-edged sword: it allows for detailed individual tracking—each kakapo is ﬁtted with a radio transmitter and given a name, fostering a personal connection between birds and conservationists—but it also requires strict protocols to ensure human interactions do not disrupt their natural behaviors or expose them to diseases.",
+          "doc2_content": "By protecting the kakapo and its habitat, we are not only preserving a symbol of New Zealand’s unique wildlife heritage but also contributing to global efforts to conserve endangered species and restore degraded environments.",
+          "similarity_score": 0.732,
+          "similarity_percentage": 73.2,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The Kakapo Recovery Programme has leveraged this friendliness to build public support, using the birds’ charismatic personalities to raise awareness and funding, with social media campaigns showcasing their playful antics.",
+          "doc2_content": "Through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.722,
+          "similarity_percentage": 72.2,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The kakapo’s friendliness, a product of their predator-free evolutionary past, is a poignant reminder of their vulnerability in a changed world, where their trust in humans must be met with unwavering commitment to their protection.",
+          "doc2_content": "Despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species.",
+          "similarity_score": 0.797,
+          "similarity_percentage": 79.7,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Each curious approach by a kakapo, each gentle nibble or climb, underscores the profound responsibility to preserve this singular species, whose affable nature is as much a treasure as their ecological uniqueness, making them one of the most beloved ambassadors of New Zealand’s biodiversity.",
+          "doc2_content": "By protecting the kakapo and its habitat, we are not only preserving a symbol of New Zealand’s unique wildlife heritage but also contributing to global efforts to conserve endangered species and restore degraded environments.",
+          "similarity_score": 0.887,
+          "similarity_percentage": 88.7,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        }
+      ],
+      "all_plagiarized_sections": [
+        {
+          "doc1_content": "for instance, a famous kakapo named sirocco gained international attention for his particularly outgoing personality, famously attempting to mate with a zoologist’s head during a documentary ﬁlming, an incident that highlighted both their curiosity and their lack of social boundaries when interacting with humans.",
+          "doc2_content": "ultimately, the kakapo’s habitat represents not just a physical space but a complex web of relationships and dependencies that reﬂect the broader challenges facing island ecosystems worldwide.",
+          "similarity_score": 0.942,
+          "similarity_percentage": 94.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "The kakapo, a critically endangered, ﬂightless parrot native to the temperate rainforests of New Zealand’s offshore islands, such as Codﬁsh (W henua Hou) and Anchor Islands, is renowned not only for its unique evolutionary traits but also for its remarkable friendliness, a characteristic that has endeared it to conservationists and researchers alike.",
+          "doc2_content": "The kakapo, a critically endangered ﬂightless parrot native to New Zealand, is one of the most unique and fascinating birds in the world, largely due to its specialized habitat requirements and evolutionary adaptations.",
+          "similarity_score": 0.919,
+          "similarity_percentage": 91.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo friendliness extends beyond mere curiosity; they often exhibit a tactile engagement with their environment, using their strong, zygodactyl feet to explore objects or people, gently nibbling with their curved beaks to investigate unfamiliar items.",
+          "doc2_content": "conservationists are therefore working tirelessly to monitor and mitigate these risks, employing strategies such as habitat restoration, pest control, and assisted breeding programs to bolster the resilience of both the kakapo and its environment.",
+          "similarity_score": 0.911,
+          "similarity_percentage": 91.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this friendliness is not indiscriminate, however, as kakapos are highly individualistic, with some birds showing more boldness than others.",
+          "doc2_content": "these sanctuary islands, such as codﬁsh island (whenua hou) and anchor island, are carefully managed to mimic the kakapo’s ancestral habitats, with lush vegetation, diverse ﬂora, and minimal human interference.",
+          "similarity_score": 0.891,
+          "similarity_percentage": 89.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "Each curious approach by a kakapo, each gentle nibble or climb, underscores the profound responsibility to preserve this singular species, whose affable nature is as much a treasure as their ecological uniqueness, making them one of the most beloved ambassadors of New Zealand’s biodiversity.",
+          "doc2_content": "By protecting the kakapo and its habitat, we are not only preserving a symbol of New Zealand’s unique wildlife heritage but also contributing to global efforts to conserve endangered species and restore degraded environments.",
+          "similarity_score": 0.887,
+          "similarity_percentage": 88.7,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "chicks, raised solely by their mothers, inherit this calm disposition, often remaining docile even when handled for health checks.",
+          "doc2_content": "tod ay, conservation efforts have focused on relocating surviving kakapo populations to predator-free offshore islands, where their natural behaviors can be preserved while mitigating threats from introduced mammals like rats, stoats, and cats.",
+          "similarity_score": 0.883,
+          "similarity_percentage": 88.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "The kakapo’s friendliness, a product of their predator-free evolutionary past, is a poignant reminder of their vulnerability in a changed world, where their trust in humans must be met with unwavering commitment to their protection.",
+          "doc2_content": "Despite these efforts, the fragility of the kakapo’s habitat remains a signiﬁcant concern, as even slight changes in environmental conditions or resource availability can have profound impacts on this slow-breeding species.",
+          "similarity_score": 0.797,
+          "similarity_percentage": 79.7,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "This friendliness is rooted in the kakapo’s evolutionary history, having developed in an isolated island ecosystem free from mammalian predators for millions of years, which allowed them to evolve without the need for defensive aggression or fear of terrestrial threats.",
+          "doc2_content": "Historically, the kakapo thrived in the dense forests and rugged landscapes of New Zealand, where it evolved over millions of years in isolation, free from mammalian predators.",
+          "similarity_score": 0.756,
+          "similarity_percentage": 75.6,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "This behavior is particularly striking given their solitary nature; outside of the breeding season, kakapos prefer to live alone, foraging for fruits, seeds, and leaves in the dense undergrowth, yet they readily engage with humans when encountered.",
+          "doc2_content": "Furthermore, the nocturnal and solitary nature of the kakapo means that its habitat must provide ample cover and seclusion, allowing individuals to forage and nest without disturbance.",
+          "similarity_score": 0.749,
+          "similarity_percentage": 74.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "In modern conservation, this friendliness is a double-edged sword: it allows for detailed individual tracking—each kakapo is ﬁtted with a radio transmitter and given a name, fostering a personal connection between birds and conservationists—but it also requires strict protocols to ensure human interactions do not disrupt their natural behaviors or expose them to diseases.",
+          "doc2_content": "By protecting the kakapo and its habitat, we are not only preserving a symbol of New Zealand’s unique wildlife heritage but also contributing to global efforts to conserve endangered species and restore degraded environments.",
+          "similarity_score": 0.732,
+          "similarity_percentage": 73.2,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Unlike many parrots, which can be vocal and aggressive, kakapos are generally quiet, save for the males’ low-frequency booming calls during breeding season, which adds to their gentle demeanor.",
+          "doc2_content": "The kakapo, a critically endangered ﬂightless parrot native to New Zealand, is one of the most unique and fascinating birds in the world, largely due to its specialized habitat requirements and evolutionary adaptations.",
+          "similarity_score": 0.725,
+          "similarity_percentage": 72.5,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "This vulnerability was historically exploited by early human settlers, who found kakapos easy to hunt due to their docile nature, contributing to their drastic population decline.",
+          "doc2_content": "However, with human settlement and the introduction of invasive species, the kakapo’s original range has been drastically reduced, leading to its current status as one of the rarest birds on Earth.",
+          "similarity_score": 0.723,
+          "similarity_percentage": 72.3,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The Kakapo Recovery Programme has leveraged this friendliness to build public support, using the birds’ charismatic personalities to raise awareness and funding, with social media campaigns showcasing their playful antics.",
+          "doc2_content": "Through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.722,
+          "similarity_percentage": 72.2,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Conservationists working with the Kakapo Recovery Programme, tasked with saving the fewer than 250 remaining kakapos as of 2025, frequently report anecdotes of individual birds waddling up to them, inspecting equipment, or even climbing onto their backs, displaying a playful and trusting demeanor.",
+          "doc2_content": "Through continued dedication and innovative approaches, there is hope that the kakapo will once again ﬂourish in its native forests, serving as a testament to the power of conservation and the enduring beauty of nature.",
+          "similarity_score": 0.709,
+          "similarity_percentage": 70.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        }
+      ]
+    }
+  ]
+}

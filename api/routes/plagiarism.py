@@ -18,14 +18,31 @@ from modules.fasttext_module import (
 from modules.plagiarism import detect_plagiarism_layered
 from modules.plagiarism_debug import detect_plagiarism_layered_debug
 from modules.plagiarism_main_module import detect_plagiarism_layered_with_metadata
+from modules.detail_plagiarism_module import detect_plagiarism_detailed_with_metadata
 
 # Import the function to get all PDF metadata
-from services.pdf_metadata import get_all_pdf_metadata, get_all_pdf_contents
+from services.pdf_metadata import (
+    get_all_pdf_metadata,
+    get_all_pdf_contents,
+    get_pdf_metadata_by_name,
+)
 
 router = APIRouter()
 
 
 # Định nghĩa models Pydantic cho API
+
+
+# New model for file comparison by name
+class FileNameComparisonRequest(BaseModel):
+    file1_name: str = Field(
+        ..., description="Tên của file PDF thứ nhất để kiểm tra (không cần .pdf)"
+    )
+    file2_name: str = Field(
+        ..., description="Tên của file PDF thứ hai để kiểm tra (không cần .pdf)"
+    )
+
+
 class PairPlagiarismRequest(BaseModel):
     text1: str = Field(..., description="Văn bản thứ nhất để kiểm tra", min_length=50)
     text2: str = Field(..., description="Văn bản thứ hai để kiểm tra", min_length=50)
@@ -44,6 +61,61 @@ class PlagiarismResponse(BaseModel):
 
 class LayeredPlagiarismResponse(BaseModel):
     results: dict
+
+
+# New API endpoint for comparing two PDFs by filename using detailed plagiarism detection
+@router.post("/compare-pdfs-by-name", response_model=Dict[str, Any])
+async def compare_pdfs_by_name(request: FileNameComparisonRequest):
+    """
+    So sánh chi tiết hai văn bản PDF bằng cách chỉ định tên file.
+
+    API này sẽ:
+    1. Lấy nội dung của hai file PDF từ cơ sở dữ liệu theo tên file
+    2. Thực hiện phân tích đạo văn chi tiết sử dụng phương pháp kiểm tra 3 lớp
+    3. Trả về kết quả phân tích chi tiết với các phần bị đạo văn cụ thể
+
+    Kết quả trả về bao gồm:
+    - Tỷ lệ tương đồng tổng thể giữa hai văn bản
+    - Danh sách chi tiết các phần được phát hiện bởi mỗi lớp (LSA/LDA, FastText, BERT)
+    - Danh sách tổng hợp các phần bị đạo văn không trùng lặp
+    - Thông tin về loại phần được phát hiện (câu, đoạn, cụm từ)
+    - Tỷ lệ tương đồng của từng phần được phát hiện
+    """
+    try:
+        # Lấy nội dung của hai file từ cơ sở dữ liệu
+        content1 = get_pdf_metadata_by_name(request.file1_name)
+        content2 = get_pdf_metadata_by_name(request.file2_name)
+
+        if content1 is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Không tìm thấy file PDF có tên '{request.file1_name}'",
+            )
+
+        if content2 is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Không tìm thấy file PDF có tên '{request.file2_name}'",
+            )
+
+        # Chuẩn bị dữ liệu tài liệu cho phân tích
+        doc_data = [
+            {"content": content1, "filename": f"{request.file1_name}.pdf"},
+            {"content": content2, "filename": f"{request.file2_name}.pdf"},
+        ]
+
+        # Thực hiện phân tích đạo văn chi tiết
+        results = detect_plagiarism_detailed_with_metadata(doc_data)
+
+        return results
+    except HTTPException as he:
+        raise he
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
 
 
 # Route cho việc so sánh hai văn bản với BERT

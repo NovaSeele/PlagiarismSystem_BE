@@ -1,0 +1,1989 @@
+{
+  "document_count": 2,
+  "execution_time_seconds": 4.89,
+  "summary": {
+    "total_pairs": 1,
+    "lsa_passed_count": 1,
+    "fasttext_passed_count": 1,
+    "final_result_count": 1
+  },
+  "all_document_pairs": [
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 2.pdf",
+      "lsa_similarity_percentage": 86.7,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.87,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.64,
+      "final_result": true,
+      "lsa_sections": [],
+      "fasttext_sections": [
+        {
+          "doc1_content": "the kakapo, also known as the owl parrot, is a critically endangered, ﬂightless bird native to the dense, temperate rainforests of new zealand’s stewart island and formerly widespread across the north and south islands.",
+          "doc2_content": "the kakapo, a critically endangered parrot native to the lush, temperate rainforests of new zealand’s stewart island and a few other offshore islands, is a marvel of evolutionary adaptation, boasting a suite of unique features that set it apart from other avian species.",
+          "similarity_score": 0.958,
+          "similarity_percentage": 95.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this nocturnal, ground-dwelling parrot, scientiﬁcally named strigops habroptilus , is the world’s heaviest parrot, with males weighing up to 4 kilograms and females slightly less.",
+          "doc2_content": "the kakapo’s beak is short, curved, and powerful, designed for cracking seeds and stripping bark, reﬂecting their primarily herbivorous diet, though they occasionally consume insects and fungi.",
+          "similarity_score": 0.934,
+          "similarity_percentage": 93.4,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "its moss-green feathers, mottled with black and yellow, provide excellent camouﬂage among the forest ﬂoor’s ferns and mosses, while its owl-like facial disc and whiskers enhance its sensory perception in low-light conditions.",
+          "doc2_content": "the kakapo’s feathers are equipped with specialized structures that reduce noise during movement, aiding their stealth in the dense undergrowth.",
+          "similarity_score": 0.927,
+          "similarity_percentage": 92.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "kakapos are solitary creatures, except during breeding seasons, and are renowned for their unique mating system, known as “lekking.” males gather in speciﬁc areas to perform elaborate displays, emitting deep, resonant booms that can travel kilometers to attract females.",
+          "doc2_content": "this booming, performed from specially dug “track and bowl” systems during the breeding season , serves to attract females, who may travel long distances to select a mate.",
+          "similarity_score": 0.955,
+          "similarity_percentage": 95.5,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "these booms, produced by inﬂating thoracic air sacs, are among the lowest-frequency sounds made by any bird, creating an eerie soundscape in the forest.",
+          "doc2_content": "additionally, their immune systems are notably robust, likely an adaptation to their isolated island habitat, though this has not fully protected them from diseases introduced by humans.",
+          "similarity_score": 0.913,
+          "similarity_percentage": 91.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo’s diet is primarily herbivorous, consisting of native plants, seeds, fruits, and especially the rimu tree’s fruit, which synchronizes with their breeding cycles, occurring every two to four years.",
+          "doc2_content": "the kakapo’s beak is short, curved, and powerful, designed for cracking seeds and stripping bark, reﬂecting their primarily herbivorous diet, though they occasionally consume insects and fungi.",
+          "similarity_score": 0.961,
+          "similarity_percentage": 96.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this reliance on speciﬁc food sources makes them vulnerable to habitat changes.",
+          "doc2_content": "each feature—from their camouﬂaged plumage to their booming calls—reﬂects a deep adaptation to their environment, yet also underscores their fragility in the face of modern threats.",
+          "similarity_score": 0.862,
+          "similarity_percentage": 86.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "historically, kakapos thrived in new zealand’s predator-free ecosystems, but the introduction of mammals like rats, cats, and stoats by polynesian and european settlers decimated their population, as their ground-nesting habits and slow reproductive rate offered little defense.",
+          "doc2_content": "the kakapo’s beak is short, curved, and powerful, designed for cracking seeds and stripping bark, reﬂecting their primarily herbivorous diet, though they occasionally consume insects and fungi.",
+          "similarity_score": 0.946,
+          "similarity_percentage": 94.6,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "by the late 20th century, fewer than 50 individuals remained, prompting intensive conservation efforts.",
+          "doc2_content": "kakapos are also the longest-lived parrots, with lifespans potentially exceeding 90 years, a trait that underscores their slow-paced life history.",
+          "similarity_score": 0.862,
+          "similarity_percentage": 86.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme, initiated in the 1980s, has been a cornerstone of their survival, relocating the entire population to predator-free islands like codﬁsh (whenua hou) and anchor islands.",
+          "doc2_content": "their reproductive cycle is uniquely tied to the mast fruiting of native trees, occurring only every two to four years, resulting in low reproductive rates that exacerbate their endangered status.",
+          "similarity_score": 0.922,
+          "similarity_percentage": 92.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "here, conservationists monitor each bird, provide supplementary feeding, and use artiﬁcial insemination to boost genetic diversity.",
+          "doc2_content": "their wings, though reduced and incapable of ﬂight, are not entirely vestigial; kakapos use them for balance and to assist in climbing trees, which they do with surprising agility using their strong, zygodactyl feet—two toes facing for ward and two backward—perfectly adapted for grasping branches.",
+          "similarity_score": 0.91,
+          "similarity_percentage": 91,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "as of april 2025, the kakapo population has grown to around 250 individuals, a signiﬁcant increase but still precarious.",
+          "doc2_content": "conservation efforts, spearheaded by the kakapo recovery programme, have revealed fascinating aspects of their biology, such as their genetic diversity, which remains surprisingly high despite their small population of fewer than 250 individuals as of 2025. these efforts also highlight their behavioral quirks, such as their curiosity and playful interactions with humans, earning them a reputation as charismatic and endearing.",
+          "similarity_score": 0.937,
+          "similarity_percentage": 93.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "their slow breeding, with females laying one to four eggs per clutch and only reproducing when food is abundant, complicates recovery.",
+          "doc2_content": "their wings, though reduced and incapable of ﬂight, are not entirely vestigial; kakapos use them for balance and to assist in climbing trees, which they do with surprising agility using their strong, zygodactyl feet—two toes facing for ward and two backward—perfectly adapted for grasping branches.",
+          "similarity_score": 0.915,
+          "similarity_percentage": 91.5,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "additionally, kakapos face challenges from diseases like aspergillosis, a fungal infection that has affected some individuals in recent years.",
+          "doc2_content": "this cryptic plumage allows them to blend seamlessly into their surrou ndings, a crucial defense mechanism against predators in their evolutionary past, though today their primary threats are introduced mammals like rats and stoats.",
+          "similarity_score": 0.918,
+          "similarity_percentage": 91.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "culturally, kakapos hold a special place in māori tradition, often referred to as a taonga (treasure), and their conservation has galvanized global attention, with public engagement through naming competitions and live-streamed nest cams.",
+          "doc2_content": "conservation efforts, spearheaded by the kakapo recovery programme, have revealed fascinating aspects of their biology, such as their genetic diversity, which remains surprisingly high despite their small population of fewer than 250 individuals as of 2025. these efforts also highlight their behavioral quirks, such as their curiosity and playful interactions with humans, earning them a reputation as charismatic and endearing.",
+          "similarity_score": 0.917,
+          "similarity_percentage": 91.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "their charismatic behaviors, such as climbing trees with strong claws and “parachuting” down using underdeveloped wings, endear them to supporters worldwide.",
+          "doc2_content": "this booming, performed from specially dug “track and bowl” systems during the breeding season , serves to attract females, who may travel long distances to select a mate.",
+          "similarity_score": 0.928,
+          "similarity_percentage": 92.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "however, climate change poses a new threat, potentially altering the availability of rim fruit and disrupting breeding patterns.",
+          "doc2_content": "the kakapo, a critically endangered parrot native to the lush, temperate rainforests of new zealand’s stewart island and a few other offshore islands, is a marvel of evolutionary adaptation, boasting a suite of unique features that set it apart from other avian species.",
+          "similarity_score": 0.91,
+          "similarity_percentage": 91,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo’s story is one of resilience and human dedication, but their survival hinges on continued intervention.",
+          "doc2_content": "the kakapo’s combination of ﬂightlessness, nocturnal lifestyle, and specialized reproductive behaviors makes it a living relic of new zealand’s ancient ecosystems, predating human arrival.",
+          "similarity_score": 0.956,
+          "similarity_percentage": 95.6,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "advances in genomic research may further aid conservation by identifying traits for disease resistance or reproductive success, while habitat restoration on larger islands could provide long-term security.",
+          "doc2_content": "their wings, though reduced and incapable of ﬂight, are not entirely vestigial; kakapos use them for balance and to assist in climbing trees, which they do with surprising agility using their strong, zygodactyl feet—two toes facing for ward and two backward—perfectly adapted for grasping branches.",
+          "similarity_score": 0.88,
+          "similarity_percentage": 88,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo’s plight underscores the broader challenges of biodiversity loss, serving as both a warning and an inspiration for global conservation efforts.",
+          "doc2_content": "the kakapo, a critically endangered parrot native to the lush, temperate rainforests of new zealand’s stewart island and a few other offshore islands, is a marvel of evolutionary adaptation, boasting a suite of unique features that set it apart from other avian species.",
+          "similarity_score": 0.937,
+          "similarity_percentage": 93.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "their quirky traits—like the male’s enthusiastic but clumsy mating attempts, famously exempliﬁed by the late kakapo sirocco’s misguided affection for a zoologist’s head—highlight their individuality, making each loss deeply felt.",
+          "doc2_content": "the kakapo’s combination of ﬂightlessness, nocturnal lifestyle, and specialized reproductive behaviors makes it a living relic of new zealand’s ancient ecosystems, predating human arrival.",
+          "similarity_score": 0.951,
+          "similarity_percentage": 95.1,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "with ongoing commitment, there’s hope that this ancient, waddling parrot, a relic of new zealand’s primeval forests, will continue to boom through the night for generations to come.",
+          "doc2_content": "the kakapo’s combination of ﬂightlessness, nocturnal lifestyle, and specialized reproductive behaviors makes it a living relic of new zealand’s ancient ecosystems, predating human arrival.",
+          "similarity_score": 0.962,
+          "similarity_percentage": 96.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "s stewart island",
+          "doc2_content": "s stewart island",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": ", often referred",
+          "doc2_content": ", often referred",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "to four years",
+          "doc2_content": "to four years",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": ", ﬂightless bird",
+          "doc2_content": ", ﬂightless bird",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "kakapo ’ s",
+          "doc2_content": "kakapo ’ s",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "rainforests of new",
+          "doc2_content": "rainforests of new",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "two to four",
+          "doc2_content": "two to four",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo ,",
+          "doc2_content": "the kakapo ,",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the rimu tree",
+          "doc2_content": "the rimu tree",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "every two to",
+          "doc2_content": "every two to",
+          "similarity_score": 0.9,
+          "similarity_percentage": 90,
+          "section_type": "phrase",
+          "detection_layer": "fasttext"
+        }
+      ],
+      "bert_sections": [
+        {
+          "doc1_content": "The kakapo, also known as the owl parrot, is a critically endangered, ﬂightless bird native to the dense, temperate rainforests of New Zealand’s Stewart Island and formerly widespread across the North and South Islands.",
+          "doc2_content": "The kakapo, a critically endangered parrot native to the lush, temperate rainforests of New Zealand’s Stewart Island and a few other offshore islands, is a marvel of evolutionary adaptation, boasting a suite of unique features that set it apart from other avian species.",
+          "similarity_score": 0.944,
+          "similarity_percentage": 94.4,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Kakapos are solitary creatures, except during breeding seasons, and are renowned for their unique mating system, known as “lekking.” Males gather in speciﬁc areas to perform elaborate displays, emitting deep, resonant booms that can travel kilometers to attract females.",
+          "doc2_content": "Kakapos are solitary outside of mating, with females raising their chicks alone in ground nests, a trait that makes their reproduction vulnerable to predation.",
+          "similarity_score": 0.792,
+          "similarity_percentage": 79.2,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The kakapo’s diet is primarily herbivorous, consisting of native plants, seeds, fruits, and especially the rimu tree’s fruit, which synchronizes with their breeding cycles, occurring every two to four years.",
+          "doc2_content": "The kakapo’s beak is short, curved, and powerful, designed for cracking seeds and stripping bark, reﬂecting their primarily herbivorous diet, though they occasionally consume insects and fungi.",
+          "similarity_score": 0.828,
+          "similarity_percentage": 82.8,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Historically, kakapos thrived in New Zealand’s predator-free ecosystems, but the introduction of mammals like rats, cats, and stoats by Polynesian and European settlers decimated their population, as their ground-nesting habits and slow reproductive rate offered little defense.",
+          "doc2_content": "The kakapo’s combination of ﬂightlessness, nocturnal lifestyle, and specialized reproductive behaviors makes it a living relic of New Zealand’s ancient ecosystems, predating human arrival.",
+          "similarity_score": 0.819,
+          "similarity_percentage": 81.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "As of April 2025, the kakapo population has grown to around 250 individuals, a signiﬁcant increase but still precarious.",
+          "doc2_content": "Conservation efforts, spearheaded by the Kakapo Recovery Programme, have revealed fascinating aspects of their biology, such as their genetic diversity, which remains surprisingly high despite their small population of fewer than 250 individuals as of 2025.",
+          "similarity_score": 0.771,
+          "similarity_percentage": 77.1,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The kakapo’s plight underscores the broader challenges of biodiversity loss, serving as both a warning and an inspiration for global conservation efforts.",
+          "doc2_content": "Protecting these extraordinary birds requires not only preserving their habitat but also understanding and celebrating the intricate features that make the kakapo one of nature’s most singular creations, a testament to the evolutionary wonders of isolated island ecosystems.",
+          "similarity_score": 0.791,
+          "similarity_percentage": 79.1,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "s stewart island",
+          "doc2_content": "s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". kakapos are",
+          "doc2_content": ". kakapos are",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", often referred",
+          "doc2_content": ", often referred",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "to four years",
+          "doc2_content": "to four years",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", ﬂightless bird",
+          "doc2_content": ", ﬂightless bird",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo ’ s",
+          "doc2_content": "kakapo ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". the kakapo",
+          "doc2_content": ". the kakapo",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new",
+          "doc2_content": "rainforests of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "two to four",
+          "doc2_content": "two to four",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo ,",
+          "doc2_content": "the kakapo ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the rimu tree",
+          "doc2_content": "the rimu tree",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "every two to",
+          "doc2_content": "every two to",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new",
+          "doc2_content": "relic of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo ’",
+          "doc2_content": "the kakapo ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "recovery programme ,",
+          "doc2_content": "recovery programme ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", is a",
+          "doc2_content": ", is a",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "to attract females",
+          "doc2_content": "to attract females",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black",
+          "doc2_content": "mottled with black",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "often referred to",
+          "doc2_content": "often referred to",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "stewart island and",
+          "doc2_content": "stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’",
+          "doc2_content": "new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand",
+          "doc2_content": "of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "native to the",
+          "doc2_content": "native to the",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo recovery programme",
+          "doc2_content": "kakapo recovery programme",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "a critically endangered",
+          "doc2_content": "a critically endangered",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "to 4 kilograms",
+          "doc2_content": "to 4 kilograms",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "and yellow ,",
+          "doc2_content": "and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "with black and",
+          "doc2_content": "with black and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". additionally ,",
+          "doc2_content": ". additionally ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", seeds ,",
+          "doc2_content": ", seeds ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests",
+          "doc2_content": ", temperate rainforests",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "male ’ s",
+          "doc2_content": "male ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "’ s stewart",
+          "doc2_content": "’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the male ’",
+          "doc2_content": "the male ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the forest ﬂoor",
+          "doc2_content": "the forest ﬂoor",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", with females",
+          "doc2_content": ", with females",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of",
+          "doc2_content": "temperate rainforests of",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapos are solitary",
+          "doc2_content": "kakapos are solitary",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "black and yellow",
+          "doc2_content": "black and yellow",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo recovery",
+          "doc2_content": "the kakapo recovery",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mammals like rats",
+          "doc2_content": "mammals like rats",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "referred to as",
+          "doc2_content": "referred to as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s",
+          "doc2_content": "zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", with males",
+          "doc2_content": ", with males",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", such as",
+          "doc2_content": ", such as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", and their",
+          "doc2_content": ", and their",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "is one of",
+          "doc2_content": "is one of",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". the kakapo ’",
+          "doc2_content": ". the kakapo ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand",
+          "doc2_content": "rainforests of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "s stewart island and",
+          "doc2_content": "s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "with black and yellow",
+          "doc2_content": "with black and yellow",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new zealand",
+          "doc2_content": "relic of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black and",
+          "doc2_content": "mottled with black and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s stewart",
+          "doc2_content": "zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo ’ s",
+          "doc2_content": "the kakapo ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", often referred to",
+          "doc2_content": ", often referred to",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new",
+          "doc2_content": "temperate rainforests of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". kakapos are solitary",
+          "doc2_content": ". kakapos are solitary",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "’ s stewart island",
+          "doc2_content": "’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’",
+          "doc2_content": "of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of",
+          "doc2_content": ", temperate rainforests of",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "two to four years",
+          "doc2_content": "two to four years",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "every two to four",
+          "doc2_content": "every two to four",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "often referred to as",
+          "doc2_content": "often referred to as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme",
+          "doc2_content": "the kakapo recovery programme",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the male ’ s",
+          "doc2_content": "the male ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s",
+          "doc2_content": "new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo recovery programme ,",
+          "doc2_content": "kakapo recovery programme ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "black and yellow ,",
+          "doc2_content": "black and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s stewart island",
+          "doc2_content": "zealand ’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". the kakapo ’ s",
+          "doc2_content": ". the kakapo ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’ s",
+          "doc2_content": "of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "’ s stewart island and",
+          "doc2_content": "’ s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of new",
+          "doc2_content": ", temperate rainforests of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", often referred to as",
+          "doc2_content": ", often referred to as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "every two to four years",
+          "doc2_content": "every two to four years",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new zealand ’",
+          "doc2_content": "relic of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme ,",
+          "doc2_content": "the kakapo recovery programme ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black and yellow",
+          "doc2_content": "mottled with black and yellow",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new zealand",
+          "doc2_content": "temperate rainforests of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand ’",
+          "doc2_content": "rainforests of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s stewart",
+          "doc2_content": "new zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "with black and yellow ,",
+          "doc2_content": "with black and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s stewart island",
+          "doc2_content": "new zealand ’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black and yellow ,",
+          "doc2_content": "mottled with black and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of new zealand",
+          "doc2_content": ", temperate rainforests of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new zealand ’",
+          "doc2_content": "temperate rainforests of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new zealand ’ s",
+          "doc2_content": "relic of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’ s stewart",
+          "doc2_content": "of new zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s stewart island and",
+          "doc2_content": "zealand ’ s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand ’ s",
+          "doc2_content": "rainforests of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand ’ s stewart",
+          "doc2_content": "rainforests of new zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’ s stewart island",
+          "doc2_content": "of new zealand ’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of new zealand ’",
+          "doc2_content": ", temperate rainforests of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s stewart island and",
+          "doc2_content": "new zealand ’ s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new zealand ’ s",
+          "doc2_content": "temperate rainforests of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        }
+      ],
+      "all_plagiarized_sections": [
+        {
+          "doc1_content": "s stewart island",
+          "doc2_content": "s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". kakapos are",
+          "doc2_content": ". kakapos are",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", often referred",
+          "doc2_content": ", often referred",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "to four years",
+          "doc2_content": "to four years",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", ﬂightless bird",
+          "doc2_content": ", ﬂightless bird",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo ’ s",
+          "doc2_content": "kakapo ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". the kakapo",
+          "doc2_content": ". the kakapo",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new",
+          "doc2_content": "rainforests of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "two to four",
+          "doc2_content": "two to four",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo ,",
+          "doc2_content": "the kakapo ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the rimu tree",
+          "doc2_content": "the rimu tree",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "every two to",
+          "doc2_content": "every two to",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new",
+          "doc2_content": "relic of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo ’",
+          "doc2_content": "the kakapo ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "recovery programme ,",
+          "doc2_content": "recovery programme ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", is a",
+          "doc2_content": ", is a",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "to attract females",
+          "doc2_content": "to attract females",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black",
+          "doc2_content": "mottled with black",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "often referred to",
+          "doc2_content": "often referred to",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "stewart island and",
+          "doc2_content": "stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’",
+          "doc2_content": "new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand",
+          "doc2_content": "of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "native to the",
+          "doc2_content": "native to the",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo recovery programme",
+          "doc2_content": "kakapo recovery programme",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "a critically endangered",
+          "doc2_content": "a critically endangered",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "to 4 kilograms",
+          "doc2_content": "to 4 kilograms",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "and yellow ,",
+          "doc2_content": "and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "with black and",
+          "doc2_content": "with black and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". additionally ,",
+          "doc2_content": ". additionally ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", seeds ,",
+          "doc2_content": ", seeds ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests",
+          "doc2_content": ", temperate rainforests",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "male ’ s",
+          "doc2_content": "male ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "’ s stewart",
+          "doc2_content": "’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the male ’",
+          "doc2_content": "the male ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the forest ﬂoor",
+          "doc2_content": "the forest ﬂoor",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", with females",
+          "doc2_content": ", with females",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of",
+          "doc2_content": "temperate rainforests of",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapos are solitary",
+          "doc2_content": "kakapos are solitary",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "black and yellow",
+          "doc2_content": "black and yellow",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo recovery",
+          "doc2_content": "the kakapo recovery",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mammals like rats",
+          "doc2_content": "mammals like rats",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "referred to as",
+          "doc2_content": "referred to as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s",
+          "doc2_content": "zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", with males",
+          "doc2_content": ", with males",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", such as",
+          "doc2_content": ", such as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", and their",
+          "doc2_content": ", and their",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "is one of",
+          "doc2_content": "is one of",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". the kakapo ’",
+          "doc2_content": ". the kakapo ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand",
+          "doc2_content": "rainforests of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "s stewart island and",
+          "doc2_content": "s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "with black and yellow",
+          "doc2_content": "with black and yellow",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new zealand",
+          "doc2_content": "relic of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black and",
+          "doc2_content": "mottled with black and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s stewart",
+          "doc2_content": "zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo ’ s",
+          "doc2_content": "the kakapo ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", often referred to",
+          "doc2_content": ", often referred to",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new",
+          "doc2_content": "temperate rainforests of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". kakapos are solitary",
+          "doc2_content": ". kakapos are solitary",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "’ s stewart island",
+          "doc2_content": "’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’",
+          "doc2_content": "of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of",
+          "doc2_content": ", temperate rainforests of",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "two to four years",
+          "doc2_content": "two to four years",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "every two to four",
+          "doc2_content": "every two to four",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "often referred to as",
+          "doc2_content": "often referred to as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme",
+          "doc2_content": "the kakapo recovery programme",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the male ’ s",
+          "doc2_content": "the male ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s",
+          "doc2_content": "new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "kakapo recovery programme ,",
+          "doc2_content": "kakapo recovery programme ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "black and yellow ,",
+          "doc2_content": "black and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s stewart island",
+          "doc2_content": "zealand ’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ". the kakapo ’ s",
+          "doc2_content": ". the kakapo ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’ s",
+          "doc2_content": "of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "’ s stewart island and",
+          "doc2_content": "’ s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of new",
+          "doc2_content": ", temperate rainforests of new",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", often referred to as",
+          "doc2_content": ", often referred to as",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "every two to four years",
+          "doc2_content": "every two to four years",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new zealand ’",
+          "doc2_content": "relic of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme ,",
+          "doc2_content": "the kakapo recovery programme ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black and yellow",
+          "doc2_content": "mottled with black and yellow",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new zealand",
+          "doc2_content": "temperate rainforests of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand ’",
+          "doc2_content": "rainforests of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s stewart",
+          "doc2_content": "new zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "with black and yellow ,",
+          "doc2_content": "with black and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s stewart island",
+          "doc2_content": "new zealand ’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "mottled with black and yellow ,",
+          "doc2_content": "mottled with black and yellow ,",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of new zealand",
+          "doc2_content": ", temperate rainforests of new zealand",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new zealand ’",
+          "doc2_content": "temperate rainforests of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "relic of new zealand ’ s",
+          "doc2_content": "relic of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’ s stewart",
+          "doc2_content": "of new zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "zealand ’ s stewart island and",
+          "doc2_content": "zealand ’ s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand ’ s",
+          "doc2_content": "rainforests of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "rainforests of new zealand ’ s stewart",
+          "doc2_content": "rainforests of new zealand ’ s stewart",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "of new zealand ’ s stewart island",
+          "doc2_content": "of new zealand ’ s stewart island",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": ", temperate rainforests of new zealand ’",
+          "doc2_content": ", temperate rainforests of new zealand ’",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "new zealand ’ s stewart island and",
+          "doc2_content": "new zealand ’ s stewart island and",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "temperate rainforests of new zealand ’ s",
+          "doc2_content": "temperate rainforests of new zealand ’ s",
+          "similarity_score": 0.95,
+          "similarity_percentage": 95,
+          "section_type": "phrase",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The kakapo, also known as the owl parrot, is a critically endangered, ﬂightless bird native to the dense, temperate rainforests of New Zealand’s Stewart Island and formerly widespread across the North and South Islands.",
+          "doc2_content": "The kakapo, a critically endangered parrot native to the lush, temperate rainforests of New Zealand’s Stewart Island and a few other offshore islands, is a marvel of evolutionary adaptation, boasting a suite of unique features that set it apart from other avian species.",
+          "similarity_score": 0.944,
+          "similarity_percentage": 94.4,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "their charismatic behaviors, such as climbing trees with strong claws and “parachuting” down using underdeveloped wings, endear them to supporters worldwide.",
+          "doc2_content": "this booming, performed from specially dug “track and bowl” systems during the breeding season , serves to attract females, who may travel long distances to select a mate.",
+          "similarity_score": 0.928,
+          "similarity_percentage": 92.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "its moss-green feathers, mottled with black and yellow, provide excellent camouﬂage among the forest ﬂoor’s ferns and mosses, while its owl-like facial disc and whiskers enhance its sensory perception in low-light conditions.",
+          "doc2_content": "the kakapo’s feathers are equipped with specialized structures that reduce noise during movement, aiding their stealth in the dense undergrowth.",
+          "similarity_score": 0.927,
+          "similarity_percentage": 92.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "the kakapo recovery programme, initiated in the 1980s, has been a cornerstone of their survival, relocating the entire population to predator-free islands like codﬁsh (whenua hou) and anchor islands.",
+          "doc2_content": "their reproductive cycle is uniquely tied to the mast fruiting of native trees, occurring only every two to four years, resulting in low reproductive rates that exacerbate their endangered status.",
+          "similarity_score": 0.922,
+          "similarity_percentage": 92.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "additionally, kakapos face challenges from diseases like aspergillosis, a fungal infection that has affected some individuals in recent years.",
+          "doc2_content": "this cryptic plumage allows them to blend seamlessly into their surrou ndings, a crucial defense mechanism against predators in their evolutionary past, though today their primary threats are introduced mammals like rats and stoats.",
+          "similarity_score": 0.918,
+          "similarity_percentage": 91.8,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "culturally, kakapos hold a special place in māori tradition, often referred to as a taonga (treasure), and their conservation has galvanized global attention, with public engagement through naming competitions and live-streamed nest cams.",
+          "doc2_content": "conservation efforts, spearheaded by the kakapo recovery programme, have revealed fascinating aspects of their biology, such as their genetic diversity, which remains surprisingly high despite their small population of fewer than 250 individuals as of 2025. these efforts also highlight their behavioral quirks, such as their curiosity and playful interactions with humans, earning them a reputation as charismatic and endearing.",
+          "similarity_score": 0.917,
+          "similarity_percentage": 91.7,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "these booms, produced by inﬂating thoracic air sacs, are among the lowest-frequency sounds made by any bird, creating an eerie soundscape in the forest.",
+          "doc2_content": "additionally, their immune systems are notably robust, likely an adaptation to their isolated island habitat, though this has not fully protected them from diseases introduced by humans.",
+          "similarity_score": 0.913,
+          "similarity_percentage": 91.3,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "here, conservationists monitor each bird, provide supplementary feeding, and use artiﬁcial insemination to boost genetic diversity.",
+          "doc2_content": "their wings, though reduced and incapable of ﬂight, are not entirely vestigial; kakapos use them for balance and to assist in climbing trees, which they do with surprising agility using their strong, zygodactyl feet—two toes facing for ward and two backward—perfectly adapted for grasping branches.",
+          "similarity_score": 0.91,
+          "similarity_percentage": 91,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "this reliance on speciﬁc food sources makes them vulnerable to habitat changes.",
+          "doc2_content": "each feature—from their camouﬂaged plumage to their booming calls—reﬂects a deep adaptation to their environment, yet also underscores their fragility in the face of modern threats.",
+          "similarity_score": 0.862,
+          "similarity_percentage": 86.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "by the late 20th century, fewer than 50 individuals remained, prompting intensive conservation efforts.",
+          "doc2_content": "kakapos are also the longest-lived parrots, with lifespans potentially exceeding 90 years, a trait that underscores their slow-paced life history.",
+          "similarity_score": 0.862,
+          "similarity_percentage": 86.2,
+          "section_type": "sentence",
+          "detection_layer": "fasttext"
+        },
+        {
+          "doc1_content": "The kakapo’s diet is primarily herbivorous, consisting of native plants, seeds, fruits, and especially the rimu tree’s fruit, which synchronizes with their breeding cycles, occurring every two to four years.",
+          "doc2_content": "The kakapo’s beak is short, curved, and powerful, designed for cracking seeds and stripping bark, reﬂecting their primarily herbivorous diet, though they occasionally consume insects and fungi.",
+          "similarity_score": 0.828,
+          "similarity_percentage": 82.8,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Historically, kakapos thrived in New Zealand’s predator-free ecosystems, but the introduction of mammals like rats, cats, and stoats by Polynesian and European settlers decimated their population, as their ground-nesting habits and slow reproductive rate offered little defense.",
+          "doc2_content": "The kakapo’s combination of ﬂightlessness, nocturnal lifestyle, and specialized reproductive behaviors makes it a living relic of New Zealand’s ancient ecosystems, predating human arrival.",
+          "similarity_score": 0.819,
+          "similarity_percentage": 81.9,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "Kakapos are solitary creatures, except during breeding seasons, and are renowned for their unique mating system, known as “lekking.” Males gather in speciﬁc areas to perform elaborate displays, emitting deep, resonant booms that can travel kilometers to attract females.",
+          "doc2_content": "Kakapos are solitary outside of mating, with females raising their chicks alone in ground nests, a trait that makes their reproduction vulnerable to predation.",
+          "similarity_score": 0.792,
+          "similarity_percentage": 79.2,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "The kakapo’s plight underscores the broader challenges of biodiversity loss, serving as both a warning and an inspiration for global conservation efforts.",
+          "doc2_content": "Protecting these extraordinary birds requires not only preserving their habitat but also understanding and celebrating the intricate features that make the kakapo one of nature’s most singular creations, a testament to the evolutionary wonders of isolated island ecosystems.",
+          "similarity_score": 0.791,
+          "similarity_percentage": 79.1,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        },
+        {
+          "doc1_content": "As of April 2025, the kakapo population has grown to around 250 individuals, a signiﬁcant increase but still precarious.",
+          "doc2_content": "Conservation efforts, spearheaded by the Kakapo Recovery Programme, have revealed fascinating aspects of their biology, such as their genetic diversity, which remains surprisingly high despite their small population of fewer than 250 individuals as of 2025.",
+          "similarity_score": 0.771,
+          "similarity_percentage": 77.1,
+          "section_type": "sentence",
+          "detection_layer": "bert"
+        }
+      ]
+    }
+  ]
+}

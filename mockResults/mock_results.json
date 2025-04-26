@@ -1,0 +1,2772 @@
+{
+  "document_count": 24,
+  "execution_time_seconds": 919.44,
+  "summary": {
+    "total_pairs": 276,
+    "lsa_passed_count": 276,
+    "fasttext_passed_count": 276,
+    "final_result_count": 102
+  },
+  "all_document_pairs": [
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 2.pdf",
+      "lsa_similarity_percentage": 86.7,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.87,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.64,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 3.pdf",
+      "lsa_similarity_percentage": 81.12,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.27,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 62.87,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 4.pdf",
+      "lsa_similarity_percentage": 80.59,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.48,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 61.13,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 5.pdf",
+      "lsa_similarity_percentage": 81.58,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.82,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.57,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 6.pdf",
+      "lsa_similarity_percentage": 80.87,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.84,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.35,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 7.pdf",
+      "lsa_similarity_percentage": 79.75,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.67,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 64.19,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 66.76,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.87,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.53,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 75.23,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.87,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.18,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 68.61,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.5,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 56.59,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 81.12,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.27,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 62.87,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 79.75,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.67,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 64.19,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 49,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.7,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 13.3,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 63.54,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.15,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.89,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 53.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.52,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 13.88,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 63.54,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.15,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.89,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 66.72,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.11,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 44.34,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 58.72,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.14,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.47,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 65.87,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.28,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 48.71,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 58.21,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.23,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 17.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 60.35,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.96,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.69,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 52.89,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.44,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.18,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 59.07,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.62,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.82,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 1.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 59.07,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.62,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.82,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 3.pdf",
+      "lsa_similarity_percentage": 80.22,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.13,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.29,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 4.pdf",
+      "lsa_similarity_percentage": 82.67,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.44,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 62,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 5.pdf",
+      "lsa_similarity_percentage": 79.61,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.27,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.05,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 6.pdf",
+      "lsa_similarity_percentage": 76.32,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.43,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.97,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 7.pdf",
+      "lsa_similarity_percentage": 84.85,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.76,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.42,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 74.3,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.9,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.69,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 74.03,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.14,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 74.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.85,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 61.41,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 80.22,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.13,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.29,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 84.85,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.76,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.42,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 58.25,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.68,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.69,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 64.98,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.69,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 57.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.79,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 13.28,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 64.98,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.69,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 65.96,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.19,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42.39,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 58.57,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.03,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.95,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 64.94,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.26,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 43.16,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 56.36,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.52,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.97,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 57.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.91,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 13.72,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 60.66,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.83,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 57.43,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.11,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.12,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 2.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 57.43,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.11,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.12,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 4.pdf",
+      "lsa_similarity_percentage": 80.22,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.54,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 73.28,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 5.pdf",
+      "lsa_similarity_percentage": 78.89,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.44,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 75.76,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 6.pdf",
+      "lsa_similarity_percentage": 73.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.36,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 72.74,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 7.pdf",
+      "lsa_similarity_percentage": 74.52,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.18,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 73.07,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 67.4,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.44,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 75.06,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 72.86,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.28,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 72.15,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 66.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.39,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 69.51,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 100,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 100,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 100,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 74.52,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.18,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 73.07,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 57.93,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.66,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.05,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 60.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 54.99,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.03,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 12.39,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 60.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 69.45,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 56.76,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 56.53,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.5,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 17.46,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 56.32,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.63,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.98,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 57.92,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.4,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.3,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 57.76,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 55.69,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.15,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 9.98,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 53.61,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.87,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 3.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 53.61,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.87,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 5.pdf",
+      "lsa_similarity_percentage": 73.1,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.53,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 61.55,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 6.pdf",
+      "lsa_similarity_percentage": 80.3,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.35,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 66.1,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 7.pdf",
+      "lsa_similarity_percentage": 73.33,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.16,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 74.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 66.86,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 67.93,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.58,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 75.04,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.56,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.21,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 80.22,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.11,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 64.87,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 73.33,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.16,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 62.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.09,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.59,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 58.38,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.17,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 44.79,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 55.21,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 89.63,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.14,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 58.38,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.17,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 44.79,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 58.01,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42.89,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 57.46,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.67,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.58,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 56.82,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.97,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 43.56,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 57.4,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.67,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 58.91,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.52,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 56.91,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.55,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 14.66,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 58.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 4.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 58.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 6.pdf",
+      "lsa_similarity_percentage": 66.37,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.83,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.13,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 7.pdf",
+      "lsa_similarity_percentage": 74.96,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 69.41,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 64.23,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.97,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.94,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 68.93,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.03,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 68.07,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 64.24,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.28,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 68.99,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 78.89,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 69.49,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 74.96,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 69.41,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 52.85,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.17,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 8.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 65.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.83,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.63,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 49.57,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.48,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 12.18,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 65.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.83,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.63,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 61.64,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.58,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.8,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 56.98,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.1,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 60.01,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.92,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 51.82,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 54.62,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.58,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.8,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 54.56,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.71,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 12.78,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 52.83,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.19,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 13.21,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 56.64,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.25,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 12.47,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 5.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 56.64,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.25,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 12.47,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "kakapo 7.pdf",
+      "lsa_similarity_percentage": 69.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.11,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 54.86,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 70.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.55,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 61.27,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 62.19,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.84,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 68.74,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 57.53,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 73.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.68,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 52.47,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 69.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.11,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 54.86,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 49.23,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.36,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.17,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 51.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.8,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 41.98,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 56.76,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.18,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.32,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 51.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.8,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 41.98,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 58.03,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.59,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 40.4,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 56.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.13,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.91,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 50.75,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.97,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 40.48,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 55.07,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.36,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 21.77,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 55.77,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.96,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.29,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 57.8,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.36,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.19,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 56.25,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.4,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.44,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 6.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 56.25,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.4,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.44,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "kakapo 8.pdf",
+      "lsa_similarity_percentage": 68.13,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.19,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 67.47,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 77.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 65.34,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 71.93,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.31,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 62.93,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 74.52,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.64,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.47,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 100,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 100,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 100,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 52.87,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.62,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.96,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 60.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 51.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 55.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.53,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.95,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 60.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 51.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 66.46,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.35,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.62,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 61.48,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.79,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.35,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 58.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.69,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 50.82,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 57.39,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.61,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 22.5,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 52.8,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.59,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.19,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 53.31,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.92,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 53.86,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 7.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 53.86,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "kakapo 9.pdf",
+      "lsa_similarity_percentage": 67.66,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.24,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.13,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 73.72,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.4,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 60.78,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 67.4,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.14,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 53.41,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 68.13,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.12,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 57.93,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 62.7,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.84,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 23.13,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 57.36,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.45,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.88,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 63.47,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.6,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 24.65,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 57.36,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.45,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.88,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 59.78,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.03,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.12,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 68.07,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.14,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 28.08,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 54.68,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.12,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.85,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 61.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.16,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 26.92,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 60.6,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.73,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 25.95,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 60.64,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.64,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.62,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 55.55,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.82,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.65,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 8.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 55.55,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.82,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.65,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "kakapo 10.pdf",
+      "lsa_similarity_percentage": 69.65,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.29,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 71.85,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 72.86,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 68.8,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 77.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.82,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 76.1,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 52.38,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.89,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 20.52,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 62.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.57,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.55,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 55.03,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.34,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 21.1,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 62.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.57,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.55,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 63.52,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.17,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.46,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 55.31,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.47,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 22.29,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 63.19,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.2,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 63.34,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 56.74,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.87,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 25.77,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 54.72,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.39,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 24.2,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 55.1,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.48,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.79,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 55.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.15,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 9.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 55.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.15,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "kakapo 11.pdf",
+      "lsa_similarity_percentage": 66.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.13,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 54.69,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 71.93,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.42,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 62.1,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 52.89,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.1,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 20.7,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 57.43,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.25,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 46.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 54.95,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.73,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.13,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 57.43,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.25,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 46.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 44.51,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.12,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 43.18,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 62.44,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.9,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 22.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 53.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.02,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.55,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 61.29,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.77,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 20.73,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 60.05,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.44,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.69,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 51.12,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.37,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.64,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 58.87,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.33,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.67,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 10.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 58.87,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.33,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.67,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "kakapo 12.pdf",
+      "lsa_similarity_percentage": 74.52,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.18,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 73.07,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 57.93,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.66,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.05,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 60.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 54.99,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.03,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 12.39,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 60.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 69.45,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 56.76,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 56.53,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.5,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 17.46,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 56.32,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.63,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 59.98,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 57.92,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.4,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.3,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 57.76,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 55.69,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.15,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 9.98,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 53.61,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.87,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 11.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 53.61,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 11.87,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 1.pdf",
+      "lsa_similarity_percentage": 52.87,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.62,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.96,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 60.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 51.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 55.34,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.53,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 18.95,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 60.14,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 51.66,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 66.46,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.35,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.62,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 61.48,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.79,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.35,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 58.42,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.69,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 50.82,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 57.39,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.61,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 22.5,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 52.8,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.59,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 19.19,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 53.31,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.92,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 15.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 53.86,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "kakapo 12.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 53.86,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 16.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 2.pdf",
+      "lsa_similarity_percentage": 72.11,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.14,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 50.57,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 62.89,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.31,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 40,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 72.11,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.14,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 50.57,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 64.62,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.75,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.21,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 69.53,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 44.51,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 67.84,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.04,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 53.12,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 75.17,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.79,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 55.74,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 58.9,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.09,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 46.56,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 48.05,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.84,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 34.64,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 62.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.83,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 37.93,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 1.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 62.88,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.83,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 37.93,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 3.pdf",
+      "lsa_similarity_percentage": 51.32,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.17,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 100,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 100,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 100,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 78.08,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 97.61,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 76.48,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 63.11,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.81,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.55,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 76.65,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 97.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 76.22,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 70.75,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 53.9,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 61.1,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.15,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 52.58,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 36.67,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 57.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.1,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 39.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 2.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 57.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.1,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 39.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 4.pdf",
+      "lsa_similarity_percentage": 51.32,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 89.06,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 32.27,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 55.51,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 87.66,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 28.74,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 71.78,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 90.34,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.64,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 59.44,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 89.15,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 36.16,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 66.05,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 91.89,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 39.96,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 74.43,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 92.33,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 75.16,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.22,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.98,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 65.44,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.58,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.39,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 3.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 65.44,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.58,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 45.39,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 5.pdf",
+      "lsa_similarity_percentage": 78.08,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 97.61,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 76.48,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 63.11,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.81,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.55,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 76.65,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 97.3,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 76.22,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 70.75,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.88,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 53.9,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 61.1,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.15,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 52.58,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 36.67,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 57.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.1,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 39.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 4.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 57.26,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.1,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 39.76,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 6.pdf",
+      "lsa_similarity_percentage": 68.85,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.99,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.02,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 74.43,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.47,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 64.32,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 68.59,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.14,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 44.89,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 60.21,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.74,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 44.63,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 55.65,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.36,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 33.15,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 54.81,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 38.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 5.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 54.81,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 38.06,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 6.pdf",
+      "doc2_filename": "proposal 7.pdf",
+      "lsa_similarity_percentage": 60.01,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.72,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 6.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 69.7,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.04,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 46.53,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 6.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 74.04,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.45,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 53.61,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 6.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 66.19,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.94,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 46.01,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 6.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 66.24,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.25,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 48.94,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 6.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 66.24,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.25,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 48.94,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 7.pdf",
+      "doc2_filename": "proposal 8.pdf",
+      "lsa_similarity_percentage": 67.1,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 97.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 55.53,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 7.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 56.53,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 93.83,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.2,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 7.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 60.21,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.33,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42.2,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 7.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 52.71,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.13,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 7.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 52.71,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.13,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 42.07,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 8.pdf",
+      "doc2_filename": "proposal 9.pdf",
+      "lsa_similarity_percentage": 70.1,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.6,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 54.54,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 8.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 65.63,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.01,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 41.36,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 8.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 60.72,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.89,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.56,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 8.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 60.72,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 94.89,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 47.56,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 9.pdf",
+      "doc2_filename": "proposal 10.pdf",
+      "lsa_similarity_percentage": 64.76,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 97.16,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 49.24,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 9.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 67.54,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 55.88,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 9.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 67.54,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 96.86,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 55.88,
+      "final_result": true
+    },
+    {
+      "doc1_filename": "proposal 10.pdf",
+      "doc2_filename": "proposal 11.pdf",
+      "lsa_similarity_percentage": 72.15,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.02,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 48.51,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 10.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 72.15,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 95.02,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 48.51,
+      "final_result": false
+    },
+    {
+      "doc1_filename": "proposal 11.pdf",
+      "doc2_filename": "proposal 12.pdf",
+      "lsa_similarity_percentage": 100,
+      "passed_lsa_filter": true,
+      "fasttext_similarity_percentage": 100,
+      "passed_fasttext_filter": true,
+      "bert_similarity_percentage": 100,
+      "final_result": true
+    }
+  ]
+}
