@@ -31,6 +31,7 @@ import io
 
 from modules.keyword_classifier import categorize_combined
 
+
 def upload_metadata_pdf_service(file: UploadFile, current_user: UserInDB):
     pdf_metadata_collection = db["pdf_metadata"]
 
@@ -89,7 +90,7 @@ def process_single_pdf(file: UploadFile) -> Tuple[str, int]:
 
         # Sử dụng hàm extract_text_from_pdf từ modules.pdf_metadata để trích xuất nội dung
         text_content = extract_text_from_pdf(pdf_bytes)
-        
+
         # Thay thế \n \n thành space
         text_content = text_content.replace("\n \n", " ")
 
@@ -149,7 +150,7 @@ def process_multiple_pdfs(files: List[UploadFile]) -> List[Dict]:
             #         "page_count": page_count,
             #     }
             # )
-            
+
             results.append(text_content)
 
         except Exception as e:
@@ -181,6 +182,7 @@ def get_pdf_metadata_by_name(filename: str):
 
     return file_data["content"]
 
+
 def get_pdf_metadata_from_upload(file: UploadFile):
     """
     Lấy thông tin metadata của file PDF từ file được upload.
@@ -209,7 +211,7 @@ def get_pdf_metadata_from_upload(file: UploadFile):
         return {
             "filename": file.filename,
             "content": text_content,
-            "page_count": page_count
+            "page_count": page_count,
         }
 
     except Exception as e:
@@ -261,3 +263,34 @@ def get_all_pdf_contents():
         file["_id"] = str(file["_id"])
 
     return all_files
+
+
+def get_pdf_contents_by_names(filenames: List[str]):
+    """
+    Lấy nội dung của nhiều file PDF đã upload dựa trên danh sách tên file.
+
+    Args:
+        filenames (List[str]): Danh sách tên file (không bao gồm đuôi .pdf)
+
+    Returns:
+        list: Danh sách chứa thông tin đầy đủ của các file PDF tìm thấy
+    """
+    if not filenames:
+        return []  # Trả về danh sách trống nếu không có tên file nào được cung cấp
+
+    pdf_metadata_collection = get_pdf_metadata_collection()
+
+    # Tạo danh sách kết quả
+    results = []
+
+    # Xử lý từng tên file
+    for filename in filenames:
+        # Tìm file theo filename
+        file_data = pdf_metadata_collection.find_one({"filename": filename + ".pdf"})
+
+        if file_data:
+            # Chuyển đổi ObjectId thành string
+            file_data["_id"] = str(file_data["_id"])
+            results.append(file_data)
+
+    return results

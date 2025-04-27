@@ -25,12 +25,10 @@ from services.pdf_metadata import (
     get_all_pdf_metadata,
     get_all_pdf_contents,
     get_pdf_metadata_by_name,
+    get_pdf_contents_by_names,
 )
 
 router = APIRouter()
-
-
-# Định nghĩa models Pydantic cho API
 
 
 # New model for file comparison by name
@@ -61,6 +59,15 @@ class PlagiarismResponse(BaseModel):
 
 class LayeredPlagiarismResponse(BaseModel):
     results: dict
+
+
+# Tạo model mới cho request chứa danh sách tên file để so sánh
+class FilesComparisonRequest(BaseModel):
+    filenames: List[str] = Field(
+        ...,
+        description="Danh sách tên các file PDF để kiểm tra (không cần .pdf)",
+        min_items=2,
+    )
 
 
 # New API endpoint for comparing two PDFs by filename using detailed plagiarism detection
@@ -400,6 +407,67 @@ async def auto_layered_plagiarism_detection_debug():
         # Thực hiện phân tích đạo văn sử dụng phương thức mới với dữ liệu đầy đủ
         results = detect_plagiarism_layered_with_metadata(pdf_contents)
         return results
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route mới để thực hiện kiểm tra đạo văn tự động trên danh sách các file PDF được chỉ định
+@router.post("/auto-layered-detection-by-names", response_model=Dict[str, Any])
+async def auto_layered_plagiarism_detection_by_names(request: FilesComparisonRequest):
+    """
+    Phân tích và so sánh các văn bản PDF được chỉ định bởi danh sách tên file.
+
+    API này sẽ:
+    1. Lấy nội dung PDF từ cơ sở dữ liệu dựa trên tên file được cung cấp
+    2. Thực hiện phân tích đạo văn sử dụng phương pháp kiểm tra 3 lớp
+    3. Trả về kết quả chi tiết về tất cả các cặp văn bản
+
+    Dữ liệu đầu vào bao gồm danh sách tên các file PDF (không bao gồm phần mở rộng .pdf)
+
+    Kết quả trả về bao gồm:
+    - Số lượng tài liệu và thời gian thực thi
+    - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
+    - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+    """
+    try:
+        # Kiểm tra đầu vào có ít nhất 2 filename
+        if len(request.filenames) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 tên file để so sánh"
+            )
+
+        # Lấy nội dung của các file PDF dựa trên tên file
+        pdf_contents = get_pdf_contents_by_names(request.filenames)
+
+        # Kiểm tra xem có tìm thấy tất cả các file không
+        if len(pdf_contents) < len(request.filenames):
+            # Tìm các file không tồn tại
+            found_filenames = [
+                doc["filename"].replace(".pdf", "") for doc in pdf_contents
+            ]
+            missing_files = [f for f in request.filenames if f not in found_filenames]
+
+            raise HTTPException(
+                status_code=404,
+                detail=f"Không tìm thấy các file sau: {', '.join(missing_files)}",
+            )
+
+        # Kiểm tra xem có đủ file để so sánh không
+        if len(pdf_contents) < 2:
+            raise HTTPException(
+                status_code=400,
+                detail="Cần ít nhất 2 file tồn tại để so sánh",
+            )
+
+        # Thực hiện phân tích đạo văn sử dụng phương thức với dữ liệu đầy đủ
+        results = detect_plagiarism_layered_with_metadata(pdf_contents)
+        return results
+    except HTTPException as he:
+        raise he
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
