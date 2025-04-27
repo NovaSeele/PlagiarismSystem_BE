@@ -11,6 +11,15 @@ from nltk.corpus import stopwords
 from sklearn.metrics.pairwise import cosine_similarity
 from collections import defaultdict
 import os
+import itertools
+from api.routes.websocket import send_log
+
+
+# Custom print function that also sends logs via WebSocket
+def log_print(module, message, level="info"):
+    print(message)  # Keep original console output
+    send_log(module, message, level)  # Send to WebSocket clients
+
 
 # Tải NLTK data nếu cần
 try:
@@ -36,7 +45,7 @@ class FastTextDetector:
         if self.initialized:
             return
 
-        print("Initializing FastText Detector...")
+        log_print("FastText", "Initializing FastText Detector...")
         self.model_name = model_name
         # Sentence-level similarity threshold (0.5)
         # This threshold is used when finding similar sentence pairs between documents.
@@ -76,45 +85,62 @@ class FastTextDetector:
             model_loaded = False
             for model_path in local_model_paths:
                 if os.path.exists(model_path):
-                    print(f"Found local FastText model: {model_path}")
+                    log_print("FastText", f"Found local FastText model: {model_path}")
                     try:
                         self.model = gensim.models.fasttext.load_facebook_vectors(
                             model_path
                         )
-                        print(
-                            f"Local FastText model loaded successfully from {model_path}"
+                        log_print(
+                            "FastText",
+                            f"Local FastText model loaded successfully from {model_path}",
                         )
                         model_loaded = True
                         break
                     except Exception as local_load_error:
-                        print(
-                            f"Error loading local model {model_path}: {str(local_load_error)}"
+                        log_print(
+                            "FastText",
+                            f"Error loading local model {model_path}: {str(local_load_error)}",
+                            "warning",
                         )
 
             # If local loading failed, use gensim_downloader
             if not model_loaded:
-                print(
-                    f"Loading FastText model from gensim_downloader: {self.model_name}..."
+                log_print(
+                    "FastText",
+                    f"Loading FastText model from gensim_downloader: {self.model_name}...",
                 )
                 self.model = gensim_downloader.load(self.model_name)
-                print("FastText model loaded successfully from gensim_downloader.")
+                log_print(
+                    "FastText",
+                    "FastText model loaded successfully from gensim_downloader.",
+                )
         except Exception as e:
             if download_if_missing:
-                print(f"Error loading model: {str(e)}. Will attempt to download.")
+                log_print(
+                    "FastText",
+                    f"Error loading model: {str(e)}. Will attempt to download.",
+                    "warning",
+                )
                 try:
                     self.model = gensim_downloader.load(self.model_name)
-                    print("FastText model downloaded and loaded successfully.")
+                    log_print(
+                        "FastText", "FastText model downloaded and loaded successfully."
+                    )
                 except Exception as download_error:
-                    print(f"Failed to download model: {str(download_error)}")
+                    log_print(
+                        "FastText",
+                        f"Failed to download model: {str(download_error)}",
+                        "error",
+                    )
                     # Fallback to smaller model
                     fallback_model = "glove-wiki-gigaword-100"
-                    print(f"Falling back to {fallback_model}...")
+                    log_print("FastText", f"Falling back to {fallback_model}...")
                     self.model = gensim_downloader.load(fallback_model)
             else:
                 raise ValueError(f"Failed to load FastText model: {str(e)}")
 
         self.initialized = True
-        print("FastText detector initialized")
+        log_print("FastText", "FastText detector initialized")
 
     def preprocess_text(self, text):
         """Preprocess English text for FastText analysis"""
@@ -316,7 +342,7 @@ class FastTextDetector:
         start_time = time.time()
         text_count = len(texts)
 
-        print(f"\n== FastText Module: Bắt đầu xử lý {text_count} văn bản ==")
+        log_print("FastText", f"FastText: Bắt đầu phân tích {text_count} văn bản...")
 
         # Initialize results
         results = {
@@ -327,64 +353,69 @@ class FastTextDetector:
             "potential_plagiarism": False,  # Will be set to True if any document pair has potential plagiarism
         }
 
-        # Process all documents
-        print(f"FastText: Đang tiền xử lý {text_count} văn bản...")
+        # Preprocess all texts and generate embeddings
+        log_print(
+            "FastText",
+            "FastText: Đang tiền xử lý và tạo embedding cho tất cả văn bản...",
+        )
         original_sentences_list = []
         tokenized_sentences_list = []
+        filtered_sentences_list = []
         document_embeddings = []
 
         for i, text in enumerate(texts):
-            print(f"  FastText: Đang xử lý văn bản {i+1}/{text_count}")
-            original_sentences, tokenized_sentences, _ = self.preprocess_text(text)
-            original_sentences_list.append(original_sentences)
-            tokenized_sentences_list.append(tokenized_sentences)
+            log_print("FastText", f"  FastText: Đang xử lý văn bản {i+1}/{text_count}")
+            original, tokenized, filtered = self.preprocess_text(text)
+            original_sentences_list.append(original)
+            tokenized_sentences_list.append(tokenized)
+            filtered_sentences_list.append(filtered)
+            document_embeddings.append(self.get_document_embedding(tokenized))
 
-            # Calculate document embedding
-            doc_embedding = self.get_document_embedding(tokenized_sentences)
-            document_embeddings.append(doc_embedding)
+        log_print("FastText", "FastText: Đã hoàn thành tiền xử lý và tạo embedding")
 
-        print(f"FastText: Đã hoàn thành tiền xử lý văn bản")
-
-        # Calculate total number of pairs
+        # Compare all pairs of documents
         total_pairs = text_count * (text_count - 1) // 2
-        print(f"FastText: Bắt đầu so sánh {total_pairs} cặp văn bản...")
+        log_print("FastText", f"FastText: Bắt đầu so sánh {total_pairs} cặp văn bản...")
 
-        # Compare all document pairs
         pair_count = 0
-        for i in range(text_count):
-            for j in range(i + 1, text_count):
-                pair_count += 1
-                if pair_count % 5 == 0 or pair_count == total_pairs:
-                    print(
-                        f"  FastText: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}"
-                    )
-
-                # Calculate document similarity
-                doc_similarity = float(
-                    cosine_similarity(
-                        [document_embeddings[i]], [document_embeddings[j]]
-                    )[0, 0]
+        for i, j in itertools.combinations(range(text_count), 2):
+            pair_count += 1
+            if pair_count % 10 == 0 or pair_count == total_pairs:
+                log_print(
+                    "FastText",
+                    f"  FastText: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}",
                 )
 
-                # Generate sentence embeddings for documents i and j
-                sentence_embeddings_i = [
-                    self.get_sentence_embedding(sentence)
-                    for sentence in tokenized_sentences_list[i]
+            # Skip if either document has no content
+            if not tokenized_sentences_list[i] or not tokenized_sentences_list[j]:
+                continue
+
+            # Calculate document-level similarity
+            doc_similarity = float(
+                cosine_similarity([document_embeddings[i]], [document_embeddings[j]])[
+                    0, 0
                 ]
+            )
 
-                sentence_embeddings_j = [
-                    self.get_sentence_embedding(sentence)
-                    for sentence in tokenized_sentences_list[j]
-                ]
+            # Prepare sentence embeddings
+            sentence_embeddings_i = [
+                self.get_sentence_embedding(sentence)
+                for sentence in tokenized_sentences_list[i]
+            ]
+            sentence_embeddings_j = [
+                self.get_sentence_embedding(sentence)
+                for sentence in tokenized_sentences_list[j]
+            ]
 
-                # Calculate sentence similarity matrix
-                similarity_matrix = cosine_similarity(
-                    sentence_embeddings_i, sentence_embeddings_j
-                )
+            # Calculate sentence-level similarities
+            similarity_matrix = cosine_similarity(
+                sentence_embeddings_i, sentence_embeddings_j
+            )
 
-                # Find similar sentence pairs
-                similar_pairs = []
-                for i_idx in range(len(original_sentences_list[i])):
+            # Find similar sentence pairs
+            similar_pairs = []
+            for i_idx in range(len(original_sentences_list[i])):
+                if i_idx < len(similarity_matrix):  # Add this check
                     max_sim = np.max(similarity_matrix[i_idx])
                     j_idx = np.argmax(similarity_matrix[i_idx])
 
@@ -398,65 +429,78 @@ class FastTextDetector:
                             }
                         )
 
-                # Calculate overall sentence similarity
-                if similarity_matrix.size > 0:
-                    max_similarities = np.max(similarity_matrix, axis=1)
-                    sentence_similarity = float(np.mean(max_similarities))
-                else:
-                    sentence_similarity = 0.0
+            # Calculate overall sentence similarity
+            if similarity_matrix.size > 0:
+                max_similarities = np.max(similarity_matrix, axis=1)
+                sentence_similarity = float(np.mean(max_similarities))
+            else:
+                sentence_similarity = 0.0
 
-                # Calculate overall similarity (balanced between document and sentence level)
-                doc_weight = 0.5
-                sentence_weight = 0.5
-                overall_similarity = (doc_weight * doc_similarity) + (
-                    sentence_weight * sentence_similarity
+            # Calculate overall similarity (balanced between document and sentence level)
+            doc_weight = 0.5
+            sentence_weight = 0.5
+            overall_similarity = (doc_weight * doc_similarity) + (
+                sentence_weight * sentence_similarity
+            )
+
+            # Calculate similarity percentage
+            similarity_percentage = round(overall_similarity * 100, 2)
+
+            # Determine plagiarism status for this pair
+            is_pair_plagiarized = (
+                similarity_percentage >= self.plagiarism_threshold * 100
+            )
+            potential_pair_plagiarism = (
+                similarity_percentage >= self.potential_plagiarism_threshold * 100
+                and similarity_percentage < self.plagiarism_threshold * 100
+            )
+
+            # Update global plagiarism flags
+            if is_pair_plagiarized:
+                results["is_plagiarized"] = True
+            if potential_pair_plagiarism:
+                results["potential_plagiarism"] = True
+
+            # Add to results if significant similarity found
+            if overall_similarity > 0.3 or len(similar_pairs) > 0:
+                # Find common phrases
+                common_phrases = self.find_common_phrases(
+                    tokenized_sentences_list[i], tokenized_sentences_list[j]
                 )
 
-                # Calculate similarity percentage
-                similarity_percentage = round(overall_similarity * 100, 2)
-
-                # Determine plagiarism status for this pair
-                is_pair_plagiarized = (
-                    similarity_percentage >= self.plagiarism_threshold * 100
+                # Store document pair results
+                results["document_pairs"].append(
+                    {
+                        "doc1_index": i,
+                        "doc2_index": j,
+                        "document_similarity": {
+                            "similarity_score": round(doc_similarity, 3),
+                            "similarity_percentage": round(doc_similarity * 100, 2),
+                        },
+                        "sentence_similarity": {
+                            "overall_similarity": sentence_similarity,
+                            "overall_similarity_percentage": round(
+                                sentence_similarity * 100, 2
+                            ),
+                        },
+                        "overall_similarity": overall_similarity,
+                        "overall_similarity_percentage": similarity_percentage,
+                        "similar_sentence_pairs": similar_pairs[:10],  # Limit to top 10
+                        "common_phrases": common_phrases[:10],  # Limit to top 10
+                        "is_plagiarized": is_pair_plagiarized,
+                        "potential_plagiarism": potential_pair_plagiarism,
+                    }
                 )
-                potential_pair_plagiarism = (
-                    similarity_percentage >= self.potential_plagiarism_threshold * 100
-                    and similarity_percentage < self.plagiarism_threshold * 100
+
+                # Store simple similarity results for summary
+                results["document_similarities"].append(
+                    {
+                        "doc_pair": f"doc{i+1}-doc{j+1}",
+                        "similarity_percentage": similarity_percentage,
+                        "is_plagiarized": is_pair_plagiarized,
+                        "potential_plagiarism": potential_pair_plagiarism,
+                    }
                 )
-
-                # Update global plagiarism flags
-                if is_pair_plagiarized:
-                    results["is_plagiarized"] = True
-                if potential_pair_plagiarism:
-                    results["potential_plagiarism"] = True
-
-                # Add to results if significant similarity found
-                if overall_similarity > 0.3 or len(similar_pairs) > 0:
-                    # Store results
-                    results["document_pairs"].append(
-                        {
-                            "doc1_index": i,
-                            "doc2_index": j,
-                            "document_similarity": round(doc_similarity, 3),
-                            "sentence_similarity": round(sentence_similarity, 3),
-                            "overall_similarity": overall_similarity,
-                            "overall_similarity_percentage": similarity_percentage,
-                            "similar_sentence_pairs": similar_pairs[
-                                :10
-                            ],  # Limit to top 10
-                            "is_plagiarized": is_pair_plagiarized,
-                            "potential_plagiarism": potential_pair_plagiarism,
-                        }
-                    )
-
-                    results["document_similarities"].append(
-                        {
-                            "doc_pair": f"doc{i+1}-doc{j+1}",
-                            "similarity_percentage": similarity_percentage,
-                            "is_plagiarized": is_pair_plagiarized,
-                            "potential_plagiarism": potential_pair_plagiarism,
-                        }
-                    )
 
         # Sort document pairs by similarity
         results["document_pairs"].sort(
@@ -467,13 +511,13 @@ class FastTextDetector:
         )
 
         # Add execution time
-        end_time = time.time()
-        results["execution_time_seconds"] = round(end_time - start_time, 2)
+        execution_time = round(time.time() - start_time, 2)
+        results["execution_time_seconds"] = execution_time
 
-        print(f"FastText: Đã hoàn thành so sánh {total_pairs} cặp văn bản")
-        print(
-            f"FastText: Thời gian thực hiện: {round(time.time() - start_time, 2)} giây"
+        log_print(
+            "FastText", f"FastText: Đã hoàn thành phân tích {total_pairs} cặp văn bản"
         )
+        log_print("FastText", f"FastText: Thời gian thực hiện: {execution_time} giây")
 
         return results
 

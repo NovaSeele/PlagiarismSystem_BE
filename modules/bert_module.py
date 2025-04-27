@@ -14,6 +14,14 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+from api.routes.websocket import send_log
+
+
+# Custom print function that also sends logs via WebSocket
+def log_print(module, message, level="info"):
+    print(message)  # Keep original console output
+    send_log(module, message, level)  # Send to WebSocket clients
+
 
 # Tải NLTK data nếu cần
 try:
@@ -42,7 +50,7 @@ class PlagiarismDetector:
         if self.initialized:
             return
 
-        print("Initializing Plagiarism Detector...")
+        log_print("BERT", "Initializing Plagiarism Detector...")
         # Initialize BERT model
         self.bert_model = SentenceTransformer(bert_model)
 
@@ -89,7 +97,7 @@ class PlagiarismDetector:
         self.faiss_threshold = 0.7
 
         self.initialized = True
-        print("Plagiarism detector initialized")
+        log_print("BERT", "Plagiarism detector initialized")
 
     def preprocess_text(self, text):
         """Preprocess English text with stemming and stopword removal"""
@@ -199,7 +207,7 @@ class PlagiarismDetector:
         start_time = time.time()
         text_count = len(texts)
 
-        print(f"\n== BERT Module: Bắt đầu xử lý {text_count} văn bản ==")
+        log_print("BERT", f"\n== BERT Module: Bắt đầu xử lý {text_count} văn bản ==")
 
         # Extract sentences from all texts
         all_sentences = []
@@ -207,23 +215,24 @@ class PlagiarismDetector:
             []
         )  # Keep track of which document each sentence belongs to
 
-        print(f"BERT: Đang trích xuất câu từ các văn bản...")
+        log_print("BERT", f"BERT: Đang trích xuất câu từ các văn bản...")
         for i, text in enumerate(texts):
-            print(f"  BERT: Đang xử lý văn bản {i+1}/{text_count}")
+            log_print("BERT", f"  BERT: Đang xử lý văn bản {i+1}/{text_count}")
             sentences = self.preprocess_for_semantic(text)
             all_sentences.extend(sentences)
             all_sentence_indices.extend([i] * len(sentences))
-        print(
-            f"BERT: Đã trích xuất tổng cộng {len(all_sentences)} câu từ {text_count} văn bản"
+        log_print(
+            "BERT",
+            f"BERT: Đã trích xuất tổng cộng {len(all_sentences)} câu từ {text_count} văn bản",
         )
 
         # Generate embeddings for all sentences
-        print(f"BERT: Đang tạo embedding cho {len(all_sentences)} câu...")
+        log_print("BERT", f"BERT: Đang tạo embedding cho {len(all_sentences)} câu...")
         all_embeddings = self.bert_model.encode(all_sentences)
-        print(f"BERT: Đã tạo embedding xong")
+        log_print("BERT", f"BERT: Đã tạo embedding xong")
 
         # Create FAISS index
-        print(f"BERT: Đang xây dựng chỉ mục FAISS...")
+        log_print("BERT", f"BERT: Đang xây dựng chỉ mục FAISS...")
         dimension = all_embeddings.shape[1]
         index = faiss.IndexFlatIP(
             dimension
@@ -234,7 +243,7 @@ class PlagiarismDetector:
 
         # Add vectors to the index
         index.add(all_embeddings)
-        print(f"BERT: Đã xây dựng chỉ mục FAISS xong")
+        log_print("BERT", f"BERT: Đã xây dựng chỉ mục FAISS xong")
 
         # Set up results structure
         results = {
@@ -247,14 +256,15 @@ class PlagiarismDetector:
 
         # Calculate similarity between all document pairs
         total_pairs = text_count * (text_count - 1) // 2
-        print(f"BERT: Bắt đầu so sánh {total_pairs} cặp văn bản...")
+        log_print("BERT", f"BERT: Bắt đầu so sánh {total_pairs} cặp văn bản...")
 
         pair_count = 0
         for i, j in itertools.combinations(range(text_count), 2):
             pair_count += 1
             if pair_count % 5 == 0 or pair_count == total_pairs:
-                print(
-                    f"  BERT: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}"
+                log_print(
+                    "BERT",
+                    f"  BERT: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}",
                 )
 
             # Get indices of sentences from documents i and j
@@ -372,8 +382,11 @@ class PlagiarismDetector:
         end_time = time.time()
         results["execution_time_seconds"] = round(end_time - start_time, 2)
 
-        print(f"BERT: Đã hoàn thành so sánh {total_pairs} cặp văn bản")
-        print(f"BERT: Thời gian thực hiện: {round(time.time() - start_time, 2)} giây")
+        log_print("BERT", f"BERT: Đã hoàn thành so sánh {total_pairs} cặp văn bản")
+        log_print(
+            "BERT",
+            f"BERT: Thời gian thực hiện: {round(time.time() - start_time, 2)} giây",
+        )
 
         return results
 
