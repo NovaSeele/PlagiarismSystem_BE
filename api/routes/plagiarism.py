@@ -36,6 +36,7 @@ import time
 
 router = APIRouter()
 
+# Add a global variable to store active websocket connections
 active_websockets = set()
 
 
@@ -403,7 +404,7 @@ async def auto_layered_plagiarism_detection_debug():
     - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
     """
     try:
-        # Lấy tất cả nội dung PDF từ database (sử dụng hàm get_all_pdf_contents thay vì get_all_pdf_metadata)
+        # Lấy tất cả nội dung PDF từ database
         pdf_contents = get_all_pdf_contents()
 
         if len(pdf_contents) < 2:
@@ -412,8 +413,10 @@ async def auto_layered_plagiarism_detection_debug():
                 detail="Cần ít nhất 2 văn bản trong cơ sở dữ liệu để so sánh",
             )
 
-        # Thực hiện phân tích đạo văn sử dụng phương thức mới với dữ liệu đầy đủ
-        results = detect_plagiarism_layered_with_metadata(pdf_contents)
+        # Add the await keyword here
+        results = await detect_plagiarism_layered_with_metadata(
+            pdf_contents, active_websockets
+        )
         return results
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
@@ -471,8 +474,10 @@ async def auto_layered_plagiarism_detection_by_names(request: FilesComparisonReq
                 detail="Cần ít nhất 2 file tồn tại để so sánh",
             )
 
-        # Thực hiện phân tích đạo văn sử dụng phương thức với dữ liệu đầy đủ
-        results = detect_plagiarism_layered_with_metadata(pdf_contents)
+        # Add the await keyword here
+        results = await detect_plagiarism_layered_with_metadata(
+            pdf_contents, active_websockets
+        )
         return results
     except HTTPException as he:
         raise he
