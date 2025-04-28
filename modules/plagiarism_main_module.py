@@ -6,19 +6,10 @@ import asyncio
 import json
 from fastapi import WebSocket
 from pydantic import BaseModel
-import sys
 
 from modules.lsa_lda_module import topic_detector
 from modules.fasttext_module import fasttext_detector
 from modules.bert_module import detector as bert_detector
-from api.routes.websocket import send_log
-
-
-# Custom print function that also sends logs via WebSocket
-def log_print(module, message, level="info"):
-    print(message)  # Keep original console output
-    send_log(module, message, level)  # Send to WebSocket clients
-
 
 class DocumentPair:
     """Represents a pair of documents with their filenames and similarity scores from each layer"""
