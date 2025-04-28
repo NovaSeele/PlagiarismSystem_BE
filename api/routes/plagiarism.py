@@ -36,6 +36,8 @@ import time
 
 router = APIRouter()
 
+active_websockets = set()
+
 
 # New model for file comparison by name
 class FileNameComparisonRequest(BaseModel):

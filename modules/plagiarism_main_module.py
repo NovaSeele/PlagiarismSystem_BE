@@ -1,382 +1,522 @@
-from typing import List, Dict, Tuple, Any, Set, Optional
-import time
-import itertools
-import numpy as np
+from fastapi import APIRouter, HTTPException, WebSocket
+from typing import Dict, List, Any, Optional
+from pydantic import BaseModel, Field
+
+from modules.bert_module import compare_two_texts, compare_multiple_texts
+from modules.lsa_lda_module import (
+    compare_texts_with_topic_modeling,
+    compare_multiple_texts_with_topic_modeling,
+)
+from modules.lsa_lda_module_debug import (
+    compare_texts_with_topic_modeling_debug,
+    compare_multiple_texts_with_topic_modeling_debug,
+)
+from modules.fasttext_module import (
+    compare_texts_with_fasttext,
+    compare_multiple_texts_with_fasttext,
+)
+from modules.plagiarism import detect_plagiarism_layered
+from modules.plagiarism_debug import detect_plagiarism_layered_debug
+from modules.plagiarism_main_module import detect_plagiarism_layered_with_metadata
+from modules.detail_plagiarism_module import detect_plagiarism_detailed_with_metadata
+
+# Import the function to get all PDF metadata
+from services.pdf_metadata import (
+    get_all_pdf_metadata,
+    get_all_pdf_contents,
+    get_pdf_metadata_by_name,
+    get_pdf_contents_by_names,
+)
+
+# Add these imports
 import asyncio
 import json
-from fastapi import WebSocket
-from pydantic import BaseModel
+from starlette.websockets import WebSocketDisconnect
+import time
 
-from modules.lsa_lda_module import topic_detector
-from modules.fasttext_module import fasttext_detector
-from modules.bert_module import detector as bert_detector
+router = APIRouter()
 
-
-class DocumentPair:
-    """Represents a pair of documents with their filenames and similarity scores from each layer"""
-
-    def __init__(
-        self,
-        doc1_filename: str,
-        doc2_filename: str,
-        doc1_index: int = -1,
-        doc2_index: int = -1,
-    ):
-        self.doc1_filename = doc1_filename
-        self.doc2_filename = doc2_filename
-        self.doc1_index = doc1_index  # Keep index for internal reference
-        self.doc2_index = doc2_index  # Keep index for internal reference
-
-        # Similarity scores from each layer
-        self.lsa_similarity = 0.0
-        self.fasttext_similarity = 0.0
-        self.bert_similarity = 0.0
-
-        # Status flags for each layer (whether they passed the filter)
-        self.passed_lsa = False
-        self.passed_fasttext = False
-        self.final_result = False
-
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert the document pair to a dictionary representation with all debug information"""
-        return {
-            "doc1_filename": self.doc1_filename,
-            "doc2_filename": self.doc2_filename,
-            "lsa_similarity_percentage": round(self.lsa_similarity * 100, 2),
-            "passed_lsa_filter": self.passed_lsa,
-            "fasttext_similarity_percentage": (
-                round(self.fasttext_similarity * 100, 2)
-                if self.fasttext_similarity > 0
-                else None
-            ),
-            "passed_fasttext_filter": self.passed_fasttext,
-            "bert_similarity_percentage": (
-                round(self.bert_similarity * 100, 2)
-                if self.bert_similarity > 0
-                else None
-            ),
-            "final_result": self.final_result,
-        }
+active_websockets = set()
 
 
-class LayeredPlagiarismDetector:
+# New model for file comparison by name
+class FileNameComparisonRequest(BaseModel):
+    file1_name: str = Field(
+        ..., description="Tên của file PDF thứ nhất để kiểm tra (không cần .pdf)"
+    )
+    file2_name: str = Field(
+        ..., description="Tên của file PDF thứ hai để kiểm tra (không cần .pdf)"
+    )
+
+
+class PairPlagiarismRequest(BaseModel):
+    text1: str = Field(..., description="Văn bản thứ nhất để kiểm tra", min_length=50)
+    text2: str = Field(..., description="Văn bản thứ hai để kiểm tra", min_length=50)
+
+
+class MultiPlagiarismRequest(BaseModel):
+    texts: List[str] = Field(
+        ..., description="Danh sách các văn bản để kiểm tra", min_items=2
+    )
+
+
+class PlagiarismResponse(BaseModel):
+    overall_similarity_percentage: float
+    results: dict
+
+
+class LayeredPlagiarismResponse(BaseModel):
+    results: dict
+
+
+# Tạo model mới cho request chứa danh sách tên file để so sánh
+class FilesComparisonRequest(BaseModel):
+    filenames: List[str] = Field(
+        ...,
+        description="Danh sách tên các file PDF để kiểm tra (không cần .pdf)",
+        min_items=2,
+    )
+
+
+# New API endpoint for comparing two PDFs by filename using detailed plagiarism detection
+@router.post("/compare-pdfs-by-name", response_model=Dict[str, Any])
+async def compare_pdfs_by_name(request: FileNameComparisonRequest):
     """
-    A plagiarism detector that shows all document pairs and their progression
-    through each layer of the detection process.
+    So sánh chi tiết hai văn bản PDF bằng cách chỉ định tên file.
 
-    The process works as follows:
-    1. LSA/LDA (Topic Modeling) - Quick but less accurate initial filter
-    2. FastText - More accurate semantic analysis for potential matches
-    3. BERT - High precision semantic analysis for confirmed matches
+    API này sẽ:
+    1. Lấy nội dung của hai file PDF từ cơ sở dữ liệu theo tên file
+    2. Thực hiện phân tích đạo văn chi tiết sử dụng phương pháp kiểm tra 3 lớp
+    3. Trả về kết quả phân tích chi tiết với các phần bị đạo văn cụ thể
+
+    Kết quả trả về bao gồm:
+    - Tỷ lệ tương đồng tổng thể giữa hai văn bản
+    - Danh sách chi tiết các phần được phát hiện bởi mỗi lớp (LSA/LDA, FastText, BERT)
+    - Danh sách tổng hợp các phần bị đạo văn không trùng lặp
+    - Thông tin về loại phần được phát hiện (câu, đoạn, cụm từ)
+    - Tỷ lệ tương đồng của từng phần được phát hiện
     """
+    try:
+        # Lấy nội dung của hai file từ cơ sở dữ liệu
+        content1 = get_pdf_metadata_by_name(request.file1_name)
+        content2 = get_pdf_metadata_by_name(request.file2_name)
 
-    def __init__(self):
-        # Thresholds for each layer
-        # LSA threshold (0.3) - First layer filter
-        # This is a low threshold used to quickly filter out obviously dissimilar documents.
-        self.lsa_threshold = 0.3  # Lower threshold for initial filter
+        if content1 is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Không tìm thấy file PDF có tên '{request.file1_name}'",
+            )
 
-        # FastText threshold (0.4) - Second layer filter
-        # This medium threshold applies to document pairs that passed the LSA filter.
-        self.fasttext_threshold = 0.4  # Medium threshold for second layer
+        if content2 is None:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Không tìm thấy file PDF có tên '{request.file2_name}'",
+            )
 
-        # BERT threshold (0.5) - Final layer filter
-        # This higher threshold determines which document pairs are included in the final results.
-        self.bert_threshold = 0.5  # Higher threshold for final layer
-
-    async def send_progress_update(self, websockets, message):
-        """Send progress update to all connected WebSocket clients"""
-        if not websockets:
-            # Just print to console if no websockets are connected
-            print(message)
-            return
-
-        if isinstance(websockets, set):
-            # Tạo danh sách các websocket cần xóa
-            closed_websockets = set()
-
-            for websocket in websockets:
-                try:
-                    # Kiểm tra trạng thái kết nối trước khi gửi
-                    if (
-                        hasattr(websocket, "client_state")
-                        and websocket.client_state.name == "CONNECTED"
-                    ):
-                        try:
-                            await websocket.send_text(message)
-                        except RuntimeError as e:
-                            if (
-                                "Cannot call 'send' once a close message has been sent"
-                                in str(e)
-                            ):
-                                closed_websockets.add(websocket)
-                            else:
-                                raise
-                    else:
-                        closed_websockets.add(websocket)
-                except Exception as e:
-                    print(f"Error sending to websocket: {e}")
-                    # Đánh dấu websocket này để xóa khỏi danh sách
-                    closed_websockets.add(websocket)
-
-            # Xóa các websocket đã đóng khỏi tập hợp
-            for closed_ws in closed_websockets:
-                if closed_ws in websockets:
-                    websockets.remove(closed_ws)
-
-        print(message)  # Also print to console for logging
-
-    async def detect_plagiarism(
-        self, doc_data: List[Dict[str, Any]], websockets=None
-    ) -> Dict[str, Any]:
-    def detect_plagiarism(self, doc_data: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """
-        Detect plagiarism across multiple texts using a layered approach, with detailed information.
-
-        Args:
-            doc_data: List of document data with "_id", "filename", "content", etc. fields
-            websockets: Set of active WebSocket connections
-
-        Returns:
-            Dict containing detailed results of plagiarism detection with progression through each layer
-        """
-        start_time = time.time()
-
-        # Extract texts and filenames from the document data
-        texts = [doc["content"] for doc in doc_data]
-        filenames = [doc["filename"] for doc in doc_data]
-
-        text_count = len(texts)
-
-        if text_count < 2:
-            raise ValueError("Cần ít nhất 2 văn bản để so sánh")
-
-        await self.send_progress_update(
-            websockets, f"Bắt đầu phân tích {text_count} văn bản..."
-        )
-        await self.send_progress_update(
-            websockets, f"Tạo tất cả các cặp văn bản có thể..."
-        )
-
-        # Generate all possible pairs
-        all_pairs = list(itertools.combinations(range(text_count), 2))
-
-        # Create document pair objects for all possible pairs with filenames
-        document_pairs = [
-            DocumentPair(filenames[i], filenames[j], i, j) for i, j in all_pairs
+        # Chuẩn bị dữ liệu tài liệu cho phân tích
+        doc_data = [
+            {"content": content1, "filename": f"{request.file1_name}.pdf"},
+            {"content": content2, "filename": f"{request.file2_name}.pdf"},
         ]
 
-        # Track counts for summary
-        initial_count = len(document_pairs)
-        lsa_passed_count = 0
-        fasttext_passed_count = 0
-        bert_passed_count = 0
-
-        # Layer 1: LSA/LDA Topic Modeling
-        await self.send_progress_update(
-            websockets,
-            f"Layer 1: Bắt đầu xử lý {initial_count} cặp văn bản với LSA/LDA",
-        )
-        document_pairs = await self._apply_lsa_filter(texts, document_pairs, websockets)
-
-        # Count how many passed LSA filter
-        lsa_passed_count = sum(1 for pair in document_pairs if pair.passed_lsa)
-        await self.send_progress_update(
-            websockets,
-            f"Layer 1: Hoàn thành - {lsa_passed_count}/{initial_count} cặp đã vượt qua bộ lọc LSA/LDA",
-        )
-
-        # Layer 2: FastText (apply to all pairs, but only those that passed LSA will proceed)
-        await self.send_progress_update(
-            websockets, f"Layer 2: Bắt đầu xử lý cặp văn bản với FastText"
-        )
-        document_pairs = await self._apply_fasttext_filter(
-            texts, document_pairs, websockets
-        )
-
-        # Count how many passed FastText filter
-        fasttext_passed_count = sum(
-            1 for pair in document_pairs if pair.passed_fasttext
-        )
-        await self.send_progress_update(
-            websockets,
-            f"Layer 2: Hoàn thành - {fasttext_passed_count}/{lsa_passed_count} cặp đã vượt qua bộ lọc FastText",
-        )
-
-        # Layer 3: BERT Analysis (apply to all pairs, but only those that passed FastText will be considered as final results)
-        await self.send_progress_update(
-            websockets, f"Layer 3: Bắt đầu xử lý cặp văn bản với BERT"
-        )
-        document_pairs = await self._apply_bert_analysis(
-            texts, document_pairs, websockets
-        )
-
-        # Count how many are in the final result
-        bert_passed_count = sum(1 for pair in document_pairs if pair.final_result)
-        await self.send_progress_update(
-            websockets,
-            f"Layer 3: Hoàn thành - {bert_passed_count}/{fasttext_passed_count} cặp được xác định có khả năng đạo văn",
-        )
-
-        await self.send_progress_update(
-            websockets, f"Đã hoàn thành phân tích tất cả các cặp văn bản"
-        )
-
-        # Prepare results
-        results = {
-            "document_count": text_count,
-            "execution_time_seconds": round(time.time() - start_time, 2),
-            "summary": {
-                "total_pairs": initial_count,
-                "lsa_passed_count": lsa_passed_count,
-                "fasttext_passed_count": fasttext_passed_count,
-                "final_result_count": bert_passed_count,
-            },
-            "all_document_pairs": [pair.to_dict() for pair in document_pairs],
-        }
+        # Thực hiện phân tích đạo văn chi tiết
+        results = detect_plagiarism_detailed_with_metadata(doc_data)
 
         return results
-
-    async def _apply_lsa_filter(
-        self, texts: List[str], document_pairs: List[DocumentPair], websockets=None
-    ) -> List[DocumentPair]:
-        """Apply LSA/LDA topic modeling and update all document pairs with results"""
-        # Use existing LSA multi-document comparison
-        await self.send_progress_update(
-            websockets, f"  Layer 1: Đang thực hiện phân tích LSA/LDA..."
-        )
-        lsa_results = topic_detector.detect_plagiarism_multi(texts)
-
-        # Map for quick access to similarity scores from LSA results
-        similarity_map = {}
-        if lsa_results["document_pairs"]:
-            for pair_result in lsa_results["document_pairs"]:
-                doc1_idx = pair_result["doc1_index"]
-                doc2_idx = pair_result["doc2_index"]
-                similarity = pair_result["overall_similarity"]
-                similarity_map[(doc1_idx, doc2_idx)] = similarity
-
-        # Update all document pairs with LSA results
-        count = 0
-        total = len(document_pairs)
-
-        for pair in document_pairs:
-            count += 1
-            if count % 1 == 0 or count == total:
-                await self.send_progress_update(
-                    websockets,
-                    f"  Layer 1: Đã xử lý {count}/{total} cặp văn bản ({round(count/total*100, 1)}%)",
-                )
-
-            pair_key = (pair.doc1_index, pair.doc2_index)
-            if pair_key in similarity_map:
-                pair.lsa_similarity = similarity_map[pair_key]
-
-            # Check if it passes the LSA threshold
-            pair.passed_lsa = pair.lsa_similarity >= self.lsa_threshold
-
-        return document_pairs
-
-    async def _apply_fasttext_filter(
-        self, texts: List[str], document_pairs: List[DocumentPair], websockets=None
-    ) -> List[DocumentPair]:
-        """Apply FastText embedding analysis to document pairs"""
-        # Only process pairs that passed the LSA filter
-        lsa_passed = [pair for pair in document_pairs if pair.passed_lsa]
-        total = len(lsa_passed)
-
-        await self.send_progress_update(
-            websockets,
-            f"  Layer 2: Đang xử lý {total} cặp văn bản đã vượt qua bộ lọc LSA...",
+    except HTTPException as he:
+        raise he
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
         )
 
-        count = 0
-        for pair in lsa_passed:
-            count += 1
-            if count % 1 == 0 or count == total:
-                await self.send_progress_update(
-                    websockets,
-                    f"  Layer 2: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%)",
-                )
 
-            text1 = texts[pair.doc1_index]
-            text2 = texts[pair.doc2_index]
-
-            # Use existing FastText pair comparison
-            result = fasttext_detector.detect_plagiarism_pair(text1, text2)
-            pair.fasttext_similarity = result["overall_similarity_percentage"] / 100.0
-
-            # Check if it passes the FastText threshold
-            pair.passed_fasttext = pair.fasttext_similarity >= self.fasttext_threshold
-
-        # Mark remaining pairs as not passed
-        for pair in document_pairs:
-            if not pair.passed_lsa:
-                pair.passed_fasttext = False
-
-        return document_pairs
-
-    async def _apply_bert_analysis(
-        self, texts: List[str], document_pairs: List[DocumentPair], websockets=None
-    ) -> List[DocumentPair]:
-        """Apply BERT-based semantic analysis to document pairs"""
-        # Process all pairs that passed the FastText filter
-        fasttext_passed = [pair for pair in document_pairs if pair.passed_fasttext]
-        total = len(fasttext_passed)
-
-        await self.send_progress_update(
-            websockets,
-            f"  Layer 3: Đang xử lý {total} cặp văn bản đã vượt qua bộ lọc FastText...",
-        )
-
-        count = 0
-        for pair in fasttext_passed:
-            count += 1
-            if count % 1 == 0 or count == total:
-                await self.send_progress_update(
-                    websockets,
-                    f"  Layer 3: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%)",
-                )
-
-            text1 = texts[pair.doc1_index]
-            text2 = texts[pair.doc2_index]
-
-            # Use existing BERT pair comparison
-            result = bert_detector.detect_plagiarism_pair(text1, text2)
-            pair.bert_similarity = result["overall_similarity_percentage"] / 100.0
-
-            # Final result is determined by BERT analysis for those that passed FastText
-            pair.final_result = pair.bert_similarity >= self.bert_threshold
-
-        return document_pairs
-
-
-# Initialize the detector
-layered_detector = LayeredPlagiarismDetector()
-
-
-async def detect_plagiarism_layered_with_metadata(
-    doc_data: List[Dict[str, Any]], websockets=None
-) -> Dict[str, Any]:
+# Route cho việc so sánh hai văn bản với BERT
+@router.post("/compare-pair", response_model=PlagiarismResponse)
+async def compare_pair(request: PairPlagiarismRequest):
     """
-    Detect plagiarism using a layered approach with multiple algorithms, processing documents with metadata.
-
-    Args:
-        doc_data: List of document data with "_id", "filename", "content", etc. fields
-        websockets: Set of active WebSocket connections to send progress updates
-
-    Returns:
-        Dict containing detailed results of layered plagiarism detection with progression through each layer
+    So sánh hai văn bản và trả về kết quả phân tích đạo văn sử dụng BERT.
     """
-    if len(doc_data) < 2:
-        raise ValueError("Cần ít nhất 2 văn bản để so sánh")
+    try:
+        results = compare_two_texts(request.text1, request.text2)
+        return {
+            "overall_similarity_percentage": results["overall_similarity_percentage"],
+            "results": results,
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
 
-    start_message = f"\n=== BẮT ĐẦU PHÂN TÍCH ĐẠO VĂN ({len(doc_data)} văn bản) ===\n"
-    await layered_detector.send_progress_update(websockets, start_message)
 
-    results = await layered_detector.detect_plagiarism(doc_data, websockets)
+# Route cho việc so sánh nhiều văn bản với BERT
+@router.post("/compare-multiple", response_model=PlagiarismResponse)
+async def compare_multiple(request: MultiPlagiarismRequest):
+    """
+    So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng BERT.
+    """
+    try:
+        if len(request.texts) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 văn bản để so sánh"
+            )
 
-    end_message = f"\n=== HOÀN THÀNH PHÂN TÍCH ĐẠO VĂN - Thời gian: {results['execution_time_seconds']} giây ===\n"
-    await layered_detector.send_progress_update(websockets, end_message)
+        results = compare_multiple_texts(request.texts)
 
-    return results
+        # Tìm phần trăm tương đồng cao nhất giữa các cặp tài liệu
+        max_similarity = 0
+        if results["document_similarities"]:
+            max_similarity = max(
+                [
+                    item["similarity_percentage"]
+                    for item in results["document_similarities"]
+                ]
+            )
+
+        return {"overall_similarity_percentage": max_similarity, "results": results}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh hai văn bản với LSA/LDA
+@router.post("/topic-modeling/compare-pair", response_model=PlagiarismResponse)
+async def compare_pair_topic_modeling(request: PairPlagiarismRequest):
+    """
+    So sánh hai văn bản và trả về kết quả phân tích đạo văn sử dụng LSA/LDA.
+    """
+    try:
+        results = compare_texts_with_topic_modeling(request.text1, request.text2)
+        return {
+            "overall_similarity_percentage": results["overall_similarity_percentage"],
+            "results": results,
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh nhiều văn bản với LSA
+@router.post("/topic-modeling/compare-multiple", response_model=PlagiarismResponse)
+async def compare_multiple_topic_modeling(request: MultiPlagiarismRequest):
+    """
+    So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng LSA.
+    """
+    try:
+        if len(request.texts) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 văn bản để so sánh"
+            )
+
+        results = compare_multiple_texts_with_topic_modeling(request.texts)
+
+        # Tìm phần trăm tương đồng cao nhất giữa các cặp tài liệu
+        max_similarity = 0
+        if results["document_similarities"]:
+            max_similarity = max(
+                [
+                    item["similarity_percentage"]
+                    for item in results["document_similarities"]
+                ]
+            )
+
+        return {"overall_similarity_percentage": max_similarity, "results": results}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh nhiều văn bản với LSA
+@router.post(
+    "/topic-modeling/compare-multiple-debug", response_model=PlagiarismResponse
+)
+async def compare_multiple_topic_modeling_debug(request: MultiPlagiarismRequest):
+    """
+    So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng LSA.
+    """
+    try:
+        if len(request.texts) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 văn bản để so sánh"
+            )
+
+        results = compare_multiple_texts_with_topic_modeling_debug(request.texts)
+
+        # Tìm phần trăm tương đồng cao nhất giữa các cặp tài liệu
+        max_similarity = 0
+        if results["document_similarities"]:
+            max_similarity = max(
+                [
+                    item["similarity_percentage"]
+                    for item in results["document_similarities"]
+                ]
+            )
+
+        return {"overall_similarity_percentage": max_similarity, "results": results}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh hai văn bản với FastText
+@router.post("/fasttext/compare-pair", response_model=PlagiarismResponse)
+async def compare_pair_fasttext(request: PairPlagiarismRequest):
+    """
+    So sánh hai văn bản và trả về kết quả phân tích đạo văn sử dụng FastText embeddings.
+    """
+    try:
+        results = compare_texts_with_fasttext(request.text1, request.text2)
+        return {
+            "overall_similarity_percentage": results["overall_similarity_percentage"],
+            "results": results,
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh nhiều văn bản với FastText
+@router.post("/fasttext/compare-multiple", response_model=PlagiarismResponse)
+async def compare_multiple_fasttext(request: MultiPlagiarismRequest):
+    """
+    So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng FastText embeddings.
+    """
+    try:
+        if len(request.texts) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 văn bản để so sánh"
+            )
+
+        results = compare_multiple_texts_with_fasttext(request.texts)
+
+        # Tìm phần trăm tương đồng cao nhất giữa các cặp tài liệu
+        max_similarity = 0
+        if results["document_similarities"]:
+            max_similarity = max(
+                [
+                    item["similarity_percentage"]
+                    for item in results["document_similarities"]
+                ]
+            )
+
+        return {"overall_similarity_percentage": max_similarity, "results": results}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh nhiều văn bản sử dụng phương pháp 3 lớp
+@router.post("/layered-detection", response_model=LayeredPlagiarismResponse)
+async def layered_plagiarism_detection(request: MultiPlagiarismRequest):
+    """
+    So sánh nhiều văn bản sử dụng phương pháp kiểm tra 3 lớp (LSA/LDA → FastText → BERT)
+    để lọc dần và phát hiện đạo văn hiệu quả hơn.
+
+    Phương pháp này tận dụng ưu điểm của từng thuật toán:
+    - Lớp 1 (LSA/LDA): Phân tích topic nhanh chóng để lọc ra các cặp có khả năng tương đồng
+    - Lớp 2 (FastText): Phân tích ngữ nghĩa với độ chính xác trung bình
+    - Lớp 3 (BERT): Phân tích ngữ nghĩa với độ chính xác cao nhất
+
+    Kết quả trả về chỉ bao gồm các cặp văn bản đã vượt qua cả 3 lớp lọc, với mức độ tương đồng cuối cùng.
+    """
+    try:
+        if len(request.texts) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 văn bản để so sánh"
+            )
+
+        results = detect_plagiarism_layered(request.texts)
+        return {"results": results}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route cho việc so sánh nhiều văn bản sử dụng phương pháp 3 lớp - bản debug chi tiết
+@router.post("/layered-detection-debug", response_model=Dict[str, Any])
+async def layered_plagiarism_detection_debug(request: MultiPlagiarismRequest):
+    """
+    Version debug chi tiết: So sánh nhiều văn bản sử dụng phương pháp kiểm tra 3 lớp
+    (LSA/LDA → FastText → BERT) và cung cấp thông tin chi tiết về tất cả các cặp văn bản.
+
+    Phương pháp này khác với bản thông thường ở chỗ:
+    - Hiển thị TẤT CẢ các cặp văn bản, không chỉ những cặp vượt qua ngưỡng lọc
+    - Hiển thị tỷ lệ tương đồng của TỪNG CẶP ở MỖI LAYER, kể cả khi không vượt qua ngưỡng lọc
+    - Đánh dấu rõ các cặp vượt qua từng layer để theo dõi quá trình lọc
+
+    Kết quả trả về bao gồm:
+    - Số lượng tài liệu và thời gian thực thi
+    - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
+    - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+    """
+    try:
+        if len(request.texts) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 văn bản để so sánh"
+            )
+
+        results = detect_plagiarism_layered_debug(request.texts)
+        return results
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route mới để thực hiện kiểm tra đạo văn tự động trên tất cả các file PDF đã upload
+@router.get("/auto-layered-detection-debug", response_model=Dict[str, Any])
+async def auto_layered_plagiarism_detection_debug():
+    """
+    Tự động phân tích và so sánh tất cả các văn bản PDF đã được upload lên hệ thống.
+
+    API này sẽ:
+    1. Lấy tất cả nội dung PDF từ cơ sở dữ liệu
+    2. Thực hiện phân tích đạo văn sử dụng phương pháp kiểm tra 3 lớp
+    3. Trả về kết quả chi tiết về tất cả các cặp văn bản
+
+    Không yêu cầu đầu vào nào, tự động xử lý tất cả tài liệu có sẵn.
+
+    Kết quả trả về bao gồm:
+    - Số lượng tài liệu và thời gian thực thi
+    - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
+    - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+    """
+    try:
+        # Lấy tất cả nội dung PDF từ database (sử dụng hàm get_all_pdf_contents thay vì get_all_pdf_metadata)
+        pdf_contents = get_all_pdf_contents()
+
+        if len(pdf_contents) < 2:
+            raise HTTPException(
+                status_code=400,
+                detail="Cần ít nhất 2 văn bản trong cơ sở dữ liệu để so sánh",
+            )
+
+        # Thực hiện phân tích đạo văn sử dụng phương thức mới với dữ liệu đầy đủ
+        results = detect_plagiarism_layered_with_metadata(pdf_contents)
+        return results
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Route mới để thực hiện kiểm tra đạo văn tự động trên danh sách các file PDF được chỉ định
+@router.post("/auto-layered-detection-by-names", response_model=Dict[str, Any])
+async def auto_layered_plagiarism_detection_by_names(request: FilesComparisonRequest):
+    """
+    Phân tích và so sánh các văn bản PDF được chỉ định bởi danh sách tên file.
+
+    API này sẽ:
+    1. Lấy nội dung PDF từ cơ sở dữ liệu dựa trên tên file được cung cấp
+    2. Thực hiện phân tích đạo văn sử dụng phương pháp kiểm tra 3 lớp
+    3. Trả về kết quả chi tiết về tất cả các cặp văn bản
+
+    Dữ liệu đầu vào bao gồm danh sách tên các file PDF (không bao gồm phần mở rộng .pdf)
+
+    Kết quả trả về bao gồm:
+    - Số lượng tài liệu và thời gian thực thi
+    - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
+    - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+    """
+    try:
+        # Kiểm tra đầu vào có ít nhất 2 filename
+        if len(request.filenames) < 2:
+            raise HTTPException(
+                status_code=400, detail="Cần ít nhất 2 tên file để so sánh"
+            )
+
+        # Lấy nội dung của các file PDF dựa trên tên file
+        pdf_contents = get_pdf_contents_by_names(request.filenames)
+
+        # Kiểm tra xem có tìm thấy tất cả các file không
+        if len(pdf_contents) < len(request.filenames):
+            # Tìm các file không tồn tại
+            found_filenames = [
+                doc["filename"].replace(".pdf", "") for doc in pdf_contents
+            ]
+            missing_files = [f for f in request.filenames if f not in found_filenames]
+
+            raise HTTPException(
+                status_code=404,
+                detail=f"Không tìm thấy các file sau: {', '.join(missing_files)}",
+            )
+
+        # Kiểm tra xem có đủ file để so sánh không
+        if len(pdf_contents) < 2:
+            raise HTTPException(
+                status_code=400,
+                detail="Cần ít nhất 2 file tồn tại để so sánh",
+            )
+
+        # Thực hiện phân tích đạo văn sử dụng phương thức với dữ liệu đầy đủ
+        results = detect_plagiarism_layered_with_metadata(pdf_contents)
+        return results
+    except HTTPException as he:
+        raise he
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
+        )
+
+
+# Cải thiện endpoint WebSocket
+@router.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    print(f"WebSocket connection accepted from {websocket.client.host}")
+    active_websockets.add(websocket)
+
+    try:
+        # Gửi thông báo kết nối thành công để frontend biết kết nối đã sẵn sàng
+        await websocket.send_text(
+            "Kết nối WebSocket thành công, sẵn sàng nhận thông báo tiến độ"
+        )
+
+        # Giữ kết nối mở
+        while True:
+            # Chờ tin nhắn từ client hoặc timeout
+            try:
+                # Timeout 1 giờ
+                await asyncio.wait_for(websocket.receive_text(), timeout=3600)
+            except asyncio.TimeoutError:
+                # Kiểm tra kết nối còn sống không
+                try:
+                    # Gửi ping để kiểm tra kết nối
+                    ping_msg = json.dumps({"type": "ping", "timestamp": time.time()})
+                    await websocket.send_text(ping_msg)
+                except Exception:
+                    # Kết nối đã đóng
+                    break
+    except WebSocketDisconnect:
+        print(f"WebSocket client disconnected")
+    except Exception as e:
+        print(f"WebSocket error: {e}")
+    finally:
+        if websocket in active_websockets:
+            active_websockets.remove(websocket)
+        print(f"WebSocket connection closed and removed from active connections")
