@@ -11,6 +11,13 @@ from sklearn.decomposition import TruncatedSVD, LatentDirichletAllocation
 from sklearn.metrics.pairwise import cosine_similarity
 from collections import defaultdict
 import hashlib
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel, Field
+from typing import List, Optional
+import json
+import itertools
+from tqdm import tqdm
+from api.routes.websocket import send_log
 
 # Tải NLTK data nếu cần
 try:
@@ -19,6 +26,14 @@ try:
 except LookupError:
     nltk.download("punkt")
     nltk.download("stopwords")
+
+# Custom print function that also sends logs via WebSocket
+def log_print(module, message, level="info"):
+    print(message)  # Keep original console output
+    send_log(module, message, level)  # Send to WebSocket clients
+
+# Tạo router
+router = APIRouter()
 
 
 class TopicModelingDetector:
@@ -34,7 +49,7 @@ class TopicModelingDetector:
         if self.initialized:
             return
 
-        print("Initializing Topic Modeling Detector...")
+        log_print("LSA/LDA", "Initializing Topic Modeling Detector...")
         # Initialize tools for text processing
         self.stop_words = set(stopwords.words("english"))
         self.stemmer = PorterStemmer()
@@ -54,7 +69,7 @@ class TopicModelingDetector:
         self.n_components_lda = 5  # Fixed number of topics for LDA
 
         self.initialized = True
-        print("Topic modeling detector initialized")
+        log_print("LSA/LDA", "Topic modeling detector initialized")
 
     def _get_document_hash(self, text):
         """Generate a consistent hash for a document to enable deterministic ordering"""
@@ -387,11 +402,11 @@ class TopicModelingDetector:
         return results
 
     def detect_plagiarism_multi(self, texts):
-        """Detect plagiarism between multiple texts using pairwise comparison"""
+        """Detect plagiarism between multiple texts using LSA"""
         start_time = time.time()
         text_count = len(texts)
 
-        print(f"\n== LSA/LDA Module: Bắt đầu xử lý {text_count} văn bản ==")
+        log_print("LSA/LDA", f"LSA/LDA: Bắt đầu phân tích {text_count} văn bản...")
 
         # Initialize results
         results = {
@@ -400,85 +415,110 @@ class TopicModelingDetector:
             "document_pairs": [],
         }
 
-        # Calculate total number of pairs
+        # Process all documents
+        all_sentences = []
+        sentence_counts = []
+
+        log_print("LSA/LDA", "LSA/LDA: Đang trích xuất câu từ các văn bản...")
+        for i, text in enumerate(texts):
+            log_print("LSA/LDA", f"  LSA/LDA: Đang xử lý văn bản {i+1}/{text_count}")
+            sentences, _ = self.preprocess_text(text)
+            all_sentences.extend(sentences)
+            sentence_counts.append(len(sentences))
+        
+        log_print("LSA/LDA", f"LSA/LDA: Đã trích xuất tổng cộng {len(all_sentences)} câu từ {text_count} văn bản")
+
+        # Create TF-IDF matrix for all sentences
+        log_print("LSA/LDA", "LSA/LDA: Đang tạo ma trận TF-IDF...")
+        tfidf_matrix, vectorizer = self._create_tfidf_matrix(all_sentences)
+        log_print("LSA/LDA", "LSA/LDA: Đã tạo ma trận TF-IDF xong")
+
+        # Apply LSA
+        log_print("LSA/LDA", "LSA/LDA: Đang áp dụng LSA...")
+        lsa_result, svd, explained_variance = self._apply_lsa(tfidf_matrix)
+        log_print("LSA/LDA", "LSA/LDA: Đã áp dụng LSA xong")
+
+        # Split the LSA results by document
+        doc_vectors = []
+        start_idx = 0
+        for count in sentence_counts:
+            doc_vectors.append(lsa_result[start_idx : start_idx + count])
+            start_idx += count
+
+        # Compare all document pairs
         total_pairs = text_count * (text_count - 1) // 2
-        print(f"LSA/LDA: Cần xử lý {total_pairs} cặp văn bản")
+        log_print("LSA/LDA", f"LSA/LDA: Bắt đầu so sánh {total_pairs} cặp văn bản...")
 
-        # Compare all document pairs using the same method as in detect_plagiarism_pair
+        # Generate all possible document pairs
         pair_count = 0
-        for i in range(text_count):
-            for j in range(i + 1, text_count):
-                pair_count += 1
-                print(
-                    f"  LSA/LDA: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}"
-                )
+        for i, j in itertools.combinations(range(text_count), 2):
+            pair_count += 1
+            if pair_count % 10 == 0 or pair_count == total_pairs:
+                log_print("LSA/LDA", f"  LSA/LDA: Đang xử lý cặp {pair_count}/{total_pairs} ({round(pair_count/total_pairs*100, 1)}%) - Văn bản {i} & {j}")
+                
+            # Skip if either document has no sentences
+            if not doc_vectors[i].size or not doc_vectors[j].size:
+                continue
 
-                # Store original indices for reporting
-                original_i, original_j = i, j
+            log_print("LSA/LDA", f"    LSA/LDA: Bắt đầu phân tích LSA/LDA cho cặp văn bản {i} & {j}")
 
-                # Use the same method as when comparing just two texts directly
-                print(
-                    f"    LSA/LDA: Bắt đầu phân tích LSA/LDA cho cặp văn bản {i} & {j}"
-                )
-                pair_result = self.detect_plagiarism_pair(texts[i], texts[j])
-                print(
-                    f"    LSA/LDA: Hoàn thành phân tích LSA/LDA, độ tương đồng: {pair_result['overall_similarity_percentage']}%"
-                )
+            # Calculate similarity between document vectors
+            # We'll use the maximum similarity of any sentence in doc1 with any sentence in doc2
+            similarity_matrix = cosine_similarity(doc_vectors[i], doc_vectors[j])
 
-                # Get the overall similarity from the pair result
-                overall_similarity = (
-                    pair_result["overall_similarity_percentage"] / 100.0
-                )
+            # Calculate overall similarity
+            # For each sentence in doc1, find its max similarity with any sentence in doc2
+            max_similarities_1to2 = np.max(similarity_matrix, axis=1)
+            mean_similarity_1to2 = float(np.mean(max_similarities_1to2))
 
-                # Extract similar sentence pairs
-                similar_sentence_pairs = []
-                if (
-                    "lsa_similarity" in pair_result
-                    and "similar_sentence_pairs" in pair_result["lsa_similarity"]
-                ):
-                    for pair in pair_result["lsa_similarity"]["similar_sentence_pairs"]:
-                        similar_sentence_pairs.append(
+            # For each sentence in doc2, find its max similarity with any sentence in doc1
+            max_similarities_2to1 = np.max(similarity_matrix, axis=0)
+            mean_similarity_2to1 = float(np.mean(max_similarities_2to1))
+
+            # Use the average of both directions for symmetry
+            overall_similarity = (mean_similarity_1to2 + mean_similarity_2to1) / 2.0
+            similarity_percentage = round(overall_similarity * 100, 2)
+
+            log_print("LSA/LDA", f"    LSA/LDA: Hoàn thành phân tích LSA/LDA, độ tương đồng: {similarity_percentage}%")
+
+            # Find similar sentence pairs
+            similar_pairs = []
+            if similarity_matrix.size > 0:
+                for i_idx in range(len(doc_vectors[i])):
+                    max_sim = np.max(similarity_matrix[i_idx])
+                    j_idx = np.argmax(similarity_matrix[i_idx])
+
+                    if max_sim > self.threshold:
+                        start_i = sum(sentence_counts[:i])
+                        start_j = sum(sentence_counts[:j])
+                        similar_pairs.append(
                             {
-                                "doc1_sentence": pair["text1_sentence"],
-                                "doc2_sentence": pair["text2_sentence"],
-                                "similarity_score": pair["similarity_score"],
-                                "similarity_percentage": pair["similarity_percentage"],
+                                "doc1_sentence": all_sentences[start_i + i_idx],
+                                "doc2_sentence": all_sentences[start_j + j_idx],
+                                "similarity_score": float(max_sim),
+                                "similarity_percentage": round(float(max_sim) * 100, 1),
                             }
                         )
 
-                # Only keep top 10 most similar pairs
-                similar_sentence_pairs.sort(
-                    key=lambda x: x["similarity_score"], reverse=True
-                )
-                similar_sentence_pairs = similar_sentence_pairs[:10]
+            # Add to results
+            results["document_pairs"].append(
+                {
+                    "doc1_index": i,
+                    "doc2_index": j,
+                    "overall_similarity": overall_similarity,
+                    "overall_similarity_percentage": similarity_percentage,
+                    "similar_sentence_pairs": similar_pairs[:10],  # Limit to top 10
+                }
+            )
 
-                # Add to results if significant similarity found or similar sentences found
-                if overall_similarity > 0.3 or len(similar_sentence_pairs) > 0:
-                    # Store document pair results with original indices
-                    results["document_pairs"].append(
-                        {
-                            "doc1_index": original_i,
-                            "doc2_index": original_j,
-                            "lsa_similarity": pair_result["lsa_similarity"][
-                                "overall_similarity"
-                            ],
-                            "overall_similarity": overall_similarity,
-                            "overall_similarity_percentage": round(
-                                overall_similarity * 100, 2
-                            ),
-                            "similar_sentence_pairs": similar_sentence_pairs,
-                        }
-                    )
+            results["document_similarities"].append(
+                {
+                    "doc_pair": f"doc{i+1}-doc{j+1}",
+                    "similarity_percentage": similarity_percentage,
+                }
+            )
 
-                    # Store simple similarity results for summary
-                    results["document_similarities"].append(
-                        {
-                            "doc_pair": f"doc{original_i+1}-doc{original_j+1}",
-                            "similarity_percentage": round(overall_similarity * 100, 2),
-                        }
-                    )
-
-        # Sort document pairs by similarity
+        # Sort by similarity
         results["document_pairs"].sort(
             key=lambda x: x["overall_similarity"], reverse=True
         )
@@ -486,14 +526,11 @@ class TopicModelingDetector:
             key=lambda x: x["similarity_percentage"], reverse=True
         )
 
-        # Add execution time
-        end_time = time.time()
-        results["execution_time_seconds"] = round(end_time - start_time, 2)
-
-        print(f"LSA/LDA: Đã hoàn thành phân tích {total_pairs} cặp văn bản")
-        print(
-            f"LSA/LDA: Thời gian thực hiện: {round(time.time() - start_time, 2)} giây"
-        )
+        execution_time = round(time.time() - start_time, 2)
+        results["execution_time_seconds"] = execution_time
+        
+        log_print("LSA/LDA", f"LSA/LDA: Đã hoàn thành phân tích {total_pairs} cặp văn bản")
+        log_print("LSA/LDA", f"LSA/LDA: Thời gian thực hiện: {execution_time} giây")
 
         return results
 
