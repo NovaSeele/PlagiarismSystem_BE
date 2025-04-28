@@ -1,5 +1,5 @@
-from fastapi import APIRouter, HTTPException
-from typing import Dict, List, Any
+from fastapi import APIRouter, HTTPException, WebSocket
+from typing import Dict, List, Any, Optional
 from pydantic import BaseModel, Field
 
 from modules.bert_module import compare_two_texts, compare_multiple_texts
@@ -27,6 +27,12 @@ from services.pdf_metadata import (
     get_pdf_metadata_by_name,
     get_pdf_contents_by_names,
 )
+
+# Add these imports
+import asyncio
+import json
+from starlette.websockets import WebSocketDisconnect
+import time
 
 router = APIRouter()
 
@@ -474,3 +480,41 @@ async def auto_layered_plagiarism_detection_by_names(request: FilesComparisonReq
         raise HTTPException(
             status_code=500, detail=f"Đã xảy ra lỗi khi phân tích: {str(e)}"
         )
+
+
+# Cải thiện endpoint WebSocket
+@router.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    print(f"WebSocket connection accepted from {websocket.client.host}")
+    active_websockets.add(websocket)
+
+    try:
+        # Gửi thông báo kết nối thành công để frontend biết kết nối đã sẵn sàng
+        await websocket.send_text(
+            "Kết nối WebSocket thành công, sẵn sàng nhận thông báo tiến độ"
+        )
+
+        # Giữ kết nối mở
+        while True:
+            # Chờ tin nhắn từ client hoặc timeout
+            try:
+                # Timeout 1 giờ
+                await asyncio.wait_for(websocket.receive_text(), timeout=3600)
+            except asyncio.TimeoutError:
+                # Kiểm tra kết nối còn sống không
+                try:
+                    # Gửi ping để kiểm tra kết nối
+                    ping_msg = json.dumps({"type": "ping", "timestamp": time.time()})
+                    await websocket.send_text(ping_msg)
+                except Exception:
+                    # Kết nối đã đóng
+                    break
+    except WebSocketDisconnect:
+        print(f"WebSocket client disconnected")
+    except Exception as e:
+        print(f"WebSocket error: {e}")
+    finally:
+        if websocket in active_websockets:
+            active_websockets.remove(websocket)
+        print(f"WebSocket connection closed and removed from active connections")
