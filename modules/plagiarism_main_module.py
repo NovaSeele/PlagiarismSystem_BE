@@ -92,12 +92,38 @@ class LayeredPlagiarismDetector:
             return
 
         if isinstance(websockets, set):
+            # Tạo danh sách các websocket cần xóa
+            closed_websockets = set()
+
             for websocket in websockets:
                 try:
-                    await websocket.send_text(message)
+                    # Kiểm tra trạng thái kết nối trước khi gửi
+                    if (
+                        hasattr(websocket, "client_state")
+                        and websocket.client_state.name == "CONNECTED"
+                    ):
+                        try:
+                            await websocket.send_text(message)
+                        except RuntimeError as e:
+                            if (
+                                "Cannot call 'send' once a close message has been sent"
+                                in str(e)
+                            ):
+                                closed_websockets.add(websocket)
+                            else:
+                                raise
+                    else:
+                        closed_websockets.add(websocket)
                 except Exception as e:
                     print(f"Error sending to websocket: {e}")
-                    continue
+                    # Đánh dấu websocket này để xóa khỏi danh sách
+                    closed_websockets.add(websocket)
+
+            # Xóa các websocket đã đóng khỏi tập hợp
+            for closed_ws in closed_websockets:
+                if closed_ws in websockets:
+                    websockets.remove(closed_ws)
+
         print(message)  # Also print to console for logging
 
     async def detect_plagiarism(
@@ -219,10 +245,6 @@ class LayeredPlagiarismDetector:
             websockets, f"  Layer 1: Đang thực hiện phân tích LSA/LDA..."
         )
         lsa_results = topic_detector.detect_plagiarism_multi(texts)
-        await self.send_progress_update(
-            websockets,
-            f"  Layer 1: Đã hoàn thành phân tích LSA/LDA, đang cập nhật kết quả cho từng cặp",
-        )
 
         # Map for quick access to similarity scores from LSA results
         similarity_map = {}
@@ -236,14 +258,10 @@ class LayeredPlagiarismDetector:
         # Update all document pairs with LSA results
         count = 0
         total = len(document_pairs)
-        await self.send_progress_update(
-            websockets,
-            f"  Layer 1: Đang cập nhật kết quả LSA cho {total} cặp văn bản...",
-        )
 
         for pair in document_pairs:
             count += 1
-            if count % 50 == 0 or count == total:
+            if count % 1 == 0 or count == total:
                 await self.send_progress_update(
                     websockets,
                     f"  Layer 1: Đã xử lý {count}/{total} cặp văn bản ({round(count/total*100, 1)}%)",
@@ -274,10 +292,10 @@ class LayeredPlagiarismDetector:
         count = 0
         for pair in lsa_passed:
             count += 1
-            if count % 10 == 0 or count == total:
+            if count % 1 == 0 or count == total:
                 await self.send_progress_update(
                     websockets,
-                    f"  Layer 2: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%) - Văn bản {pair.doc1_filename} & {pair.doc2_filename}",
+                    f"  Layer 2: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%)",
                 )
 
             text1 = texts[pair.doc1_index]
@@ -313,10 +331,10 @@ class LayeredPlagiarismDetector:
         count = 0
         for pair in fasttext_passed:
             count += 1
-            if count % 5 == 0 or count == total:
+            if count % 1 == 0 or count == total:
                 await self.send_progress_update(
                     websockets,
-                    f"  Layer 3: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%) - Văn bản {pair.doc1_filename} & {pair.doc2_filename}",
+                    f"  Layer 3: Đang xử lý cặp {count}/{total} ({round(count/total*100, 1)}%)",
                 )
 
             text1 = texts[pair.doc1_index]
