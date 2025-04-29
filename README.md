@@ -11,3 +11,5 @@ python main.py
 Check cmd lấy đường dẫn ( hiện đang để localhost:8888 )
 
 thêm /doc vào sau route đường dẫn để test BE
+
+.
