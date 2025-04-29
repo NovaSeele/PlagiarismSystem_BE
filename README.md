@@ -1,5 +1,4 @@
-# BatoReach_be
-BE of BatoReach App
+# Backend của hệ thống kiểm tra đạo văn chéo
 
 cách chạy BE
 
@@ -9,6 +8,6 @@ pip install -r requirements.txt trước
 
 python main.py
 
-Check cmd lấy đường dẫn
+Check cmd lấy đường dẫn ( hiện đang để localhost:8888 )
 
 thêm /doc vào sau route đường dẫn để test BE
