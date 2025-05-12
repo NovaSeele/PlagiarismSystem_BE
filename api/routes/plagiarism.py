@@ -1,6 +1,15 @@
-from fastapi import APIRouter, HTTPException, WebSocket
+from fastapi import APIRouter, HTTPException, WebSocket, Depends
 from typing import Dict, List, Any, Optional
 from pydantic import BaseModel, Field
+
+from schemas import (
+    FileNameComparisonRequest,
+    PairPlagiarismRequest,
+    MultiPlagiarismRequest,
+    PlagiarismResponse,
+    LayeredPlagiarismResponse,
+    FilesComparisonRequest,
+)
 
 from modules.bert_module import compare_two_texts, compare_multiple_texts
 from modules.lsa_lda_module import (
@@ -34,54 +43,23 @@ import json
 from starlette.websockets import WebSocketDisconnect
 import time
 
+# Import user dependencies for role-based access control
+from schemas.user import UserInDB
+from db.repositories.user import get_current_user, get_lecturer_user
+
 router = APIRouter()
 
 # Add a global variable to store active websocket connections
 active_websockets = set()
 
 
-# New model for file comparison by name
-class FileNameComparisonRequest(BaseModel):
-    file1_name: str = Field(
-        ..., description="Tên của file PDF thứ nhất để kiểm tra (không cần .pdf)"
-    )
-    file2_name: str = Field(
-        ..., description="Tên của file PDF thứ hai để kiểm tra (không cần .pdf)"
-    )
-
-
-class PairPlagiarismRequest(BaseModel):
-    text1: str = Field(..., description="Văn bản thứ nhất để kiểm tra", min_length=50)
-    text2: str = Field(..., description="Văn bản thứ hai để kiểm tra", min_length=50)
-
-
-class MultiPlagiarismRequest(BaseModel):
-    texts: List[str] = Field(
-        ..., description="Danh sách các văn bản để kiểm tra", min_items=2
-    )
-
-
-class PlagiarismResponse(BaseModel):
-    overall_similarity_percentage: float
-    results: dict
-
-
-class LayeredPlagiarismResponse(BaseModel):
-    results: dict
-
-
-# Tạo model mới cho request chứa danh sách tên file để so sánh
-class FilesComparisonRequest(BaseModel):
-    filenames: List[str] = Field(
-        ...,
-        description="Danh sách tên các file PDF để kiểm tra (không cần .pdf)",
-        min_items=2,
-    )
-
-
 # New API endpoint for comparing two PDFs by filename using detailed plagiarism detection
+# Only lecturers can use this endpoint
 @router.post("/compare-pdfs-by-name", response_model=Dict[str, Any])
-async def compare_pdfs_by_name(request: FileNameComparisonRequest):
+async def compare_pdfs_by_name(
+    request: FileNameComparisonRequest,
+    current_user: UserInDB = Depends(get_lecturer_user),
+):
     """
     So sánh chi tiết hai văn bản PDF bằng cách chỉ định tên file.
 
@@ -96,6 +74,8 @@ async def compare_pdfs_by_name(request: FileNameComparisonRequest):
     - Danh sách tổng hợp các phần bị đạo văn không trùng lặp
     - Thông tin về loại phần được phát hiện (câu, đoạn, cụm từ)
     - Tỷ lệ tương đồng của từng phần được phát hiện
+
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         # Lấy nội dung của hai file từ cơ sở dữ liệu
@@ -134,11 +114,14 @@ async def compare_pdfs_by_name(request: FileNameComparisonRequest):
         )
 
 
-# Route cho việc so sánh hai văn bản với BERT
+# Route cho việc so sánh hai văn bản với BERT - Basic feature available for all users
 @router.post("/compare-pair", response_model=PlagiarismResponse)
-async def compare_pair(request: PairPlagiarismRequest):
+async def compare_pair(
+    request: PairPlagiarismRequest, current_user: UserInDB = Depends(get_current_user)
+):
     """
     So sánh hai văn bản và trả về kết quả phân tích đạo văn sử dụng BERT.
+    Tính năng này có sẵn cho tất cả người dùng.
     """
     try:
         results = compare_two_texts(request.text1, request.text2)
@@ -152,11 +135,14 @@ async def compare_pair(request: PairPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh nhiều văn bản với BERT
+# Route cho việc so sánh nhiều văn bản với BERT - Only for lecturers
 @router.post("/compare-multiple", response_model=PlagiarismResponse)
-async def compare_multiple(request: MultiPlagiarismRequest):
+async def compare_multiple(
+    request: MultiPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng BERT.
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         if len(request.texts) < 2:
@@ -185,11 +171,14 @@ async def compare_multiple(request: MultiPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh hai văn bản với LSA/LDA
+# Route cho việc so sánh hai văn bản với LSA/LDA - Advanced feature for lecturers
 @router.post("/topic-modeling/compare-pair", response_model=PlagiarismResponse)
-async def compare_pair_topic_modeling(request: PairPlagiarismRequest):
+async def compare_pair_topic_modeling(
+    request: PairPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     So sánh hai văn bản và trả về kết quả phân tích đạo văn sử dụng LSA/LDA.
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         results = compare_texts_with_topic_modeling(request.text1, request.text2)
@@ -203,11 +192,14 @@ async def compare_pair_topic_modeling(request: PairPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh nhiều văn bản với LSA
+# Route cho việc so sánh nhiều văn bản với LSA - Advanced feature for lecturers
 @router.post("/topic-modeling/compare-multiple", response_model=PlagiarismResponse)
-async def compare_multiple_topic_modeling(request: MultiPlagiarismRequest):
+async def compare_multiple_topic_modeling(
+    request: MultiPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng LSA.
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         if len(request.texts) < 2:
@@ -236,13 +228,16 @@ async def compare_multiple_topic_modeling(request: MultiPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh nhiều văn bản với LSA
+# Route cho việc so sánh nhiều văn bản với LSA - Advanced debug feature for lecturers
 @router.post(
     "/topic-modeling/compare-multiple-debug", response_model=PlagiarismResponse
 )
-async def compare_multiple_topic_modeling_debug(request: MultiPlagiarismRequest):
+async def compare_multiple_topic_modeling_debug(
+    request: MultiPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
-    So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng LSA.
+    So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng LSA (debug version).
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         if len(request.texts) < 2:
@@ -271,11 +266,14 @@ async def compare_multiple_topic_modeling_debug(request: MultiPlagiarismRequest)
         )
 
 
-# Route cho việc so sánh hai văn bản với FastText
+# Route cho việc so sánh hai văn bản với FastText - Advanced feature for lecturers
 @router.post("/fasttext/compare-pair", response_model=PlagiarismResponse)
-async def compare_pair_fasttext(request: PairPlagiarismRequest):
+async def compare_pair_fasttext(
+    request: PairPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     So sánh hai văn bản và trả về kết quả phân tích đạo văn sử dụng FastText embeddings.
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         results = compare_texts_with_fasttext(request.text1, request.text2)
@@ -289,11 +287,14 @@ async def compare_pair_fasttext(request: PairPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh nhiều văn bản với FastText
+# Route cho việc so sánh nhiều văn bản với FastText - Advanced feature for lecturers
 @router.post("/fasttext/compare-multiple", response_model=PlagiarismResponse)
-async def compare_multiple_fasttext(request: MultiPlagiarismRequest):
+async def compare_multiple_fasttext(
+    request: MultiPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     So sánh nhiều văn bản và trả về kết quả phân tích đạo văn sử dụng FastText embeddings.
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         if len(request.texts) < 2:
@@ -322,9 +323,11 @@ async def compare_multiple_fasttext(request: MultiPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh nhiều văn bản sử dụng phương pháp 3 lớp
+# Route cho việc so sánh nhiều văn bản sử dụng phương pháp 3 lớp - Advanced feature for lecturers
 @router.post("/layered-detection", response_model=LayeredPlagiarismResponse)
-async def layered_plagiarism_detection(request: MultiPlagiarismRequest):
+async def layered_plagiarism_detection(
+    request: MultiPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     So sánh nhiều văn bản sử dụng phương pháp kiểm tra 3 lớp (LSA/LDA → FastText → BERT)
     để lọc dần và phát hiện đạo văn hiệu quả hơn.
@@ -335,6 +338,8 @@ async def layered_plagiarism_detection(request: MultiPlagiarismRequest):
     - Lớp 3 (BERT): Phân tích ngữ nghĩa với độ chính xác cao nhất
 
     Kết quả trả về chỉ bao gồm các cặp văn bản đã vượt qua cả 3 lớp lọc, với mức độ tương đồng cuối cùng.
+
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         if len(request.texts) < 2:
@@ -352,9 +357,11 @@ async def layered_plagiarism_detection(request: MultiPlagiarismRequest):
         )
 
 
-# Route cho việc so sánh nhiều văn bản sử dụng phương pháp 3 lớp - bản debug chi tiết
+# Route cho việc so sánh nhiều văn bản sử dụng phương pháp 3 lớp - bản debug chi tiết - Advanced feature for lecturers
 @router.post("/layered-detection-debug", response_model=Dict[str, Any])
-async def layered_plagiarism_detection_debug(request: MultiPlagiarismRequest):
+async def layered_plagiarism_detection_debug(
+    request: MultiPlagiarismRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     Version debug chi tiết: So sánh nhiều văn bản sử dụng phương pháp kiểm tra 3 lớp
     (LSA/LDA → FastText → BERT) và cung cấp thông tin chi tiết về tất cả các cặp văn bản.
@@ -368,6 +375,8 @@ async def layered_plagiarism_detection_debug(request: MultiPlagiarismRequest):
     - Số lượng tài liệu và thời gian thực thi
     - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
     - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         if len(request.texts) < 2:
@@ -385,9 +394,11 @@ async def layered_plagiarism_detection_debug(request: MultiPlagiarismRequest):
         )
 
 
-# Route mới để thực hiện kiểm tra đạo văn tự động trên tất cả các file PDF đã upload
+# Route mới để thực hiện kiểm tra đạo văn tự động trên tất cả các file PDF đã upload - Advanced feature for lecturers
 @router.get("/auto-layered-detection-debug", response_model=Dict[str, Any])
-async def auto_layered_plagiarism_detection_debug():
+async def auto_layered_plagiarism_detection_debug(
+    current_user: UserInDB = Depends(get_lecturer_user),
+):
     """
     Tự động phân tích và so sánh tất cả các văn bản PDF đã được upload lên hệ thống.
 
@@ -402,6 +413,8 @@ async def auto_layered_plagiarism_detection_debug():
     - Số lượng tài liệu và thời gian thực thi
     - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
     - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         # Lấy tất cả nội dung PDF từ database
@@ -426,9 +439,11 @@ async def auto_layered_plagiarism_detection_debug():
         )
 
 
-# Route mới để thực hiện kiểm tra đạo văn tự động trên danh sách các file PDF được chỉ định
+# Route mới để thực hiện kiểm tra đạo văn tự động trên danh sách các file PDF được chỉ định - Advanced feature for lecturers
 @router.post("/auto-layered-detection-by-names", response_model=Dict[str, Any])
-async def auto_layered_plagiarism_detection_by_names(request: FilesComparisonRequest):
+async def auto_layered_plagiarism_detection_by_names(
+    request: FilesComparisonRequest, current_user: UserInDB = Depends(get_lecturer_user)
+):
     """
     Phân tích và so sánh các văn bản PDF được chỉ định bởi danh sách tên file.
 
@@ -443,6 +458,8 @@ async def auto_layered_plagiarism_detection_by_names(request: FilesComparisonReq
     - Số lượng tài liệu và thời gian thực thi
     - Thống kê tóm tắt số lượng cặp qua từng lớp lọc
     - Danh sách chi tiết tất cả các cặp và kết quả ở từng lớp lọc
+
+    Note: Chỉ giảng viên mới có thể sử dụng tính năng này.
     """
     try:
         # Kiểm tra đầu vào có ít nhất 2 filename

@@ -3,6 +3,7 @@ from typing import List, Dict, Any
 import asyncio
 import json
 import time
+from schemas import LogEntry
 
 router = APIRouter()
 
@@ -85,12 +86,12 @@ def send_log(module: str, message: str, level: str = "info"):
         message (str): The log message
         level (str): Log level (info, warning, error)
     """
-    log_entry = {
-        "module": module,
-        "message": message,
-        "level": level,
-        "timestamp": time.time(),  # Use standard time.time() instead of asyncio time
-    }
+    log_entry = LogEntry(
+        module=module,
+        message=message,
+        level=level,
+        timestamp=time.time(),  # Use standard time.time() instead of asyncio time
+    ).dict()
 
     # Use asyncio to run the broadcast function
     try:
