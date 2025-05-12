@@ -258,9 +258,10 @@ def get_all_pdf_contents():
     if not all_files:
         return []
 
-    # Chuyển đổi ObjectId thành string
+    # Convert _id to string for JSON serialization
     for file in all_files:
-        file["_id"] = str(file["_id"])
+        if "_id" in file:
+            file["_id"] = str(file["_id"])
 
     return all_files
 
@@ -294,3 +295,56 @@ def get_pdf_contents_by_names(filenames: List[str]):
             results.append(file_data)
 
     return results
+
+
+def delete_pdf_by_id(pdf_id: str, username: str) -> bool:
+    """
+    Delete a PDF file by its ID.
+
+    Args:
+        pdf_id: The ID of the PDF file to delete
+        username: Username of the requesting user
+
+    Returns:
+        bool: True if deletion was successful, False otherwise
+    """
+    try:
+        pdf_metadata_collection = get_pdf_metadata_collection()
+
+        # Try to convert the string ID to ObjectId
+        try:
+            object_id = ObjectId(pdf_id)
+        except:
+            return False
+
+        # First, find the document to verify ownership and get filename
+        document = pdf_metadata_collection.find_one({"_id": object_id})
+
+        if not document:
+            return False
+
+        # Verify the user has permission to delete this file
+        if document.get("user") != username:
+            # User doesn't own this file
+            return False
+
+        # Get the filename to find in GridFS
+        filename = document.get("filename")
+
+        # Delete the metadata document
+        delete_result = pdf_metadata_collection.delete_one({"_id": object_id})
+
+        # Try to delete from GridFS if it exists there
+        # Note: Not all files might be in GridFS if they were processed differently
+        try:
+            grid_file = fs.find_one({"filename": filename})
+            if grid_file:
+                fs.delete(grid_file._id)
+        except Exception as e:
+            # Log error but continue since we already deleted the metadata
+            print(f"Error deleting from GridFS: {str(e)}")
+
+        return delete_result.deleted_count > 0
+    except Exception as e:
+        print(f"Error deleting PDF: {str(e)}")
+        return False
